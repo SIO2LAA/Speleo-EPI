@@ -10,6 +10,16 @@ public class Controle {
     private String nature;
     private String lieu;
 
+    //Constructeur de la classe Controle
+    public Controle(int idControle, Date date, String observation, String nature, String lieu){
+        this.idControle = idControle;
+        this.date = date;
+        this.observation = observation;
+        this.nature = nature;
+        this.lieu = lieu;
+    }
+
+
     public int getIdControle() {
         return idControle;
     }

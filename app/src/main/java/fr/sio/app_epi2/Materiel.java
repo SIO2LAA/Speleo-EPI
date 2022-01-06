@@ -14,6 +14,17 @@ public class Materiel {
     private String marquage;
     private String emplacementMarquage;
 
+    //Constructeur de la classe Materiel
+    public Materiel(int idMateriel, String libelle, String modele, String signeDistinctif, Date dateAcquisition, Date datePremiereUtilisation, Date dateLimiteRebut, Date dateFabrication, String marquage, String emplacementMarquage){
+        this.idMateriel = idMateriel;
+        this.libelle = libelle;
+        this.modele = modele;
+        this.signeDistinctif = signeDistinctif;
+        this.dateAcquisition = dateAcquisition;
+        this.dateLimiteRebut = dateLimiteRebut;
+        this.marquage = marquage;
+        this.emplacementMarquage = emplacementMarquage;
+    }
 
     public int getIdMateriel(){return idMateriel;}
 

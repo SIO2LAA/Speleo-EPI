@@ -8,6 +8,14 @@ public class Lot {
     private Date date;
     private int nombre;
 
+    //Constructeur de la classe Lot
+    public Lot(int idLot, Date date, int nombre){
+        this.idLot = idLot;
+        this.date = date;
+        this.nombre = nombre;
+    }
+
+
     public int getIdLot() {
         return idLot;
     }
