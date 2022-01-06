@@ -6,11 +6,15 @@ import android.content.ContentValues;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
+    private Button boutonMenu;
     private SQLiteDatabase db;
+    private ContentValues value;
     // The database creator and updater helper
     DBOpenHelper dbOpenHelper;
 
@@ -18,11 +22,13 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        boutonMenu = findViewById(R.id.BoutonMenu);
+        boutonMenu.setOnClickListener(this);
         // Create or retrieve the database
         dbOpenHelper = new DBOpenHelper(this, DBOpenHelper.Constants.DATABASE_NAME, null,
                 DBOpenHelper.Constants.DATABASE_VERSION);
         openDB();
+        value = new ContentValues();
     }
 
     /**
@@ -71,4 +77,10 @@ public class MainActivity extends AppCompatActivity {
         return rowId;
     }
 
+    @Override
+    public void onClick(View view) {
+        if (boutonMenu.isPressed()) {
+            insertRecord(value);
+        }
+    }
 }
