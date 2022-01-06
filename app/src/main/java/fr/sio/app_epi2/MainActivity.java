@@ -3,6 +3,7 @@ package fr.sio.app_epi2;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.ContentValues;
+import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import android.os.Bundle;
@@ -15,6 +16,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Button boutonMenu;
     private SQLiteDatabase db;
     private ContentValues value;
+    private Intent gestionMateriel;
     // The database creator and updater helper
     DBOpenHelper dbOpenHelper;
 
@@ -81,6 +83,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View view) {
         if (boutonMenu.isPressed()) {
             insertRecord(value);
+            gestionMateriel = new Intent(this, GestionMateriel.class);
+            startActivityForResult(gestionMateriel, 100);
         }
     }
 }
