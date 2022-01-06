@@ -8,7 +8,7 @@
     tools:context=".MainActivity">
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
@@ -16,13 +16,21 @@
             android:layout_width="101dp"
             android:layout_height="91dp"
             android:src="@mipmap/logo_club"></ImageView>
+
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="top"
+            android:layout_marginLeft="235dp"
             android:orientation="vertical">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:fontFamily=""
                 android:text="@string/nom_club"></TextView>
 
             <TextView
@@ -33,10 +41,12 @@
     </LinearLayout>
 
     <Button
+        android:id="@+id/BoutonMenu"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/BoutonMenu"
-        android:id="@+id/BoutonMenu"></Button>
+        android:layout_gravity="center"
+        android:layout_marginTop="200dp"></Button>
 
 
 </LinearLayout>
