@@ -6,6 +6,13 @@ public class Controleur {
     private String nom;
     private String prenom;
 
+    //Constructeur de la classe Controleur
+    public Controleur(int idControleur, String nom, String prenom){
+        this.idControleur = idControleur;
+        this.nom = nom;
+        this.prenom = prenom;
+    }
+
     public int getIdControleur() {
         return idControleur;
     }
