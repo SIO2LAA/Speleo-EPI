@@ -4,9 +4,9 @@
     <string name="date_systeme">12/08/2008</string>
     <string name="nom_club">Speleo</string>
     <string name="ListeMateriels">Liste de Matériels</string>
-    <string name="filtre1">Filtre 1</string>
-    <string name="filtre2">Filtre 2</string>
-    <string name="filtre3">Filtre 3</string>
+    <string name="filtreModele">Filtre Modele</string>
+    <string name="filtreDate">Filtre Date</string>
+    <string name="filtreMarquage">Filtre Marquage</string>
     <string name="filtre4">Filtre 4</string>
     <string name="filtre5">Filtre 5</string>
     <string name="ficheDeVie">Fiche de vie</string>
@@ -15,4 +15,5 @@
     <string name="FModifier">Modifier</string>
     <string name="FCreer">Créer</string>
     <string name="FSupprimer">Supprimer</string>
+    <string name="boutonInfoMateriel">Info</string>
 </resources>

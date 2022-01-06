@@ -40,13 +40,13 @@
                 android:id="@+id/checkBox"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/filtre1" />
+                android:text="@string/filtreModele" />
 
             <CheckBox
                 android:id="@+id/checkBox3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/filtre3" />
+                android:text="@string/filtreDate" />
 
             <CheckBox
                 android:id="@+id/checkBox5"
@@ -67,7 +67,7 @@
                 android:id="@+id/checkBox2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/filtre2" />
+                android:text="@string/filtreMarquage" />
 
             <CheckBox
                 android:id="@+id/checkBox4"
@@ -77,9 +77,18 @@
         </LinearLayout>
     </LinearLayout>
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:enabled="false"
+        android:id="@+id/boutonInfoMateriel"
+        android:text="@string/boutonInfoMateriel"></Button>
+
     <ListView
         android:layout_width="409dp"
         android:layout_height="386dp"
+        android:id="@+id/listeMateriel"
         tools:layout_editor_absoluteX="1dp"
         tools:layout_editor_absoluteY="344dp" />
 
