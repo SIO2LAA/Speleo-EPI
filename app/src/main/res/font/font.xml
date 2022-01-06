@@ -5,9 +5,4 @@
         android:fontWeight="400"
         android:font="@font/arial"></font>
 
-    <font
-        android:fontStyle="normal"
-        android:fontWeight="800"
-        android:font="@font/arialbd"></font>
-
 </font-family>

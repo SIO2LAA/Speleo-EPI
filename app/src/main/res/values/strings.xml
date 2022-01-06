@@ -9,4 +9,10 @@
     <string name="filtre3">Filtre 3</string>
     <string name="filtre4">Filtre 4</string>
     <string name="filtre5">Filtre 5</string>
+    <string name="ficheDeVie">Fiche de vie</string>
+    <string name="ficheControle">Fiche Contrôle</string>
+    <string name="FAfficher">Afficher</string>
+    <string name="FModifier">Modifier</string>
+    <string name="FCreer">Créer</string>
+    <string name="FSupprimer">Supprimer</string>
 </resources>

@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/logo_club_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.App_epi2">
-        <activity android:name=".GestionMateriel"></activity>
+        <activity android:name=".InfoMateriel"></activity>
+        <activity android:name=".GestionMateriel" />
         <activity
             android:name=".MainActivity"
             android:exported="true">
