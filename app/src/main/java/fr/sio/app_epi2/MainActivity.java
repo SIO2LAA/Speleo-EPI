@@ -66,7 +66,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
         // Insert the line in the database
-        long rowId = db.insert(DBOpenHelper.Constants.tableName, null, contentValues);
+        long rowId = db.insert(DBOpenHelper.Constants.tableFabricant, null, contentValues);
 
         // Test to see if the insertion was ok
         if (rowId == -1) {

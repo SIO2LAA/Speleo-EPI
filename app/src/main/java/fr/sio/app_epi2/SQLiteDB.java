@@ -16,7 +16,9 @@ import android.util.Log;
         public static final int DATABASE_VERSION = 1;
 
         // The table Name
-        public static final String tableName = "Fabricant";
+        public static final String tableFabricant = "Fabricant";
+        public static final String tableType = "Type";
+
 
         // Noms de colonnes
         // /!\Si vous utilisez une base de données, les noms des colonnes ont
@@ -26,28 +28,33 @@ import android.util.Log;
         public static final String idFabricant = "_id";// Mandatory
 
         // My Column Name and the associated explanation for end-users
-        public static final String nom = "name";
+        public static final String nomFabricant = "nom";
 
-
-
-        // Index des colonnes
-        // The index of the column ID
-        public static final int ID_COLUMN = 1;
-
-        // The index of the column NAME
-        public static final int NAME_COLUMN = 2;
-
+        // Table Type
+        public static final String idType= "_id";// Mandatory
+        public static final String nomType = "nom";// Mandatory
 
     }
 
     // The static string to create the database.
-    private static final String DATABASE_CREATE = "create table "
-            + Constants.tableName + "(" + Constants.idFabricant
+    private static final String FABRICANT_TABLE = "create table "
+            + Constants.tableFabricant + "(" + Constants.idFabricant
             + " integer primary key autoincrement, "
-            + Constants.nom + " TEXT )";
+            + Constants.nomFabricant + " VARCHAR(50) )";
 
 
-    /**
+    private static final String TYPE_TABLE = "create table "
+             + Constants.tableType + "(" + Constants.idType
+             + " integer primary key autoincrement, "
+             + Constants.nomType + " VARCHAR(50) )";
+
+
+
+
+
+
+
+     /**
      * @param context
      * @param name
      * @param factory
@@ -61,7 +68,8 @@ import android.util.Log;
     @Override
     public void onCreate(SQLiteDatabase db) {
         // Create the new database using the SQL string Database_create
-        db.execSQL(DATABASE_CREATE);
+        db.execSQL(FABRICANT_TABLE);
+        db.execSQL(TYPE_TABLE);
 
     }
 
@@ -71,7 +79,7 @@ import android.util.Log;
                 + " vers la version " + newVersion
                 + ", les anciennes données seront détruites ");
         // Drop the old database
-        db.execSQL("DROP TABLE IF EXISTS " + Constants.tableName);
+        db.execSQL("DROP TABLE IF EXISTS " + Constants.tableFabricant);
         // Create the new one
         onCreate(db);
         // or do a smartest stuff
