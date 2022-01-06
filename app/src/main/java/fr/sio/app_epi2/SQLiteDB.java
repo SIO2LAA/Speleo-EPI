@@ -18,6 +18,7 @@ import android.util.Log;
         // The table Name
         public static final String tableFabricant = "Fabricant";
         public static final String tableType = "Type";
+        public static final String tableControle = "Controle";
 
 
         // Noms de colonnes
@@ -25,14 +26,22 @@ import android.util.Log;
         // les mêmes que ceux de
         // votre base, de même pour les index.
         // My Column ID and the associated explanation for end-users
-        public static final String idFabricant = "_id";// Mandatory
 
-        // My Column Name and the associated explanation for end-users
+        // Table Fabricant
+        public static final String idFabricant = "_id";// Mandatory
         public static final String nomFabricant = "nom";
 
         // Table Type
         public static final String idType= "_id";// Mandatory
-        public static final String nomType = "nom";// Mandatory
+        public static final String nomType = "nom";
+
+        // Table Controle
+        public static final String idControle = "_id";// Mandatory
+        public static final String dateControle = "date";
+        public static final String observationControle = "observation";
+        public static final String natureControle = "nature";
+        public static final String lieuControle = "lieu";
+
 
     }
 
@@ -47,6 +56,14 @@ import android.util.Log;
              + Constants.tableType + "(" + Constants.idType
              + " integer primary key autoincrement, "
              + Constants.nomType + " VARCHAR(50) )";
+
+     private static final String CONTROLE_TABLE = "create table "
+             + Constants.tableControle + "(" + Constants.idControle
+             + " integer primary key autoincrement, "
+             + Constants.dateControle + " DATE ,"
+             + Constants.observationControle + " VARCHAR(255) ,"
+             + Constants.natureControle + " VARCHAR(255) ,"
+             + Constants.lieuControle + " VARCHAR(255) )";
 
 
 
@@ -70,7 +87,7 @@ import android.util.Log;
         // Create the new database using the SQL string Database_create
         db.execSQL(FABRICANT_TABLE);
         db.execSQL(TYPE_TABLE);
-
+        db.execSQL(CONTROLE_TABLE);
     }
 
     @Override
