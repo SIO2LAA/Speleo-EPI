@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.ClipData;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -34,6 +35,7 @@ public class GestionMateriel extends AppCompatActivity implements View.OnClickLi
         if (boutonInfoMateriel.isPressed()) {
             Materiel materiel = (Materiel) listeMateriel.getSelectedItem();
             infoMateriel = new Intent(this, InfoMateriel.class);
+            infoMateriel.putExtra("Item", materiel.getIdMateriel());
             startActivity(infoMateriel);
         }
     }
