@@ -62,7 +62,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private long insertRecord(ContentValues contentValues) {
         // Assign the values for each column.
         contentValues.put(DBOpenHelper.Constants.idFabricant, "1");
-        contentValues.put(DBOpenHelper.Constants.nom, "BOSCH");
+        contentValues.put(DBOpenHelper.Constants.nomFabricant, "BOSCH");
 
 
         // Insert the line in the database
