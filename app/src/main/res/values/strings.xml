@@ -3,4 +3,5 @@
     <string name="BoutonMenu">Bienvenue</string>
     <string name="date_systeme">12/08/2008</string>
     <string name="nom_club">Speleo</string>
+    <string name="ListeMateriels">Liste de Matériels</string>
 </resources>
