@@ -4,4 +4,9 @@
     <string name="date_systeme">12/08/2008</string>
     <string name="nom_club">Speleo</string>
     <string name="ListeMateriels">Liste de Matériels</string>
+    <string name="filtre1">Filtre 1</string>
+    <string name="filtre2">Filtre 2</string>
+    <string name="filtre3">Filtre 3</string>
+    <string name="filtre4">Filtre 4</string>
+    <string name="filtre5">Filtre 5</string>
 </resources>
