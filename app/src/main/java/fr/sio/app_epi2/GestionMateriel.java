@@ -1,4 +1,4 @@
-package fr.sio.app_epi2.controllers;
+package fr.sio.app_epi2;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -9,8 +9,6 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ListView;
 
-import fr.sio.app_epi2.InfoMateriel;
-import fr.sio.app_epi2.R;
 import fr.sio.app_epi2.models.Materiel;
 
 public class GestionMateriel extends AppCompatActivity implements View.OnClickListener {

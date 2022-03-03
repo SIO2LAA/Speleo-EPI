@@ -11,8 +11,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
-import fr.sio.app_epi2.controllers.GestionMateriel;
-
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     private Button boutonMenu;
