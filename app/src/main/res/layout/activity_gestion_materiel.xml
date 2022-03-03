@@ -87,7 +87,6 @@
         android:text="@string/boutonInfoMateriel"></Button>
 
     <ListView
-        android:id="@+id/liste"
         android:layout_width="409dp"
         android:layout_height="386dp"
         android:id="@+id/listeMateriel"
