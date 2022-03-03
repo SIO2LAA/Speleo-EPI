@@ -1,16 +1,17 @@
-package fr.sio.app_epi2;
+package fr.sio.app_epi2.controllers;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.ClipData;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ListView;
+
+import fr.sio.app_epi2.InfoMateriel;
+import fr.sio.app_epi2.R;
+import fr.sio.app_epi2.models.Materiel;
 
 public class GestionMateriel extends AppCompatActivity implements View.OnClickListener {
 

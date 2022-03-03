@@ -1,4 +1,4 @@
-package fr.sio.app_epi2;
+package fr.sio.app_epi2.models;
 
 public class Controleur {
 

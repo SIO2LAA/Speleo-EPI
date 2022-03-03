@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.App_epi2">
         <activity android:name=".InfoMateriel"></activity>
-        <activity android:name=".GestionMateriel" />
+        <activity android:name=".controllers.GestionMateriel" />
         <activity
             android:name=".MainActivity"
             android:exported="true">
