@@ -62,11 +62,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private long insertRecord(ContentValues contentValues) {
         // Assign the values for each column.
         contentValues.put(DBOpenHelper.Constants.idFabricant, "1");
-        contentValues.put(DBOpenHelper.Constants.nom, "BOSCH");
+        contentValues.put(DBOpenHelper.Constants.nomFabricant, "BOSCH");
 
 
         // Insert the line in the database
-        long rowId = db.insert(DBOpenHelper.Constants.tableName, null, contentValues);
+        long rowId = db.insert(DBOpenHelper.Constants.tableFabricant, null, contentValues);
 
         // Test to see if the insertion was ok
         if (rowId == -1) {
@@ -84,7 +84,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if (boutonMenu.isPressed()) {
             insertRecord(value);
             gestionMateriel = new Intent(this, GestionMateriel.class);
-            startActivityForResult(gestionMateriel, 100);
+            startActivity(gestionMateriel);
         }
     }
 }
