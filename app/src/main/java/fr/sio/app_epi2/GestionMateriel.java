@@ -5,10 +5,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ListView;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 import fr.sio.app_epi2.models.Materiel;
@@ -33,7 +35,12 @@ public class GestionMateriel extends AppCompatActivity implements View.OnClickLi
         Date date_pu = new Date();
         Date date_lr = new Date();
         Date date_f = new Date();
-        Materiel materiel = new Materiel(1, "Sangle", "point vert", date_ac, date_pu, date_lr, date_f, "marquage", "toit");
+        Materiel materiel = new Materiel(1, "Sangle", "Test","point vert", date_ac, date_pu, date_lr, date_f, "marquage", "toit");
+        ArrayList<Materiel> listeMatertiels = new ArrayList<Materiel>();
+        listeMatertiels.add(materiel);
+        
+        ArrayAdapter<Materiel> materielAdapter = new ArrayAdapter<Materiel>(this, android.R.layout.simple_list_item_1, listeMatertiels);
+        listeMateriel.setAdapter(materielAdapter);
     }
 
     @Override
