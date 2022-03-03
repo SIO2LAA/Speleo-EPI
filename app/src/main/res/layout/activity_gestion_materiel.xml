@@ -18,6 +18,7 @@
         tools:layout_editor_absoluteY="37dp" />
 
     <SearchView
+        android:id="@+id/recherche"
         android:layout_width="225dp"
         android:layout_height="60dp"
         android:layout_gravity="center"
@@ -78,6 +79,7 @@
     </LinearLayout>
 
     <ListView
+        android:id="@+id/liste"
         android:layout_width="409dp"
         android:layout_height="386dp"
         tools:layout_editor_absoluteX="1dp"
