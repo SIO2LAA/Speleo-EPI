@@ -9,6 +9,8 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ListView;
 
+import java.util.Date;
+
 import fr.sio.app_epi2.models.Materiel;
 
 public class GestionMateriel extends AppCompatActivity implements View.OnClickListener {
@@ -27,6 +29,11 @@ public class GestionMateriel extends AppCompatActivity implements View.OnClickLi
         listeMateriel = findViewById(R.id.listeMateriel);
         boutonInfoMateriel = findViewById(R.id.boutonInfoMateriel);
         boutonInfoMateriel.setOnClickListener(this);
+        Date date_ac = new Date();
+        Date date_pu = new Date();
+        Date date_lr = new Date();
+        Date date_f = new Date();
+        Materiel materiel = new Materiel(1, "Sangle", "point vert", date_ac, date_pu, date_lr, date_f, "marquage", "toit");
     }
 
     @Override
