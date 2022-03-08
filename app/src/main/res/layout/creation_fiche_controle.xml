@@ -43,16 +43,16 @@
                 android:text="Date :"
                 android:textSize="15dp"
                 android:textColor="#000000"
-
                 />
 
-            <EditText
-                android:id="@+id/editTextTextPersonName"
+
+            <DatePicker
+                android:id="@+id/datePicker1"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="textPersonName"
-                android:text="Ecrire quelque chose" />
+                android:layout_height="140dp"
+                android:datePickerMode="spinner"
+                android:calendarViewShown="false"/>
+
 
         </LinearLayout>
 
