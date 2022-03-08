@@ -109,7 +109,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View view) {
         if (boutonMenu.isPressed()) {
             insertRecord(value, value2);
-            gestionMateriel = new Intent(this, GestionMateriel.class);
+            gestionMateriel = new Intent(this, InfoMateriel.class); //Initialement mis GestionMateriel.class InfoMateriel est provisoire
             startActivity(gestionMateriel);
         }
     }
