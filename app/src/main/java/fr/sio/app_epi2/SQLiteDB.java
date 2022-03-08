@@ -7,8 +7,10 @@ import android.provider.BaseColumns;
 import android.util.Log;
 
  class DBOpenHelper extends SQLiteOpenHelper {
-    // @goals This class aims to show the constant to use for the DBOpenHelper */
+
+     // @goals This class aims to show the constant to use for the DBOpenHelper */
     public static class Constants implements BaseColumns {
+
         // The database name
         public static final String DATABASE_NAME = "EPI2.db";
 
@@ -89,7 +91,7 @@ import android.util.Log;
              + Constants.natureControle + " VARCHAR(255) ,"
              + Constants.lieuControle + " VARCHAR(255) ,"
              + Constants.idMaterielControle + " INTEGER REFERENCES " + Constants.tableMateriel + "(" + Constants.idMateriel + "),"
-             + Constants.idControleurMateriel + " INTEGER REFERENCES " + Constants.tableControleur + "(" + Constants.idControleur + ") )";
+             + Constants.idControleurControle + " INTEGER REFERENCES " + Constants.tableControleur + "(" + Constants.idControleur + ") )";
 
      private static final String CONTROLEUR_TABLE = "create table "
              + Constants.tableControleur + "(" + Constants.idControleur
