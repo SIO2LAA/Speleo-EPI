@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -14,6 +15,7 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import fr.sio.app_epi2.models.Materiel;
+import fr.sio.app_epi2.models.MaterielAdaptater;
 //import fr.sio.app_epi2.models.MaterielAdaptater;
 
 public class GestionMateriel extends AppCompatActivity implements View.OnClickListener {
@@ -24,6 +26,7 @@ public class GestionMateriel extends AppCompatActivity implements View.OnClickLi
     private CheckBox filtreDate;
     private CheckBox filtreModele;
     private CheckBox filtreMarquage;
+    private ArrayList<Materiel> listeMateriels;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,11 +42,14 @@ public class GestionMateriel extends AppCompatActivity implements View.OnClickLi
         Materiel materiel = new Materiel(1, "Sangle", "Test","point vert", date_ac, date_pu, date_lr, date_f, "marquage", "toit");
 
 
-        /*ArrayList<Materiel> listeMateriels = new ArrayList<>();
+        listeMateriels = new ArrayList<>();
         listeMateriels.add(materiel);
-        MaterielAdaptater<Materiel> materielAdapter = new MaterielAdaptater(this, R.layout.listeview_item, listeMateriels);
-        listeMateriel.setAdapter(materielAdapter);*/
+        MaterielAdaptater materielAdaptater = new MaterielAdaptater(this, R.layout.listeview_item, listeMateriels);
+        listeMateriel.setAdapter(materielAdaptater);
+        listeMateriel.setOnClickListener(this);
     }
+
+
 
     @Override
     public void onClick(View view) {
@@ -51,6 +57,13 @@ public class GestionMateriel extends AppCompatActivity implements View.OnClickLi
             Materiel materiel = (Materiel) listeMateriel.getSelectedItem();
             infoMateriel = new Intent(this, InfoMateriel.class);
             infoMateriel.putExtra("Item", materiel.getIdMateriel());
+            startActivity(infoMateriel);
+        }
+        if (listeMateriel.isPressed()) {
+            Log.i("info", String.valueOf(listeMateriel.getSelectedItemPosition()));
+            Materiel materiel = (Materiel) listeMateriel.getAdapter().getItem(listeMateriel.getSelectedItemPosition());
+            infoMateriel = new Intent(this, InfoMateriel.class);
+            infoMateriel.putExtra("idMateriel", materiel.getIdMateriel());
             startActivity(infoMateriel);
         }
     }

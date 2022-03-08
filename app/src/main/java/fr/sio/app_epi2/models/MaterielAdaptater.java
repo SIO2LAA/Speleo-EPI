@@ -1,4 +1,4 @@
-/*package fr.sio.app_epi2.models;
+package fr.sio.app_epi2.models;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.util.Log;
+import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView.ViewHolder;
 
@@ -15,23 +16,22 @@ import java.util.ArrayList;
 import fr.sio.app_epi2.R;
 
 public class MaterielAdaptater extends ArrayAdapter<Materiel> {
+    private ArrayList<Materiel> listeMateriels;
     private Context mContext;
-
-    private static final String TAG = "MaterielAdaptater";
 
     public MaterielAdaptater(Context context, int ressource, ArrayList<Materiel> objects) {
         super(context, ressource, objects);
-        this.mContext = context;
+        this.listeMateriels = objects;
     }
 
     @Override
     public int getCount() {
-        return objects.size();
+        return listeMateriels.size();
     }
 
     @Override
-    public Object getItem(int i) {
-        return objects.get(i);
+    public Materiel getItem(int i) {
+        return listeMateriels.get(i);
     }
 
     @Override
@@ -43,9 +43,14 @@ public class MaterielAdaptater extends ArrayAdapter<Materiel> {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        String libelle = getItem(position);
-        String modele = getItem(position);
-        return null;
+        int phraseIndex = position;
+        if (convertView == null) {
+            convertView = LayoutInflater.from(getContext()).inflate(R.layout.listeview_item, parent, false);
+        }
+        TextView libelle = convertView.findViewById(R.id.libelleMateriel);
+        libelle.setText(listeMateriels.get(position).getLibelle());
+        TextView modele = convertView.findViewById(R.id.modelMateriel);
+        modele.setText(listeMateriels.get(position).getModele());
+        return convertView;
     }
 }
-*/
