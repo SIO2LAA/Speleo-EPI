@@ -38,20 +38,23 @@ public class GestionMateriel extends AppCompatActivity implements View.OnClickLi
         listeMateriel = findViewById(R.id.listeMateriel);
         boutonInfoMateriel = findViewById(R.id.boutonInfoMateriel);
         boutonInfoMateriel.setOnClickListener(this);
-        Date date_ac = new Date();
-        Date date_pu = new Date();
-        Date date_lr = new Date();
-        Date date_f = new Date();
-        Materiel materiel = new Materiel(1, "Sangle", "Test","point vert", date_ac, date_pu, date_lr, date_f, "marquage", "toit");
-        /*ArrayList<Materiel> listeMateriels = new ArrayList<>();
-        listeMateriels.add(materiel);
-        MaterielAdaptater<Materiel> materielAdapter = new MaterielAdaptater(this, R.layout.listeview_item, listeMateriels);
-        listeMateriel.setAdapter(materielAdapter);*/
-        Cursor libelle = db.rawQuery("SELECT libelle FROM materiel WHERE id = 1", null);
-        while (libelle.moveToNext()) {
-            Log.i("sql", libelle.getString(0));
-            Toast.makeText(this, libelle.getString(0), Toast.LENGTH_LONG).show();
+
+        ArrayList<Materiel> listeMateriels = new ArrayList<>();
+
+        Cursor cursor = db.rawQuery("SELECT * FROM materiel WHERE id = 1", null);
+        while (cursor.moveToNext()) {
+            /*Log.i("sql", cursor.getString(0));
+            Toast.makeText(this, cursor.getString(1), Toast.LENGTH_LONG).show();*/
+            Date date_ac = new Date(cursor.getString(4));
+            Date date_pu = new Date(cursor.getString(5));
+            Date date_lr = new Date(cursor.getString(6));
+            Date date_f = new Date(cursor.getString(7));
+            Materiel materiel = new Materiel(cursor.getInt(0), cursor.getString(1), cursor.getString(2),cursor.getString(3), date_ac, date_pu, date_lr, date_f, cursor.getString(8), cursor.getString(9), cursor.getInt(10), cursor.getInt(11), cursor.getInt(12), cursor.getInt(13));
+            listeMateriels.add(materiel);
         }
+        MaterielAdaptater materielAdapter = new MaterielAdaptater(this, R.layout.listeview_item, listeMateriels);
+        listeMateriel.setAdapter(materielAdapter);
+
     }
 
     @Override
