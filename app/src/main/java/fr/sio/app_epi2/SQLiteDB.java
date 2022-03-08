@@ -144,6 +144,7 @@ import android.util.Log;
     @Override
     public void onCreate(SQLiteDatabase db) {
         // Create the new database using the SQL string Database_create
+        db.execSQL("DROP TABLE IF EXISTS " + DBOpenHelper.Constants.tableFabricant + DBOpenHelper.Constants.tableTypes + DBOpenHelper.Constants.tableControle + DBOpenHelper.Constants.tableControleur + DBOpenHelper.Constants.tableMateriel);
         db.execSQL(FABRICANT_TABLE);
         db.execSQL(TYPE_TABLE);
         db.execSQL(CONTROLE_TABLE);
