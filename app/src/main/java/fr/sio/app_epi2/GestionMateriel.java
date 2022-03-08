@@ -47,7 +47,7 @@ public class GestionMateriel extends AppCompatActivity implements View.OnClickLi
         listeMateriels.add(materiel);
         MaterielAdaptater<Materiel> materielAdapter = new MaterielAdaptater(this, R.layout.listeview_item, listeMateriels);
         listeMateriel.setAdapter(materielAdapter);*/
-        Cursor libelle = db.rawQuery("SELECT libelle FROM materiel WHERE _id = 1", null);
+        Cursor libelle = db.rawQuery("SELECT libelle FROM materiel WHERE id = 1", null);
         while (libelle.moveToNext()) {
             Log.i("sql", libelle.getString(0));
             Toast.makeText(this, libelle.getString(0), Toast.LENGTH_LONG).show();
