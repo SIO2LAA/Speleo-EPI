@@ -35,6 +35,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         dbOpenHelper = new DBOpenHelper(this, DBOpenHelper.Constants.DATABASE_NAME, null,
                 DBOpenHelper.Constants.DATABASE_VERSION);
         openDB();
+        db.execSQL("DROP TABLE IF EXISTS " + DBOpenHelper.Constants.tableFabricant + DBOpenHelper.Constants.tableTypes + DBOpenHelper.Constants.tableControle + DBOpenHelper.Constants.tableControleur + DBOpenHelper.Constants.tableMateriel);
         value = new ContentValues();
         value2 = new ContentValues();
     }
