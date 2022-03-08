@@ -23,7 +23,7 @@ import android.util.Log;
         public static final String tableControle = "controle";
         public static final String tableControleur = "controleur";
         public static final String tableMateriel = "materiel";
-
+        public static final String tableLot = "lot";
 
         // Noms de colonnes
         // /!\Si vous utilisez une base de données, les noms des colonnes ont
@@ -64,10 +64,15 @@ import android.util.Log;
         public static final String dateFabricationMateriel = "dateFabrication";
         public static final String marquageMateriel = "marquage";
         public static final String empalcementMarquageMateriel = "emplacementMarquage";
-        public static final String quantiteMateriel = "quantiteMateriel";
         public static final String idFabricantMateriel = "idFabricant";
         public static final String idTypeMateriel = "idType";
         public static final String idControleurMateriel = "idControleur";
+
+         // Table Lot
+         public static final String idLot = "id";// Mandatory
+         public static final String quantiteLot = "quantite";
+         public static final String idMaterielLot = "quantite";
+
 
     }
 
@@ -111,12 +116,16 @@ import android.util.Log;
              + Constants.dateFabricationMateriel + " DATE,"
              + Constants.marquageMateriel + " VARCHAR(255),"
              + Constants.empalcementMarquageMateriel + " VARCHAR(255) ,"
-             + Constants.quantiteMateriel + " INTEGER ,"
              + Constants.idFabricantMateriel + " INTEGER REFERENCES " + Constants.tableFabricant + "(" + Constants.idFabricant + "),"
              + Constants.idTypeMateriel + " INTEGER REFERENCES " + Constants.tableTypes + "(" + Constants.idType + "),"
              + Constants.idControleurMateriel + " INTEGER REFERENCES " + Constants.tableControleur + "(" + Constants.idControleur + ") )";
 
 
+     private static final String LOT_TABLE = "create table "
+             + Constants.tableLot + "(" + Constants.idLot
+             + " integer primary key autoincrement, "
+             + Constants.quantiteLot + " integer primary key autoincrement,"
+             + Constants.idMaterielLot + " INTEGER REFERENCES " + Constants.tableMateriel + "(" + Constants.idMateriel + ") )";
 
 
 
@@ -140,6 +149,7 @@ import android.util.Log;
         db.execSQL(CONTROLE_TABLE);
         db.execSQL(CONTROLEUR_TABLE);
         db.execSQL(MATERIEL_TABLE);
+        db.execSQL(LOT_TABLE);
     }
 
     @Override

@@ -85,7 +85,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         contentValuesmateriel.put(DBOpenHelper.Constants.dateFabricationMateriel, "2021-11-31");
         contentValuesmateriel.put(DBOpenHelper.Constants.marquageMateriel, "numero de serie");
         contentValuesmateriel.put(DBOpenHelper.Constants.empalcementMarquageMateriel, "derriere");
-        contentValuesmateriel.put(DBOpenHelper.Constants.quantiteMateriel, 1);
         contentValuesmateriel.put(DBOpenHelper.Constants.idFabricantMateriel, 1);
         contentValuesmateriel.put(DBOpenHelper.Constants.idTypeMateriel, "null");
         contentValuesmateriel.put(DBOpenHelper.Constants.idControleurMateriel, "null");
