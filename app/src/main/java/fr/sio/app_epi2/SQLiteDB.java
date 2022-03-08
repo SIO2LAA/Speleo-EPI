@@ -69,9 +69,9 @@ import android.util.Log;
         public static final String idControleurMateriel = "idControleur";
 
          // Table Lot
-         public static final String idLot = "id";// Mandatory
+         public static final String dateLot = "date";// Mandatory
          public static final String quantiteLot = "quantite";
-         public static final String idMaterielLot = "quantite";
+         public static final String idMaterielLot = "idMateriel";
 
 
     }
@@ -122,10 +122,10 @@ import android.util.Log;
 
 
      private static final String LOT_TABLE = "create table "
-             + Constants.tableLot + "(" + Constants.idLot
-             + " integer primary key autoincrement, "
-             + Constants.quantiteLot + " integer primary key autoincrement,"
-             + Constants.idMaterielLot + " INTEGER REFERENCES " + Constants.tableMateriel + "(" + Constants.idMateriel + ") )";
+             + Constants.tableLot + "(" + Constants.dateLot
+             + " DATE primary key, "
+             + Constants.quantiteLot + " INTEGER,"
+             + Constants.idMaterielLot + " INTEGER primary key REFERENCES " + Constants.tableMateriel + "(" + Constants.idMateriel + ") )";
 
 
 
