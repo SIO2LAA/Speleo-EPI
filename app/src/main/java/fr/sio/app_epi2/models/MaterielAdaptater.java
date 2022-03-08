@@ -1,4 +1,4 @@
-package fr.sio.app_epi2.models;
+/*package fr.sio.app_epi2.models;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -48,3 +48,4 @@ public class MaterielAdaptater extends ArrayAdapter<Materiel> {
         return null;
     }
 }
+*/

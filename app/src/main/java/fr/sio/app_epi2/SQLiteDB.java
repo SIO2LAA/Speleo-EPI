@@ -19,6 +19,7 @@ import android.util.Log;
         public static final String tableFabricant = "Fabricant";
         public static final String tableType = "Type";
         public static final String tableControle = "Controle";
+        public static final String tableControleur = "Controleur";
 
 
         // Noms de colonnes
@@ -42,6 +43,10 @@ import android.util.Log;
         public static final String natureControle = "nature";
         public static final String lieuControle = "lieu";
 
+        // Table Controleur
+        public static final String idControleur= "_id";// Mandatory
+        public static final String nomControleur = "nom";
+        public static final String prenomControleur = "prenom";
 
     }
 
@@ -65,6 +70,10 @@ import android.util.Log;
              + Constants.natureControle + " VARCHAR(255) ,"
              + Constants.lieuControle + " VARCHAR(255) )";
 
+     private static final String CONTROLEUR_TABLE = "create table "
+             + Constants.tableType + "(" + Constants.idType
+             + " integer primary key autoincrement, "
+             + Constants.nomType + " VARCHAR(50) )";
 
 
 

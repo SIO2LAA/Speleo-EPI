@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import fr.sio.app_epi2.models.Materiel;
-import fr.sio.app_epi2.models.MaterielAdaptater;
+//import fr.sio.app_epi2.models.MaterielAdaptater;
 
 public class GestionMateriel extends AppCompatActivity implements View.OnClickListener {
 
@@ -39,10 +39,10 @@ public class GestionMateriel extends AppCompatActivity implements View.OnClickLi
         Materiel materiel = new Materiel(1, "Sangle", "Test","point vert", date_ac, date_pu, date_lr, date_f, "marquage", "toit");
 
 
-        ArrayList<Materiel> listeMateriels = new ArrayList<>();
+        /*ArrayList<Materiel> listeMateriels = new ArrayList<>();
         listeMateriels.add(materiel);
         MaterielAdaptater<Materiel> materielAdapter = new MaterielAdaptater(this, R.layout.listeview_item, listeMateriels);
-        listeMateriel.setAdapter(materielAdapter);
+        listeMateriel.setAdapter(materielAdapter);*/
     }
 
     @Override
