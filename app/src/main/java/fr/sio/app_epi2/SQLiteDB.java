@@ -20,6 +20,7 @@ import android.util.Log;
         public static final String tableType = "Type";
         public static final String tableControle = "Controle";
         public static final String tableControleur = "Controleur";
+        public static final String tableMateriel = "Materiel";
 
 
         // Noms de colonnes
@@ -42,11 +43,29 @@ import android.util.Log;
         public static final String observationControle = "observation";
         public static final String natureControle = "nature";
         public static final String lieuControle = "lieu";
+        public static final String idMaterielControle = "idMateriel";
+        public static final String idControleurControle = "idControleur";
 
         // Table Controleur
         public static final String idControleur= "_id";// Mandatory
         public static final String nomControleur = "nom";
         public static final String prenomControleur = "prenom";
+
+        // Table Materiel
+        public static final String idMateriel = "_id";// Mandatory
+        public static final String libelleMateriel = "libelle";
+        public static final String modeleMateriel = "modele";
+        public static final String signeDistinctifMateriel = "signeDistinctif";
+        public static final String dateAcquisitionMateriel = "dateAcquisition";
+        public static final String datePremiereUtilisationMateriel = "datePremiereUtilisation";
+        public static final String dateLimiteRebutMateriel = "dateLimiteRebut";
+        public static final String dateFabricationMateriel = "dateFabrication";
+        public static final String marquageMateriel = "marquage";
+        public static final String empalcementMarquageMateriel = "emplacementMarquage";
+        public static final String quantiteMateriel = "quantiteMateriel";
+        public static final String idFabricantMateriel = "idFabricant";
+        public static final String idTypeMateriel = "idType";
+        public static final String idControleurMateriel = "idControleur";
 
     }
 
@@ -68,12 +87,32 @@ import android.util.Log;
              + Constants.dateControle + " DATE ,"
              + Constants.observationControle + " VARCHAR(255) ,"
              + Constants.natureControle + " VARCHAR(255) ,"
-             + Constants.lieuControle + " VARCHAR(255) )";
+             + Constants.lieuControle + " VARCHAR(255) ,"
+             + Constants.idMaterielControle + " INTEGER REFERENCES " + Constants.tableMateriel + "(" + Constants.idMateriel + "),"
+             + Constants.idControleurMateriel + " INTEGER REFERENCES " + Constants.tableControleur + "(" + Constants.idControleur + ") )";
 
      private static final String CONTROLEUR_TABLE = "create table "
-             + Constants.tableType + "(" + Constants.idType
+             + Constants.tableControleur + "(" + Constants.idControleur
              + " integer primary key autoincrement, "
-             + Constants.nomType + " VARCHAR(50) )";
+             + Constants.nomControleur + " VARCHAR(50),"
+             + Constants.prenomControleur + " VARCHAR(50) )";
+
+     private static final String MATERIEL_TABLE = "create table "
+             + Constants.tableMateriel + "(" + Constants.idControleur
+             + " integer primary key autoincrement, "
+             + Constants.libelleMateriel + " VARCHAR(50),"
+             + Constants.modeleMateriel + " VARCHAR(50),"
+             + Constants.signeDistinctifMateriel + " VARCHAR(50),"
+             + Constants.dateAcquisitionMateriel + " DATE,"
+             + Constants.datePremiereUtilisationMateriel + " DATE,"
+             + Constants.dateLimiteRebutMateriel + " DATE,"
+             + Constants.dateFabricationMateriel + " DATE,"
+             + Constants.marquageMateriel + " VARCHAR(50),"
+             + Constants.empalcementMarquageMateriel + " VARCHAR(50) ,"
+             + Constants.quantiteMateriel + " INTEGER ,"
+             + Constants.idFabricantMateriel + " INTEGER REFERENCES " + Constants.tableFabricant + "(" + Constants.idFabricant + "),"
+             + Constants.idTypeMateriel + " INTEGER REFERENCES " + Constants.tableType + "(" + Constants.idType + "),"
+             + Constants.idControleurMateriel + " INTEGER REFERENCES " + Constants.tableControleur + "(" + Constants.idControleur + ") )";
 
 
 
@@ -97,6 +136,8 @@ import android.util.Log;
         db.execSQL(FABRICANT_TABLE);
         db.execSQL(TYPE_TABLE);
         db.execSQL(CONTROLE_TABLE);
+        db.execSQL(CONTROLEUR_TABLE);
+        db.execSQL(MATERIEL_TABLE);
     }
 
     @Override
@@ -105,7 +146,7 @@ import android.util.Log;
                 + " vers la version " + newVersion
                 + ", les anciennes données seront détruites ");
         // Drop the old database
-        db.execSQL("DROP TABLE IF EXISTS " + Constants.tableFabricant);
+        db.execSQL("DROP TABLE IF EXISTS " + Constants.tableFabricant + Constants.tableType + Constants.tableControle + Constants.tableControleur + Constants.tableMateriel);
         // Create the new one
         onCreate(db);
         // or do a smartest stuff
