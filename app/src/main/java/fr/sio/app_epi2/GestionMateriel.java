@@ -1,19 +1,31 @@
 package fr.sio.app_epi2;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.ClipData;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ListView;
 
+import java.text.DateFormat;
+import java.text.FieldPosition;
+import java.text.ParseException;
+import java.text.ParsePosition;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
 import fr.sio.app_epi2.models.Materiel;
+import fr.sio.app_epi2.models.MaterielAdaptater;
 //import fr.sio.app_epi2.models.MaterielAdaptater;
 
 public class GestionMateriel extends AppCompatActivity implements View.OnClickListener {
@@ -24,6 +36,7 @@ public class GestionMateriel extends AppCompatActivity implements View.OnClickLi
     private CheckBox filtreDate;
     private CheckBox filtreModele;
     private CheckBox filtreMarquage;
+    private SQLiteDatabase db = MainActivity.dbOpenHelper.getReadableDatabase();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,25 +45,46 @@ public class GestionMateriel extends AppCompatActivity implements View.OnClickLi
         listeMateriel = findViewById(R.id.listeMateriel);
         boutonInfoMateriel = findViewById(R.id.boutonInfoMateriel);
         boutonInfoMateriel.setOnClickListener(this);
-        Date date_ac = new Date();
-        Date date_pu = new Date();
-        Date date_lr = new Date();
-        Date date_f = new Date();
-        Materiel materiel = new Materiel(1, "Sangle", "Test","point vert", date_ac, date_pu, date_lr, date_f, "marquage", "toit");
+        ArrayList<Materiel> listeMateriels = new ArrayList<>();
+        MaterielAdaptater materielAdapter = new MaterielAdaptater(this, R.layout.listeview_item, listeMateriels);
+        listeMateriel.setOnClickListener(this);
+        Cursor cursor = db.rawQuery("SELECT * FROM materiel WHERE id = 1", null);
+        SimpleDateFormat format = new SimpleDateFormat("y-m-d");
 
 
-        /*ArrayList<Materiel> listeMateriels = new ArrayList<>();
-        listeMateriels.add(materiel);
-        MaterielAdaptater<Materiel> materielAdapter = new MaterielAdaptater(this, R.layout.listeview_item, listeMateriels);
-        listeMateriel.setAdapter(materielAdapter);*/
+
+        while(cursor.moveToNext()) {
+            Date date_ac = new Date();
+            Date date_pu = new Date();
+            Date date_lr = new Date();
+            Date date_f = new Date();
+            try {
+                date_ac = format.parse(cursor.getString(4));
+                date_pu = format.parse(cursor.getString(5));
+                date_lr = format.parse(cursor.getString(6));
+                date_f = format.parse(cursor.getString(7));
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+            Materiel materiel = new Materiel(cursor.getInt(0), cursor.getString(1), cursor.getString(2),cursor.getString(3), date_ac, date_pu, date_lr, date_f, cursor.getString(8), cursor.getString(9), cursor.getInt(10), cursor.getInt(11), cursor.getInt(12), cursor.getInt(13));
+            listeMateriels.add(materiel);
+        }
+        listeMateriel.setAdapter(materielAdapter);
     }
 
     @Override
     public void onClick(View view) {
         if (boutonInfoMateriel.isPressed()) {
-            Materiel materiel = (Materiel) listeMateriel.getSelectedItem();
+            /*Materiel materiel = (Materiel) listeMateriel.getSelectedItem();
             infoMateriel = new Intent(this, InfoMateriel.class);
             infoMateriel.putExtra("Item", materiel.getIdMateriel());
+            startActivity(infoMateriel);*/
+        }
+        if (listeMateriel.isPressed()) {
+            int position = listeMateriel.getCheckedItemPosition();
+            Materiel materiel = (Materiel) listeMateriel.getAdapter().getItem(position);
+            infoMateriel = new Intent(this, InfoMateriel.class);
+            infoMateriel.putExtra("idItemMateriel", materiel.getIdMateriel());
             startActivity(infoMateriel);
         }
     }
