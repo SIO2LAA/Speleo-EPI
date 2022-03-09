@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -28,7 +29,7 @@ import fr.sio.app_epi2.models.Materiel;
 import fr.sio.app_epi2.models.MaterielAdaptater;
 //import fr.sio.app_epi2.models.MaterielAdaptater;
 
-public class GestionMateriel extends AppCompatActivity implements View.OnClickListener {
+public class GestionMateriel extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemClickListener {
 
     private ListView listeMateriel;
     private Button boutonInfoMateriel;
@@ -47,17 +48,31 @@ public class GestionMateriel extends AppCompatActivity implements View.OnClickLi
         boutonInfoMateriel.setOnClickListener(this);
         ArrayList<Materiel> listeMateriels = new ArrayList<>();
         MaterielAdaptater materielAdapter = new MaterielAdaptater(this, R.layout.listeview_item, listeMateriels);
-        listeMateriel.setOnClickListener(this);
+        listeMateriel.setOnItemClickListener(this);
         Cursor cursor = db.rawQuery("SELECT * FROM materiel WHERE id = 1", null);
         SimpleDateFormat format = new SimpleDateFormat("y-m-d");
 
 
 
         while(cursor.moveToNext()) {
+            Log.i("cursor", cursor.getString(0));
+            Log.i("cursor", cursor.getString(1));
+            Log.i("cursor", cursor.getString(2));
+            Log.i("cursor", cursor.getString(3));
+            Log.i("cursor", cursor.getString(4));
+            Log.i("cursor", cursor.getString(5));
+            Log.i("cursor", cursor.getString(6));
+            Log.i("cursor", cursor.getString(7));
+            Log.i("cursor", cursor.getString(8));
+            Log.i("cursor", cursor.getString(9));
+            Log.i("cursor", cursor.getString(10));
+            Log.i("cursor", cursor.getString(11));
+            Log.i("cursor", cursor.getString(12));
             Date date_ac = new Date();
             Date date_pu = new Date();
             Date date_lr = new Date();
             Date date_f = new Date();
+
             try {
                 date_ac = format.parse(cursor.getString(4));
                 date_pu = format.parse(cursor.getString(5));
@@ -66,7 +81,7 @@ public class GestionMateriel extends AppCompatActivity implements View.OnClickLi
             } catch (ParseException e) {
                 e.printStackTrace();
             }
-            Materiel materiel = new Materiel(cursor.getInt(0), cursor.getString(1), cursor.getString(2),cursor.getString(3), date_ac, date_pu, date_lr, date_f, cursor.getString(8), cursor.getString(9), cursor.getInt(10), cursor.getInt(11), cursor.getInt(12), cursor.getInt(13));
+            Materiel materiel = new Materiel(cursor.getInt(0), cursor.getString(1), cursor.getString(2),cursor.getString(3), date_ac, date_pu, date_lr, date_f, cursor.getString(8), cursor.getString(9), cursor.getInt(10), cursor.getInt(11), cursor.getInt(12));
             listeMateriels.add(materiel);
         }
         listeMateriel.setAdapter(materielAdapter);
@@ -80,13 +95,13 @@ public class GestionMateriel extends AppCompatActivity implements View.OnClickLi
             infoMateriel.putExtra("Item", materiel.getIdMateriel());
             startActivity(infoMateriel);*/
         }
-        if (listeMateriel.isPressed()) {
-            int position = listeMateriel.getCheckedItemPosition();
-            Materiel materiel = (Materiel) listeMateriel.getAdapter().getItem(position);
-            infoMateriel = new Intent(this, InfoMateriel.class);
-            infoMateriel.putExtra("idItemMateriel", materiel.getIdMateriel());
-            startActivity(infoMateriel);
-        }
     }
 
+    @Override
+    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+        Materiel materiel = (Materiel) listeMateriel.getAdapter().getItem(i);
+        infoMateriel = new Intent(this, InfoMateriel.class);
+        infoMateriel.putExtra("idItemMateriel", materiel.getIdMateriel());
+        startActivity(infoMateriel);
+    }
 }

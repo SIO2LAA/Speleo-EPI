@@ -123,9 +123,14 @@ import android.util.Log;
 
      private static final String LOT_TABLE = "create table "
              + Constants.tableLot + "(" + Constants.dateLot
-             + " DATE primary key, "
+             + " DATE, "
              + Constants.quantiteLot + " INTEGER,"
-             + Constants.idMaterielLot + " INTEGER primary key REFERENCES " + Constants.tableMateriel + "(" + Constants.idMateriel + ") )";
+             + Constants.idMaterielLot + " INTEGER,"
+             + "PRIMARY KEY (" + Constants.dateLot + ", " + Constants.idMaterielLot + "),"
+             + "CONSTRAINT fk_id_materiel_lot FOREIGN KEY (" + Constants.idMaterielLot + ") REFERENCES " + Constants.tableMateriel + "(" + Constants.idMateriel + ")"
+             + ")";
+
+
 
 
 

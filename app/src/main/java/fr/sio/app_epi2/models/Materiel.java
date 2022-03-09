@@ -13,7 +13,6 @@ public class Materiel {
     private Date dateFabrication;
     private String marquage;
     private String emplacementMarquage;
-    private int quantite;
     private int idFabricant;
     private int idType;
     private int idControleur;
@@ -22,7 +21,7 @@ public class Materiel {
     //Constructeur de la classe Materiel
 
 
-    public Materiel(int idMateriel, String libelle, String modele, String signeDistinctif, Date dateAcquisition, Date datePremiereUtilisation, Date dateLimiteRebut, Date dateFabrication, String marquage, String emplacementMarquage, int quantite, int idFabricant, int idType, int idControleur) {
+    public Materiel(int idMateriel, String libelle, String modele, String signeDistinctif, Date dateAcquisition, Date datePremiereUtilisation, Date dateLimiteRebut, Date dateFabrication, String marquage, String emplacementMarquage, int idFabricant, int idType, int idControleur) {
         this.idMateriel = idMateriel;
         this.libelle = libelle;
         this.modele = modele;
@@ -33,7 +32,6 @@ public class Materiel {
         this.dateFabrication = dateFabrication;
         this.marquage = marquage;
         this.emplacementMarquage = emplacementMarquage;
-        this.quantite = quantite;
         this.idFabricant = idFabricant;
         this.idType = idType;
         this.idControleur = idControleur;
@@ -89,14 +87,6 @@ public class Materiel {
 
     public void setEmplacementMarquage(String emplacementMarquage) {
         this.emplacementMarquage = emplacementMarquage;
-    }
-
-    public int getQuantite() {
-        return quantite;
-    }
-
-    public void setQuantite(int quantite) {
-        this.quantite = quantite;
     }
 
     public int getIdFabricant() {
