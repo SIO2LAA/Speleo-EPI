@@ -49,25 +49,13 @@ public class GestionMateriel extends AppCompatActivity implements View.OnClickLi
         ArrayList<Materiel> listeMateriels = new ArrayList<>();
         MaterielAdaptater materielAdapter = new MaterielAdaptater(this, R.layout.listeview_item, listeMateriels);
         listeMateriel.setOnItemClickListener(this);
-        Cursor cursor = db.rawQuery("SELECT * FROM materiel WHERE id = 1", null);
+        Cursor cursor = db.rawQuery("SELECT * FROM materiel", null);
         SimpleDateFormat format = new SimpleDateFormat("y-m-d");
 
 
 
         while(cursor.moveToNext()) {
-            Log.i("cursor", cursor.getString(0));
-            Log.i("cursor", cursor.getString(1));
-            Log.i("cursor", cursor.getString(2));
-            Log.i("cursor", cursor.getString(3));
-            Log.i("cursor", cursor.getString(4));
-            Log.i("cursor", cursor.getString(5));
-            Log.i("cursor", cursor.getString(6));
-            Log.i("cursor", cursor.getString(7));
-            Log.i("cursor", cursor.getString(8));
-            Log.i("cursor", cursor.getString(9));
-            Log.i("cursor", cursor.getString(10));
-            Log.i("cursor", cursor.getString(11));
-            Log.i("cursor", cursor.getString(12));
+            Log.i("cursor", "id = " + cursor.getString(0));
             Date date_ac = new Date();
             Date date_pu = new Date();
             Date date_lr = new Date();
@@ -90,10 +78,6 @@ public class GestionMateriel extends AppCompatActivity implements View.OnClickLi
     @Override
     public void onClick(View view) {
         if (boutonInfoMateriel.isPressed()) {
-            /*Materiel materiel = (Materiel) listeMateriel.getSelectedItem();
-            infoMateriel = new Intent(this, InfoMateriel.class);
-            infoMateriel.putExtra("Item", materiel.getIdMateriel());
-            startActivity(infoMateriel);*/
         }
     }
 
