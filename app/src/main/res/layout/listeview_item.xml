@@ -4,6 +4,7 @@
     android:layout_height="match_parent">
     <TextView
         android:id="@+id/libelleMateriel"
+        android:textStyle="bold"
         android:text="name"
         android:padding="10dp"
         android:layout_width="wrap_content"
