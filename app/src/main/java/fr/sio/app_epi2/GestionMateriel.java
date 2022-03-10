@@ -101,6 +101,7 @@ public class GestionMateriel extends AppCompatActivity implements View.OnClickLi
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
         Materiel materiel = (Materiel) listeMateriel.getAdapter().getItem(i);
         infoMateriel = new Intent(this, InfoMateriel.class);
+        Log.i("id", "id1 = " + materiel.getIdMateriel());
         infoMateriel.putExtra("idItemMateriel", materiel.getIdMateriel());
         startActivity(infoMateriel);
     }

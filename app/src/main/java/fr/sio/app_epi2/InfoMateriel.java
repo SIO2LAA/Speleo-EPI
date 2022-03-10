@@ -6,6 +6,10 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.util.Log;
+import android.widget.TextView;
+
+import org.w3c.dom.Text;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -16,6 +20,10 @@ import fr.sio.app_epi2.models.Materiel;
 public class InfoMateriel extends AppCompatActivity {
     private SQLiteDatabase db = MainActivity.dbOpenHelper.getReadableDatabase();
     private Materiel materiel;
+    private TextView nomInfo;
+    private TextView dateMateriel;
+    private TextView modeleMateriel;
+    private TextView marquageMateriel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,8 +31,10 @@ public class InfoMateriel extends AppCompatActivity {
         setContentView(R.layout.activity_info_materiel);
 
 
+
         Intent intent = getIntent();
-        int id = Integer.valueOf(intent.getStringExtra("idItemMateriel"));
+        Log.i("id", "id2 = " + intent.getIntExtra("idItemMateriel", 1));
+        int id = intent.getIntExtra("idItemMateriel", 4);
         Cursor cursor = db.rawQuery("SELECT * FROM materiel WHERE id = " + id, null);
         SimpleDateFormat format = new SimpleDateFormat("y-m-d");
 
