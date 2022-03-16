@@ -15,6 +15,12 @@
         android:layout_marginEnd="16dp"
         android:orientation="vertical">
 
+    <LinearLayout
+        android:layout_width="358dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:orientation="vertical">
         <TextView
             android:layout_width="match_parent"
             android:layout_height="30dp"
@@ -40,59 +46,74 @@
             android:spinnersShown="true"
             android:calendarViewShown="false"
             android:datePickerMode="spinner"
+            android:maxDate="2022"
             />
-
-        <EditText
-            android:id="@+id/inputObservation"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="30dp"
-            android:layout_marginEnd="20dp"
-            android:hint="Mettez vos observations ici"
-            android:textStyle="italic"/>
-
-        <TextView
-            android:text="Date au prochain contrôle"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:textAlignment="center"
-            android:textSize="16sp"
-            android:layout_marginTop="50dp"
-            android:textColor="@color/black"/>
-
-        <DatePicker
-            android:id="@+id/fdc_datepickerNext"
-            android:layout_width="match_parent"
-            android:layout_height="130dp"
+    </LinearLayout>
+        <LinearLayout
+            android:layout_width="358dp"
+            android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:spinnersShown="true"
-            android:calendarViewShown="false"
-            android:datePickerMode="spinner"
-            />
+            android:layout_marginTop="10dp"
+            android:orientation="vertical">
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="138dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="100dp"
-            android:layout_marginEnd="50dp"
-            android:layout_marginRight="20dp">
+            <EditText
+                android:id="@+id/inputObservation"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="30dp"
+                android:layout_marginEnd="20dp"
+                android:hint="Mettez vos observations ici"
+                android:textStyle="italic"
+                tools:ignore="TouchTargetSizeCheck" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="362dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="50dp"
+                android:text="Date au prochain contrôle"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
+
+            <DatePicker
+                android:id="@+id/fdc_datepickerNext"
+                android:layout_width="400dp"
+                android:layout_height="wrap_content"
+                android:calendarViewShown="false"
+                android:datePickerMode="spinner"
+                android:minDate="2022"
+                android:spinnersShown="true" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="262dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
 
             <Button
                 android:id="@+id/btnAnnuler"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_margin="10dp"
                 android:text="Annuler" />
 
             <Button
                 android:id="@+id/btnValider"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_marginEnd="6dp"
+                android:layout_margin="10dp"
                 android:text="Valider" />
 
-        </RelativeLayout>
+        </LinearLayout>
 
 
     </LinearLayout>

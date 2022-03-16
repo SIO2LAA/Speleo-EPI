@@ -7,6 +7,8 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import org.w3c.dom.Text;
@@ -17,7 +19,7 @@ import java.util.Date;
 
 import fr.sio.app_epi2.models.Materiel;
 
-public class InfoMateriel extends AppCompatActivity {
+public class InfoMateriel extends AppCompatActivity implements View.OnClickListener {
     private SQLiteDatabase db = MainActivity.dbOpenHelper.getReadableDatabase();
     private Materiel materiel;
     private TextView libelle;
@@ -30,6 +32,13 @@ public class InfoMateriel extends AppCompatActivity {
     private TextView marquage;
     private TextView emplacementMarquage;
     private SimpleDateFormat sdf;
+
+    //espace fiche controle
+    private Button fcCreer;
+    private Button fcModifer;
+    private Button fcAfficher;
+    private Button fcSupprimer;
+    private Intent FDC_Creer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +53,18 @@ public class InfoMateriel extends AppCompatActivity {
         dateFabrication = findViewById(R.id.dateFabrication);
         marquage = findViewById(R.id.marquage);
         emplacementMarquage = findViewById(R.id.emplacementMarquage);
+
+        //espace fiche controle
+        fcCreer = findViewById(R.id.FCCreer);
+        fcSupprimer = findViewById(R.id.FCSupprimer);
+        fcAfficher = findViewById(R.id.FCAfficher);
+        fcModifer = findViewById(R.id.FCModifier);
+
+        //listener fiche controle
+        fcCreer.setOnClickListener(this);
+        fcSupprimer.setOnClickListener(this);
+        fcAfficher.setOnClickListener(this);
+        fcModifer.setOnClickListener(this);
 
         sdf = new SimpleDateFormat("dd/mm/yyyy");
         Intent intent = getIntent();
@@ -79,6 +100,16 @@ public class InfoMateriel extends AppCompatActivity {
         dateFabrication.setText("Date de fabrication : " + sdf.format(materiel.getDateFabrication()));
         marquage.setText("Marquage : " + materiel.getMarquage());
         emplacementMarquage.setText("Emplacement de marquage : " + materiel.getEmplacementMarquage());
+
+    }
+
+    @Override
+    public void onClick(View v) {
+
+        if (fcCreer.isPressed()){
+            FDC_Creer = new Intent(this, FDC_Creer.class);
+            startActivity(FDC_Creer);
+        }
 
     }
 }
