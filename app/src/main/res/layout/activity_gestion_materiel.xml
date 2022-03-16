@@ -21,11 +21,23 @@
 
     <SearchView
         android:id="@+id/recherche"
+        android:layout_marginTop="10dp"
         android:layout_width="225dp"
-        android:layout_height="60dp"
+        android:layout_height="30dp"
         android:layout_gravity="center"
+        android:background="@color/white"
         tools:layout_editor_absoluteX="48dp"
         tools:layout_editor_absoluteY="105dp" />
+
+    <Spinner
+        android:id="@+id/selection"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_gravity="center"
+        android:background="@color/white"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+    </Spinner>
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -40,14 +52,14 @@
             tools:layout_editor_absoluteY="173dp">
 
             <CheckBox
-                android:id="@+id/checkBox"
+                android:id="@+id/filtreModele"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/filtreModele"
                 android:textColor="@color/white"/>
 
             <CheckBox
-                android:id="@+id/checkBox3"
+                android:id="@+id/filtreDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/filtreDate"
@@ -70,7 +82,7 @@
             tools:layout_editor_absoluteY="173dp">
 
             <CheckBox
-                android:id="@+id/checkBox2"
+                android:id="@+id/filtreMarquage"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/filtreMarquage"
@@ -84,16 +96,6 @@
                 android:textColor="@color/white"/>
         </LinearLayout>
     </LinearLayout>
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:enabled="false"
-        android:id="@+id/boutonInfoMateriel"
-        android:text="@string/boutonInfoMateriel"
-        android:textColor="@color/white"
-        />
 
     <ListView
         android:background="@color/white"

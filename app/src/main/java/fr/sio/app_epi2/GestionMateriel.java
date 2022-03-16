@@ -15,7 +15,10 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.ListView;
+import android.widget.SearchView;
+import android.widget.Spinner;
 
 import java.text.DateFormat;
 import java.text.FieldPosition;
@@ -29,14 +32,17 @@ import fr.sio.app_epi2.models.Materiel;
 import fr.sio.app_epi2.models.MaterielAdaptater;
 //import fr.sio.app_epi2.models.MaterielAdaptater;
 
-public class GestionMateriel extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemClickListener {
+public class GestionMateriel extends AppCompatActivity implements AdapterView.OnItemClickListener, CompoundButton.OnCheckedChangeListener, SearchView.OnQueryTextListener, AdapterView.OnItemSelectedListener {
 
     private ListView listeMateriel;
-    private Button boutonInfoMateriel;
     private Intent infoMateriel;
     private CheckBox filtreDate;
     private CheckBox filtreModele;
     private CheckBox filtreMarquage;
+    private SearchView search;
+    private Spinner selection;
+    private MaterielAdaptater materielAdapter;
+    private ArrayList<Materiel> listeMateriels;
     private SQLiteDatabase db = MainActivity.dbOpenHelper.getReadableDatabase();
 
     @Override
@@ -44,11 +50,29 @@ public class GestionMateriel extends AppCompatActivity implements View.OnClickLi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gestion_materiel);
         listeMateriel = findViewById(R.id.listeMateriel);
-        boutonInfoMateriel = findViewById(R.id.boutonInfoMateriel);
-        boutonInfoMateriel.setOnClickListener(this);
-        ArrayList<Materiel> listeMateriels = new ArrayList<>();
-        MaterielAdaptater materielAdapter = new MaterielAdaptater(this, R.layout.listeview_item, listeMateriels);
+        filtreDate = findViewById(R.id.filtreDate);
+        filtreModele = findViewById(R.id.filtreModele);
+        filtreMarquage = findViewById(R.id.filtreMarquage);
+        search = findViewById(R.id.recherche);
+        selection = findViewById(R.id.selection);
+        selection.setOnItemSelectedListener(this);
+        search.setOnQueryTextListener(this);
+        filtreDate.setOnCheckedChangeListener(this);
+        filtreMarquage.setOnCheckedChangeListener(this);
+        filtreModele.setOnCheckedChangeListener(this);
+        listeMateriels = new ArrayList<>();
+        materielAdapter = new MaterielAdaptater(this, R.layout.listeview_item, listeMateriels);
         listeMateriel.setOnItemClickListener(this);
+
+        ArrayList<String> filtres = new ArrayList<>();
+        filtres.add("Modele");
+        filtres.add("Marquage");
+        filtres.add("Date");
+
+        ArrayAdapter<CharSequence> filtresAdaptateur = ArrayAdapter.createFromResource(this, R.array.filtres, android.R.layout.simple_spinner_item);
+
+        selection.setAdapter(filtresAdaptateur);
+
         Cursor cursor = db.rawQuery("SELECT * FROM materiel", null);
         SimpleDateFormat format = new SimpleDateFormat("y-m-d");
 
@@ -76,17 +100,61 @@ public class GestionMateriel extends AppCompatActivity implements View.OnClickLi
     }
 
     @Override
-    public void onClick(View view) {
-        if (boutonInfoMateriel.isPressed()) {
-        }
-    }
-
-    @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
         Materiel materiel = (Materiel) listeMateriel.getAdapter().getItem(i);
         infoMateriel = new Intent(this, InfoMateriel.class);
         Log.i("id", "id1 = " + materiel.getIdMateriel());
         infoMateriel.putExtra("idItemMateriel", materiel.getIdMateriel());
         startActivity(infoMateriel);
+    }
+
+    @Override
+    public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+        if (filtreModele.isChecked()) {
+            //listeMateriel = new
+            //materielAdapter = new MaterielAdaptater(this, R.layout.listeview_item, listeMateriels);
+        }
+    }
+
+    @Override
+    public boolean onQueryTextSubmit(String s) {
+        return false;
+    }
+
+    @Override
+    public boolean onQueryTextChange(String s) {
+
+        ArrayList<Materiel> newListeMateriels = new ArrayList<>();
+
+        for (Materiel materiel : listeMateriels) {
+            if (materiel.getLibelle().toLowerCase().contains(s.toLowerCase())) {
+                newListeMateriels.add(materiel);
+            }
+        }
+
+        MaterielAdaptater newAdapteurMateriel = new MaterielAdaptater(this, R.layout.listeview_item, newListeMateriels);
+
+        listeMateriel.setAdapter(newAdapteurMateriel);
+
+        return false;
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+
+        ArrayList<Materiel> filtreListeMateriels = new ArrayList<>();
+
+        if (adapterView.getItemAtPosition(i) == "Date") {
+
+        }
+
+        MaterielAdaptater filtreMaterielsAdaptateur = new MaterielAdaptater(this, R.layout.listeview_item, filtreListeMateriels);
+
+        //listeMateriel.setAdapter(filtreMaterielsAdaptateur);
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> adapterView) {
+
     }
 }

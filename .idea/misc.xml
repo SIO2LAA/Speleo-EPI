@@ -3,8 +3,9 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/Goura/StudioProjects/epi221/app/src/main/res/layout/activity_gestion_materiel.xml" value="0.20199275362318841" />
+        <entry key="..\:/Users/Goura/StudioProjects/epi221/app/src/main/res/layout/activity_gestion_materiel.xml" value="0.1" />
         <entry key="..\:/Users/Goura/StudioProjects/epi221/app/src/main/res/layout/activity_info_materiel.xml" value="0.20199275362318841" />
+        <entry key="..\:/Users/Goura/StudioProjects/epi221/app/src/main/res/layout/filtres.xml" value="0.1" />
       </map>
     </option>
   </component>
