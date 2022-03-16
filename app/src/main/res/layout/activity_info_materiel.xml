@@ -15,7 +15,8 @@
         android:text="Libelle"
         android:textSize="25dp"
         android:fontFamily="@font/ariblk"
-        android:textStyle="bold"></TextView>
+        android:textStyle="bold"
+        android:textColor="@color/speleo_vert"></TextView>
 
     <ScrollView
         android:layout_width="match_parent"
