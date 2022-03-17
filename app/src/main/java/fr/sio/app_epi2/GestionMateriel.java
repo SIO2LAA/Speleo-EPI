@@ -1,10 +1,7 @@
 package fr.sio.app_epi2;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.ClipData;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -13,23 +10,16 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.CheckBox;
-import android.widget.CompoundButton;
 import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.Spinner;
 
-import java.text.DateFormat;
-import java.text.FieldPosition;
 import java.text.ParseException;
-import java.text.ParsePosition;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
 import fr.sio.app_epi2.models.Filtre;
-import fr.sio.app_epi2.models.FiltreAdaptater;
 import fr.sio.app_epi2.models.Materiel;
 import fr.sio.app_epi2.models.MaterielAdaptater;
 //import fr.sio.app_epi2.models.MaterielAdaptater;
@@ -67,7 +57,9 @@ public class GestionMateriel extends AppCompatActivity implements AdapterView.On
         listeFiltres.add(filtreDateAcquisition);
         listeFiltres.add(filtreDateUtilisation);
 
-        FiltreAdaptater filtresAdaptateur = new FiltreAdaptater(this, R.layout.listefiltres, listeFiltres);
+        ArrayAdapter<Filtre> filtresAdaptateur = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, listeFiltres);
+
+        filtresAdaptateur.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
         selection.setAdapter(filtresAdaptateur);
 
@@ -131,9 +123,9 @@ public class GestionMateriel extends AppCompatActivity implements AdapterView.On
 
         ArrayList<Materiel> filtreListeMateriels = new ArrayList<>();
 
-        Filtre filtre = (Filtre) adapterView.getItemAtPosition(i);
+        Filtre filtre = (Filtre) adapterView.getSelectedItem();
 
-        Log.i("filtre", filtre.getLibelle());
+        Log.i("filtre", "ID : " + filtre.getId() + " | " + "Libelle : " + filtre.getLibelle() + " | ");
 
         if (filtre.getLibelle() == "Tout") {
             filtreListeMateriels = listeMateriels;
