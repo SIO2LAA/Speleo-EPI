@@ -149,7 +149,13 @@ import android.util.Log;
     @Override
     public void onCreate(SQLiteDatabase db) {
         // Create the new database using the SQL string Database_create
-        db.execSQL("DROP TABLE IF EXISTS " + DBOpenHelper.Constants.tableFabricant + DBOpenHelper.Constants.tableTypes + DBOpenHelper.Constants.tableControle + DBOpenHelper.Constants.tableControleur + DBOpenHelper.Constants.tableMateriel);
+        db.execSQL("DROP TABLE IF EXISTS " + Constants.tableMateriel);
+        db.execSQL("DROP TABLE IF EXISTS " + Constants.tableLot);
+        db.execSQL("DROP TABLE IF EXISTS " + Constants.tableControleur);
+        db.execSQL("DROP TABLE IF EXISTS " + Constants.tableControle);
+        db.execSQL("DROP TABLE IF EXISTS " + Constants.tableTypes);
+        db.execSQL("DROP TABLE IF EXISTS " + Constants.tableFabricant);
+
         db.execSQL(FABRICANT_TABLE);
         db.execSQL(TYPE_TABLE);
         db.execSQL(CONTROLE_TABLE);
@@ -163,8 +169,6 @@ import android.util.Log;
         Log.w("DBOpenHelper", "Mise à jour de la version " + oldVersion
                 + " vers la version " + newVersion
                 + ", les anciennes données seront détruites ");
-        // Drop the old database
-        db.execSQL("DROP TABLE IF EXISTS " + Constants.tableFabricant + Constants.tableTypes + Constants.tableControle + Constants.tableControleur + Constants.tableMateriel);
         // Create the new one
         onCreate(db);
         // or do a smartest stuff

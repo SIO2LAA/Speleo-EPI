@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import android.os.Bundle;
+import android.provider.SyncStateContract;
 import android.util.Log;
 import android.view.View;
 import android.webkit.WebView;
@@ -36,6 +37,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         dbOpenHelper = new DBOpenHelper(this, DBOpenHelper.Constants.DATABASE_NAME, null,
                 DBOpenHelper.Constants.DATABASE_VERSION);
         openDB();
+
+        int oldV = DBOpenHelper.Constants.DATABASE_VERSION;
+        int newV = DBOpenHelper.Constants.DATABASE_VERSION + 1;
+
+        dbOpenHelper.onUpgrade(db, oldV, newV);
+
+        Log.i("version", String.valueOf(DBOpenHelper.Constants.DATABASE_VERSION));
+
         value = new ContentValues();
         value2 = new ContentValues();
         value3 = new ContentValues();
