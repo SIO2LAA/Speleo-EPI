@@ -2,48 +2,66 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/fondliste">
+    android:background="@drawable/fond_vert"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/date_jour"
+        android:layout_width="370dp"
+        android:layout_height="wrap_content"
+        android:text="date"
+        android:textColor="@color/black" />
 
     <TextView
         android:id="@+id/listMat"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/ListeMateriels"
         android:layout_gravity="center"
+        android:text="@string/ListeMateriels"
+        android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="37dp"
-        android:textColor="@color/white"/>
+        tools:layout_editor_absoluteY="37dp" />
 
     <SearchView
         android:id="@+id/recherche"
-        android:layout_marginTop="10dp"
         android:layout_width="225dp"
         android:layout_height="30dp"
         android:layout_gravity="center"
+        android:layout_marginTop="10dp"
         android:background="@color/white"
         tools:layout_editor_absoluteX="48dp"
-        tools:layout_editor_absoluteY="105dp" />
+        tools:layout_editor_absoluteY="105dp" >
+    </SearchView>
 
     <Spinner
         android:id="@+id/selection"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp"
-        android:layout_gravity="center"
-        android:background="@color/white"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-    </Spinner>
+        android:background="@color/white"></Spinner>
+
+    <ScrollView
+        android:layout_width="113dp"
+        android:layout_height="37dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" />
+    </ScrollView>
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:orientation="horizontal">
+
         <LinearLayout
             android:layout_width="103dp"
             android:layout_height="170dp"
@@ -55,22 +73,19 @@
                 android:id="@+id/filtreModele"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/filtreModele"
-                android:textColor="@color/white"/>
+                android:text="@string/filtreModele" />
 
             <CheckBox
                 android:id="@+id/filtreDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/filtreDate"
-                android:textColor="@color/white" />
+                android:text="@string/filtreDate" />
 
             <CheckBox
                 android:id="@+id/checkBox5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/filtre5"
-                android:textColor="@color/white"/>
+                android:text="@string/filtre5" />
 
         </LinearLayout>
 
@@ -85,25 +100,24 @@
                 android:id="@+id/filtreMarquage"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/filtreMarquage"
-                android:textColor="@color/white"/>
+                android:text="@string/filtreMarquage" />
 
             <CheckBox
                 android:id="@+id/checkBox4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/filtre4"
-                android:textColor="@color/white"/>
+                android:text="@string/filtre4" />
         </LinearLayout>
     </LinearLayout>
 
     <ListView
-        android:background="@color/white"
-        android:layout_width="409dp"
-        android:layout_height="386dp"
         android:id="@+id/listeMateriel"
+        android:layout_width="match_parent"
+        android:layout_height="386dp"
+        android:background="@color/white"
         tools:layout_editor_absoluteX="1dp"
-        tools:layout_editor_absoluteY="344dp"
-        />
+        tools:layout_editor_absoluteY="344dp" >
+
+    </ListView>
 
 </LinearLayout>
