@@ -53,7 +53,7 @@ public class GestionMateriel extends AppCompatActivity implements AdapterView.On
         materielAdapter = new MaterielAdaptater(this, R.layout.listeview_item, listeMateriels);
         listeMateriel.setOnItemClickListener(this);
 
-        Filtre filtreTout = new Filtre(1, "Tout");
+        Filtre filtreTout = new Filtre(1, "Aucun");
         Filtre filtreDateAcquisition = new Filtre(1, "Date Acquisition");
         Filtre filtreDateUtilisation = new Filtre(1, "Date Utilisation");
 

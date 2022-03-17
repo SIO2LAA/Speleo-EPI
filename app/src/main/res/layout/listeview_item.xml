@@ -7,6 +7,7 @@
         android:textStyle="bold"
         android:text="name"
         android:padding="10dp"
+        android:textColor="@color/black"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginRight="40dp">
@@ -15,6 +16,7 @@
     <TextView
         android:id="@+id/modelMateriel"
         android:padding="10dp"
+        android:textColor="@color/black"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="name"></TextView>
