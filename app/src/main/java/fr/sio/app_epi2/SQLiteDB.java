@@ -170,6 +170,7 @@ import android.util.Log;
                 + " vers la version " + newVersion
                 + ", les anciennes données seront détruites ");
         // Create the new one
+        Constants.DATABASE_VERSION = newVersion;
         onCreate(db);
         // or do a smartest stuff
     }

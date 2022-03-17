@@ -41,9 +41,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         int oldV = DBOpenHelper.Constants.DATABASE_VERSION;
         int newV = DBOpenHelper.Constants.DATABASE_VERSION + 1;
 
+        Log.i("version", "Avant => " + String.valueOf(DBOpenHelper.Constants.DATABASE_VERSION));
+
         dbOpenHelper.onUpgrade(db, oldV, newV);
 
-        Log.i("version", String.valueOf(DBOpenHelper.Constants.DATABASE_VERSION));
+        Log.i("version", "Après => " + String.valueOf(DBOpenHelper.Constants.DATABASE_VERSION));
 
         value = new ContentValues();
         value2 = new ContentValues();
