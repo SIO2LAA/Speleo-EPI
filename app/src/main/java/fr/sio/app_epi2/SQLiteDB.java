@@ -89,7 +89,7 @@ import android.util.Log;
     private static final String TYPE_TABLE = "create table "
              + Constants.tableTypes + "(" + Constants.idType
              + " integer primary key autoincrement, "
-             + Constants.nomType + " VARCHAR(100) )";
+             + Constants.nomType + " VARCHAR(255) )";
 
      private static final String CONTROLE_TABLE = "create table "
              + Constants.tableControle + "(" + Constants.idControle
@@ -103,7 +103,7 @@ import android.util.Log;
 
      private static final String CONTROLEUR_TABLE = "create table "
              + Constants.tableControleur + "(" + Constants.idControleur
-             + " integer primary key autoincrement, "
+             + " integer primary key, "
              + Constants.nomControleur + " VARCHAR(50),"
              + Constants.prenomControleur + " VARCHAR(50) )";
 

@@ -25,6 +25,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Intent gestionMateriel;
     // The database creator and updater helper
     public static DBOpenHelper dbOpenHelper;
+    private Intent xmlExport;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -142,6 +143,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             insertRecord(value, value2, value3);
             gestionMateriel = new Intent(this, GestionMateriel.class); //Initialement mis GestionMateriel.class InfoMateriel est provisoire
             startActivity(gestionMateriel);
+
+
         }
     }
 }

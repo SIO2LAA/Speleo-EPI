@@ -132,7 +132,7 @@ public class GestionMateriel extends AppCompatActivity implements AdapterView.On
 
         Log.i("filtre", filtre.getLibelle());
 
-        if (filtre.getLibelle() == "Tout") {
+        if (filtre.getLibelle() == "Aucun") {
             filtreListeMateriels = listeMateriels;
         }
 
