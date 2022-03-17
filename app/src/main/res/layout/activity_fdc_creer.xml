@@ -87,14 +87,21 @@
                 android:textColor="@color/black"
                 android:textSize="16sp" />
 
-            <DatePicker
-                android:id="@+id/fdc_proch_date"
-                android:layout_width="400dp"
+            <Button
+                android:id="@+id/nextdatePickerButton"
+                style="?android:spinnerStyle"
+                android:layout_width="250dp"
                 android:layout_height="wrap_content"
-                android:calendarViewShown="false"
-                android:datePickerMode="spinner"
-                android:minDate="2022"
-                android:spinnersShown="true" />
+                android:layout_marginTop="10dp"
+                android:layout_gravity="center"
+                android:onClick="openDatePicker2"
+                android:text="JAN 01 2020"
+                android:textColor="@color/black"
+                android:textSize="15sp"
+                android:textAlignment="center"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView" />
         </LinearLayout>
 
         <LinearLayout

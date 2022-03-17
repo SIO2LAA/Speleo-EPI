@@ -17,12 +17,15 @@ import java.util.Calendar;
 public class FDC_Creer extends AppCompatActivity implements View.OnClickListener {
 
     private DatePickerDialog datePickerDialog;
+    private DatePickerDialog datePickerDialog2;
     private Button dateButton;
+    private Button nextdateButton;
     private EditText observation;
     private Button annuler;
     private Button valider;
-    // private DBOpenHelper maBD;
-    // private SQLiteDatabase writeBD;
+    private DBOpenHelper maBD;
+    private SQLiteDatabase writeBD;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +33,11 @@ public class FDC_Creer extends AppCompatActivity implements View.OnClickListener
         setContentView(R.layout.activity_fdc_creer);
         initDatePicker();
         dateButton = findViewById(R.id.datePickerButton);
+        nextdateButton = findViewById(R.id.nextdatePickerButton);
+        observation = findViewById(R.id.inputObservation);
+
         dateButton.setText(getTodaysDate());
+        nextdateButton.setText(getNextDate());
 
         // affichage du layout
         annuler = findViewById(R.id.btnAnnuler);
@@ -60,6 +67,15 @@ public class FDC_Creer extends AppCompatActivity implements View.OnClickListener
         return makeDateString(day, month, year);
     }
 
+    private String getNextDate() {
+        Calendar cal = Calendar.getInstance();
+        int year = cal.get(Calendar.YEAR);
+        int month = cal.get(Calendar.MONTH);
+        month = month + 1;
+        int day = cal.get(Calendar.DAY_OF_MONTH);
+        return makeDateString(day, month, year);
+    }
+
     private void initDatePicker() {
         DatePickerDialog.OnDateSetListener dateSetListener = new DatePickerDialog.OnDateSetListener()
         {
@@ -72,6 +88,17 @@ public class FDC_Creer extends AppCompatActivity implements View.OnClickListener
             }
         };
 
+        DatePickerDialog.OnDateSetListener dateSetListener2 = new DatePickerDialog.OnDateSetListener()
+        {
+            @Override
+            public void onDateSet(DatePicker datePicker, int year, int month, int day)
+            {
+                month = month + 1;
+                String date = makeDateString(day, month, year);
+                nextdateButton.setText(date);
+            }
+        };
+
         Calendar cal = Calendar.getInstance();
         int year = cal.get(Calendar.YEAR);
         int month = cal.get(Calendar.MONTH);
@@ -80,47 +107,78 @@ public class FDC_Creer extends AppCompatActivity implements View.OnClickListener
         int style = AlertDialog.THEME_HOLO_LIGHT;
 
         datePickerDialog = new DatePickerDialog(this, style, dateSetListener, year, month, day);
+        datePickerDialog2 = new DatePickerDialog(this, style, dateSetListener2, year, month, day);
         datePickerDialog.getDatePicker().setMaxDate(System.currentTimeMillis());
     }
 
     private String makeDateString(int day, int month, int year) {
-        return day + "/" + getMonthFormat(month) + "/" + year;
+        return year + "-" + getMonthFormat(month) + "-" + getDayFormat(day);
     }
 
     private String getMonthFormat(int month)
     {
         if(month == 1)
-            return "JAN";
+            return "01";
         if(month == 2)
-            return "FEB";
+            return "02";
         if(month == 3)
-            return "MAR";
+            return "03";
         if(month == 4)
-            return "APR";
+            return "04";
         if(month == 5)
-            return "MAY";
+            return "05";
         if(month == 6)
-            return "JUN";
+            return "06";
         if(month == 7)
-            return "JUL";
+            return "07";
         if(month == 8)
-            return "AUG";
+            return "08";
         if(month == 9)
-            return "SEP";
+            return "09";
         if(month == 10)
-            return "OCT";
+            return "10";
         if(month == 11)
-            return "NOV";
+            return "11";
         if(month == 12)
-            return "DEC";
+            return "12";
 
         //default should never happen
-        return "JAN";
+        return "01";
+    }
+
+    private String getDayFormat(int day)
+    {
+        if(day == 1)
+            return "01";
+        if(day == 2)
+            return "02";
+        if(day == 3)
+            return "03";
+        if(day == 4)
+            return "04";
+        if(day == 5)
+            return "05";
+        if(day == 6)
+            return "06";
+        if(day == 7)
+            return "07";
+        if(day == 8)
+            return "08";
+        if(day == 9)
+            return "09";
+
+        //default should never happen
+        return "01";
     }
 
     public void openDatePicker(View view)
     {
         datePickerDialog.show();
+    }
+
+    public void openDatePicker2(View view)
+    {
+        datePickerDialog2.show();
     }
 
 
@@ -133,17 +191,25 @@ public class FDC_Creer extends AppCompatActivity implements View.OnClickListener
         }
 
         if (valider.isPressed()){
-            // ajout du message dans la BD
-           /* ContentValues values = new ContentValues();
-            date = date.get
-            values.put("sujet", this.date.get;
-            values.put("message", this.eMessage.getText().toString());
-            long res = this.writeBD.insert("ListeMess", "cle", values);
+           // ajout du message dans la BD
+            ContentValues values = new ContentValues();
+            values.put("date", this.dateButton.getText().toString());
+            values.put("observation", this.observation.getText().toString());
+            long res = this.writeBD.insert("controle", null, values);
 
-            if (res>0){
-                Toast toast1 = Toast.makeText(this,"Le message a été ajouté dans la base de données",Toast.LENGTH_LONG);
-                toast1.show();
-            }*/
+            if (res>0) {
+                Toast toast = Toast.makeText(this, "Les données ont été ajouté dans la base de données", Toast.LENGTH_LONG);
+                toast.show();
+            }else {
+                Toast toast = Toast.makeText(this, "Les données ont été ajouté dans la base de données", Toast.LENGTH_LONG);
+                toast.show();
+            }
+
+
+            /*Toast toast;
+            int duree = Toast.LENGTH_LONG;
+            toast = Toast.makeText(this.getApplicationContext(), observation.getText() ,duree);
+            toast.show(); */
         }
     }
 }
