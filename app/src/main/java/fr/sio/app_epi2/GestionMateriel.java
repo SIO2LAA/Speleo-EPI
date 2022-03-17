@@ -9,17 +9,20 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
+import android.widget.DatePicker;
 import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 
 import fr.sio.app_epi2.models.Filtre;
+import fr.sio.app_epi2.models.FiltreAdaptater;
 import fr.sio.app_epi2.models.Materiel;
 import fr.sio.app_epi2.models.MaterielAdaptater;
 //import fr.sio.app_epi2.models.MaterielAdaptater;
@@ -39,6 +42,8 @@ public class GestionMateriel extends AppCompatActivity implements AdapterView.On
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gestion_materiel);
+        TextView dateView = (TextView)findViewById(R.id.date_jour);
+        setDate(dateView);
         listeMateriel = findViewById(R.id.listeMateriel);
         search = findViewById(R.id.recherche);
         selection = findViewById(R.id.selection);
@@ -57,9 +62,7 @@ public class GestionMateriel extends AppCompatActivity implements AdapterView.On
         listeFiltres.add(filtreDateAcquisition);
         listeFiltres.add(filtreDateUtilisation);
 
-        ArrayAdapter<Filtre> filtresAdaptateur = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, listeFiltres);
-
-        filtresAdaptateur.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        FiltreAdaptater filtresAdaptateur = new FiltreAdaptater(this, R.layout.listefiltres, listeFiltres);
 
         selection.setAdapter(filtresAdaptateur);
 
@@ -123,9 +126,9 @@ public class GestionMateriel extends AppCompatActivity implements AdapterView.On
 
         ArrayList<Materiel> filtreListeMateriels = new ArrayList<>();
 
-        Filtre filtre = (Filtre) adapterView.getSelectedItem();
+        Filtre filtre = (Filtre) adapterView.getItemAtPosition(i);
 
-        Log.i("filtre", "ID : " + filtre.getId() + " | " + "Libelle : " + filtre.getLibelle() + " | ");
+        Log.i("filtre", filtre.getLibelle());
 
         if (filtre.getLibelle() == "Tout") {
             filtreListeMateriels = listeMateriels;
@@ -187,5 +190,12 @@ public class GestionMateriel extends AppCompatActivity implements AdapterView.On
     @Override
     public void onNothingSelected(AdapterView<?> adapterView) {
 
+    }
+
+    public void setDate(TextView v){
+        Date today = Calendar.getInstance().getTime();//getting date
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+        String date = formatter.format(today);
+        v.setText(date);
     }
 }

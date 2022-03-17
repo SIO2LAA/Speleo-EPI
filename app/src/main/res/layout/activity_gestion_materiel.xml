@@ -4,8 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/fond_bandeau_vert"
+    android:background="@drawable/fond_vert"
     android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/date_jour"
+        android:layout_width="370dp"
+        android:layout_height="wrap_content"
+        android:text="date"
+        android:textColor="@color/black" />
 
     <TextView
         android:id="@+id/listMat"
@@ -13,7 +20,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:text="@string/ListeMateriels"
-        android:textColor="@color/white"
+        android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -109,6 +116,8 @@
         android:layout_height="386dp"
         android:background="@color/white"
         tools:layout_editor_absoluteX="1dp"
-        tools:layout_editor_absoluteY="344dp" />
+        tools:layout_editor_absoluteY="344dp" >
+
+    </ListView>
 
 </LinearLayout>
