@@ -8,6 +8,16 @@ import android.util.Log;
 
  class DBOpenHelper extends SQLiteOpenHelper {
 
+     private String update;
+     private String insert;
+
+     // Constructeur
+     public DBOpenHelper(Context context, String name, int version, String update, String insert) {
+         super(context, name, null,version);
+         this.update = update;
+         this.insert = insert;
+     }
+
      // @goals This class aims to show the constant to use for the DBOpenHelper */
     public static class Constants implements BaseColumns {
 
