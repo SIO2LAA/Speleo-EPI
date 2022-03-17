@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
 import android.widget.ListView;
 import android.widget.SearchView;
@@ -22,7 +23,6 @@ import java.util.Calendar;
 import java.util.Date;
 
 import fr.sio.app_epi2.models.Filtre;
-import fr.sio.app_epi2.models.FiltreAdaptater;
 import fr.sio.app_epi2.models.Materiel;
 import fr.sio.app_epi2.models.MaterielAdaptater;
 //import fr.sio.app_epi2.models.MaterielAdaptater;
@@ -62,7 +62,9 @@ public class GestionMateriel extends AppCompatActivity implements AdapterView.On
         listeFiltres.add(filtreDateAcquisition);
         listeFiltres.add(filtreDateUtilisation);
 
-        FiltreAdaptater filtresAdaptateur = new FiltreAdaptater(this, R.layout.listefiltres, listeFiltres);
+        ArrayAdapter filtresAdaptateur = new ArrayAdapter(this, android.R.layout.simple_spinner_item, listeFiltres);
+
+        filtresAdaptateur.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
         selection.setAdapter(filtresAdaptateur);
 
@@ -126,7 +128,7 @@ public class GestionMateriel extends AppCompatActivity implements AdapterView.On
 
         ArrayList<Materiel> filtreListeMateriels = new ArrayList<>();
 
-        Filtre filtre = (Filtre) adapterView.getItemAtPosition(i);
+        Filtre filtre = (Filtre) adapterView.getSelectedItem();
 
         Log.i("filtre", filtre.getLibelle());
 
