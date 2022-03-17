@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".MainActivity"
-    android:background="@drawable/fond">
+    android:background="@drawable/fond_bulle">
 
 
     <LinearLayout
@@ -32,7 +32,6 @@
             android:layout_marginBottom="10dp"
             android:fontFamily="@font/arialbd"
             android:text="@string/nom_club"
-            android:textColor="@color/white"
             android:textSize="20dp"
             android:textStyle="bold"></TextView>
 
