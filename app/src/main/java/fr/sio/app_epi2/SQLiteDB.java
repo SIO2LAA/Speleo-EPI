@@ -15,7 +15,7 @@ import android.util.Log;
         public static final String DATABASE_NAME = "EPI2.db";
 
         // The database version
-        public static final int DATABASE_VERSION = 1;
+        public static int DATABASE_VERSION = 1;
 
         // The table Name
         public static final String tableFabricant = "fabricant";
