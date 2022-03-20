@@ -13,6 +13,11 @@ import android.widget.TextView;
 
 import org.w3c.dom.Text;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -124,7 +129,7 @@ public class InfoMateriel extends AppCompatActivity implements View.OnClickListe
         if (fvCreer.isPressed()) {
             ArrayList<String> listeTags = new ArrayList<>();
             xmlImport xmlImport = new xmlImport(this, "ficheVie1", listeTags);
-            xmlImport.createFile();
+            xmlImport.createFV();
         }
 
     }

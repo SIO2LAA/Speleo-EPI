@@ -30,7 +30,7 @@ public class xmlImport {
         this.listeTag = listeTag;
     }
 
-    public void createFile(){
+    public void createFC(){
 
         Log.i("path", this.path);
 
@@ -65,6 +65,51 @@ public class xmlImport {
             serializer.flush();
             fileos.close();
            //TextView tv = (TextView)findViewById(R.);
+
+        }catch(Exception e)
+        {
+            Log.e("Exception","Exception occured in wroting");
+        }
+
+
+
+    }
+
+    public void createFV(){
+
+        Log.i("path", this.path);
+
+        File newxmlfile = new File(this.path + this.name + ".xml");
+        try{
+            newxmlfile.createNewFile();
+        }catch(IOException e)
+        {
+            Log.e("IOException", "Exception in create new File(");
+        }
+        FileOutputStream fileos = null;
+        try{
+            fileos = new FileOutputStream(newxmlfile);
+
+        }catch(FileNotFoundException e)
+        {
+            Log.e("FileNotFoundException",e.toString());
+        }
+
+
+        XmlSerializer serializer = Xml.newSerializer();
+        try{
+            serializer.setOutput(fileos, "UTF-8");
+            serializer.startDocument(null, Boolean.valueOf(true));
+            //serializer.setFeature("http://xmlpull.org/v1/doc/features.html#indent-output", true);
+            serializer.startTag(null, "root");
+            serializer.startTag(null, "libelle");
+            serializer.text("Bonjour c'est un message de test");
+            serializer.endTag(null, "libelle");
+            serializer.endTag(null,"root");
+            serializer.endDocument();
+            serializer.flush();
+            fileos.close();
+            //TextView tv = (TextView)findViewById(R.);
 
         }catch(Exception e)
         {
