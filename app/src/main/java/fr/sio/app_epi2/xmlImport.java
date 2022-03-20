@@ -21,16 +21,14 @@ public class xmlImport {
     private Context context;
     private String name;
     private String path;
-    private ArrayList<String> listeTag;
 
-    public xmlImport(Context context, String name, ArrayList<String> listeTag) {
+    public xmlImport(Context context, String name) {
         this.context = context;
         this.name = name;
         this.path = "/data/data/" + context.getPackageName() + "/";
-        this.listeTag = listeTag;
     }
 
-    public void createFC(){
+    public void importFC(){
 
         Log.i("path", this.path);
 
@@ -75,7 +73,7 @@ public class xmlImport {
 
     }
 
-    public void createFV(){
+    public void importFV(){
 
         Log.i("path", this.path);
 

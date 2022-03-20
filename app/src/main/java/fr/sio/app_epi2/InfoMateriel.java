@@ -128,8 +128,8 @@ public class InfoMateriel extends AppCompatActivity implements View.OnClickListe
         }
         if (fvCreer.isPressed()) {
             ArrayList<String> listeTags = new ArrayList<>();
-            xmlImport xmlImport = new xmlImport(this, "ficheVie1", listeTags);
-            xmlImport.createFV();
+            xmlExport xmlExport = new xmlExport(this, "ficheVie1", listeTags);
+            xmlExport.createFV();
         }
 
     }
