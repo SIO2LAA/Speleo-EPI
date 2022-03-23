@@ -173,7 +173,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         contentValuesmateriel5.put(DBOpenHelper.Constants.idTypeMateriel, "null");
         contentValuesmateriel5.put(DBOpenHelper.Constants.idControleurMateriel, "null");
 
-
         // Insert the line in the database
         long rowId = db.insert(DBOpenHelper.Constants.tableFabricant, null, contentValuesFabricant);
         long rowId2 = db.insert(DBOpenHelper.Constants.tableMateriel, null, contentValuesmateriel1);
@@ -183,7 +182,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         long rowId6 = db.insert(DBOpenHelper.Constants.tableMateriel, null, contentValuesmateriel5);
 
         // Test to see if the insertion was ok
-        if (rowId == -1 || rowId2 == -1 || rowId3 == -1) {
+        if (rowId == -1 || rowId2 == -1 || rowId3 == -1 || rowId4 == -1 || rowId5 == -1 || rowId6 == -1) {
             Toast.makeText(this, "Erreur dans l'insertion des données",
                     Toast.LENGTH_LONG).show();
         } else {
