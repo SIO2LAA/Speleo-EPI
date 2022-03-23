@@ -5,9 +5,11 @@ import android.os.Bundle;
 import android.util.Log;
 import android.util.Xml;
 
+import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlSerializer;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -61,6 +63,37 @@ public class xmlExport {
             serializer.flush();
             fileos.close();
             //TextView tv = (TextView)findViewById(R.);
+
+        }catch(Exception e)
+        {
+            Log.e("Exception","Exception occured in wroting");
+        }
+
+
+
+    }
+
+    public void readFV(File file){
+
+        FileInputStream fileout = null;
+        try{
+            fileout = new FileInputStream(file);
+        } catch(FileNotFoundException e)
+        {
+            Log.e("FileNotFoundException",e.toString());
+        } catch(IOException e)
+        {
+            Log.e("IOException", "Exception in create new File(");
+        }
+
+        XmlPullParser parser = Xml.newPullParser();
+
+        try{
+            parser.setFeature(XmlPullParser.FEATURE_PROCESS_NAMESPACES, false);
+            parser.setInput(fileout, null);
+            parser.nextTag();
+            fileout.close();
+            //https://developer.android.com/training/basics/network-ops/xml
 
         }catch(Exception e)
         {

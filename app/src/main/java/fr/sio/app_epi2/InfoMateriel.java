@@ -49,6 +49,9 @@ public class InfoMateriel extends AppCompatActivity implements View.OnClickListe
 
     //espace fiche de vie
     private Button fvCreer;
+    private Button fvAfficher;
+    private Button fvModifier;
+    private Button fvSupprimer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,6 +75,9 @@ public class InfoMateriel extends AppCompatActivity implements View.OnClickListe
 
         //espace fiche de vie
         fvCreer = findViewById(R.id.FVCreer);
+        fvAfficher = findViewById(R.id.FVAfficher);
+        fvModifier = findViewById(R.id.FVModifier);
+        fvSupprimer = findViewById(R.id.FVSupprimer);
 
         //listener fiche controle
         fcCreer.setOnClickListener(this);
@@ -130,6 +136,9 @@ public class InfoMateriel extends AppCompatActivity implements View.OnClickListe
             ArrayList<String> listeTags = new ArrayList<>();
             xmlExport xmlExport = new xmlExport(this, "ficheVie1", listeTags);
             xmlExport.createFV();
+        }
+        if (fvAfficher.isPressed()) {
+            
         }
 
     }
