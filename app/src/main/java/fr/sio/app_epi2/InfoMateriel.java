@@ -15,9 +15,11 @@ import org.w3c.dom.Text;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
 import fr.sio.app_epi2.models.Materiel;
+import fr.sio.app_epi2.models.Tag;
 
 public class InfoMateriel extends AppCompatActivity implements View.OnClickListener {
     private SQLiteDatabase db = MainActivity.dbOpenHelper.getReadableDatabase();
@@ -40,6 +42,11 @@ public class InfoMateriel extends AppCompatActivity implements View.OnClickListe
     private Button fcSupprimer;
     private Intent FDC_Creer;
 
+    private Button fvCreer;
+    private Button fvModifer;
+    private Button fvAfficher;
+    private Button fvSupprimer;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,11 +67,21 @@ public class InfoMateriel extends AppCompatActivity implements View.OnClickListe
         fcAfficher = findViewById(R.id.FCAfficher);
         fcModifer = findViewById(R.id.FCModifier);
 
+        fvCreer = findViewById(R.id.FVCreer);
+        fvSupprimer = findViewById(R.id.FVSupprimer);
+        fvAfficher = findViewById(R.id.FVAfficher);
+        fvModifer = findViewById(R.id.FVModifier);
+
         //listener fiche controle
         fcCreer.setOnClickListener(this);
         fcSupprimer.setOnClickListener(this);
         fcAfficher.setOnClickListener(this);
         fcModifer.setOnClickListener(this);
+
+        fvCreer.setOnClickListener(this);
+        fvSupprimer.setOnClickListener(this);
+        fvAfficher.setOnClickListener(this);
+        fvModifer.setOnClickListener(this);
 
         sdf = new SimpleDateFormat("dd/mm/yyyy");
         Intent intent = getIntent();
@@ -109,6 +126,16 @@ public class InfoMateriel extends AppCompatActivity implements View.OnClickListe
         if (fcCreer.isPressed()){
             FDC_Creer = new Intent(this, FDC_Creer.class);
             startActivity(FDC_Creer);
+        }
+
+        if (fvCreer.isPressed()) {
+            Tag tag = new Tag("tag1", "info");
+            ArrayList<Tag> listeTags = new ArrayList<Tag>();
+            listeTags.add(tag);
+
+            xmlFile xmlFile = new xmlFile(this, "data", listeTags);
+            xmlFile.createFV();
+
         }
 
     }

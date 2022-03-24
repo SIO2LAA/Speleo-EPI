@@ -18,13 +18,15 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import fr.sio.app_epi2.models.Tag;
+
 public class xmlFile {
     private Context context;
     private String name;
     private String path;
-    private ArrayList<String> listeTag;
+    private ArrayList<Tag> listeTag;
 
-    public xmlFile(Context context, String name, ArrayList<String> listeTag) {
+    public xmlFile(Context context, String name, ArrayList<Tag> listeTag) {
         this.context = context;
         this.name = name;
         this.path = "/data/data/" + context.getPackageName() + "/";
@@ -84,7 +86,7 @@ public class xmlFile {
         }
     }
 
-    public void createFC(){
+    public void createFV(){
 
         Log.i("path", this.path);
 
