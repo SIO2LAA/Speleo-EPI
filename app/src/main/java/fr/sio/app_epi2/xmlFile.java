@@ -113,9 +113,12 @@ public class xmlFile {
             serializer.startDocument(null, Boolean.valueOf(true));
             //serializer.setFeature("http://xmlpull.org/v1/doc/features.html#indent-output", true);
             serializer.startTag(null, "root");
-            serializer.startTag(null, "test");
-            serializer.text("Bonjour c'est un message de test");
-            serializer.endTag(null, "test");
+            serializer.startTag(null, "materiel");
+            serializer.attribute(null, "id", "41");
+            serializer.startTag(null, "nom");
+            serializer.text("Casque bleu");
+            serializer.endTag(null, "nom");
+            serializer.endTag(null, "materiel");
             serializer.endTag(null,"root");
             serializer.endDocument();
             serializer.flush();

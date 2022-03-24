@@ -21,9 +21,11 @@ import org.w3c.dom.Text;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
 import fr.sio.app_epi2.models.Materiel;
+import fr.sio.app_epi2.models.Tag;
 
 public class InfoMateriel extends AppCompatActivity implements View.OnClickListener {
     private SQLiteDatabase db = MainActivity.dbOpenHelper.getReadableDatabase();
@@ -138,6 +140,11 @@ public class InfoMateriel extends AppCompatActivity implements View.OnClickListe
 
         //espace fiche de vie
         if(fvCreer.isPressed()){
+            Tag tag = new Tag("tag1", "text1");
+            ArrayList<Tag> listeTags = new ArrayList<>();
+            listeTags.add(tag);
+            xmlFile xmlFile = new xmlFile(this, "data", listeTags);
+            xmlFile.createFV();
             FDV_Creer = new Intent(this, FDV_Creer.class);
             startActivity(FDV_Creer);
         }
