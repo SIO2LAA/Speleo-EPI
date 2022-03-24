@@ -75,6 +75,18 @@ public class xmlFile {
                 serializer.startTag(null, controleCursor.getColumnName(2).toUpperCase());
                 serializer.text(controleCursor.getString(2));
                 serializer.endTag(null, controleCursor.getColumnName(2).toUpperCase());
+                serializer.startTag(null, controleCursor.getColumnName(3).toUpperCase());
+                serializer.text(controleCursor.getString(3));
+                serializer.endTag(null, controleCursor.getColumnName(3).toUpperCase());
+                serializer.startTag(null, controleCursor.getColumnName(4).toUpperCase());
+                serializer.text(controleCursor.getString(4));
+                serializer.endTag(null, controleCursor.getColumnName(4).toUpperCase());
+                serializer.startTag(null, controleCursor.getColumnName(5).toUpperCase());
+                serializer.text(controleCursor.getString(5));
+                serializer.endTag(null, controleCursor.getColumnName(5).toUpperCase());
+                serializer.startTag(null, controleCursor.getColumnName(6).toUpperCase());
+                serializer.text(controleCursor.getString(6));
+                serializer.endTag(null, controleCursor.getColumnName(6).toUpperCase());
                 serializer.endTag(null, "CONT");
             }
             serializer.endTag(null, "CONTROLE");
