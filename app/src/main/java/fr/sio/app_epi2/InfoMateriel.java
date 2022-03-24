@@ -2,13 +2,19 @@ package fr.sio.app_epi2;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
+import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import org.w3c.dom.Text;
@@ -124,16 +130,22 @@ public class InfoMateriel extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
-
+        //espace fiche de controle
         if (fcCreer.isPressed()){
             FDC_Creer = new Intent(this, FDC_Creer.class);
             startActivity(FDC_Creer);
         }
+
         //espace fiche de vie
         if(fvCreer.isPressed()){
             FDV_Creer = new Intent(this, FDV_Creer.class);
             startActivity(FDV_Creer);
         }
+        if(fvAfficher.isPressed()){
+        }
+
 
     }
+
+
 }
