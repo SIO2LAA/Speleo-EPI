@@ -99,7 +99,7 @@ public class xmlFile {
             if (controleCursor.getCount() != 0) {
                 serializer.startTag(null, "CONTROLE");
                 while (controleCursor.moveToNext()) {
-                    serializer.startTag(null, "CONT");
+                    serializer.startTag(null, "CTL");
                     serializer.attribute(null, controleCursor.getColumnName(0), controleCursor.getString(0));
                     serializer.startTag(null, controleCursor.getColumnName(1).toUpperCase() + "CONTROLE");
                     serializer.text(controleCursor.getString(1));
@@ -119,7 +119,7 @@ public class xmlFile {
                     serializer.startTag(null, controleCursor.getColumnName(6).toUpperCase() + "CONTROLE");
                     serializer.text(controleCursor.getString(6));
                     serializer.endTag(null, controleCursor.getColumnName(6).toUpperCase() + "CONTROLE");
-                    serializer.endTag(null, "CONT");
+                    serializer.endTag(null, "CTL");
                 }
                 serializer.endTag(null, "CONTROLE");
             }
@@ -127,7 +127,7 @@ public class xmlFile {
             if (controleurCursor.getCount() != 0) {
                 serializer.startTag(null, "CONTROLEUR");
                 while (controleurCursor.moveToNext()) {
-                    serializer.startTag(null, "CONTRO");
+                    serializer.startTag(null, "CTLEUR");
                     serializer.attribute(null, controleurCursor.getColumnName(0), controleurCursor.getString(0));
                     serializer.startTag(null, controleurCursor.getColumnName(1).toUpperCase() + "CONTROLEUR");
                     serializer.text(controleurCursor.getString(1));
@@ -135,7 +135,7 @@ public class xmlFile {
                     serializer.startTag(null, controleurCursor.getColumnName(2).toUpperCase() + "CONTROLEUR");
                     serializer.text(controleurCursor.getString(2));
                     serializer.endTag(null, controleurCursor.getColumnName(2).toUpperCase() + "CONTROLEUR");
-                    serializer.endTag(null, "CONTRO");
+                    serializer.endTag(null, "CTLEUR");
                 }
                 serializer.endTag(null, "CONTROLEUR");
             }
