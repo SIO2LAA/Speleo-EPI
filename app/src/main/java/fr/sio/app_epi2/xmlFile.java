@@ -63,6 +63,7 @@ public class xmlFile {
         try{
             serializer.setOutput(fileos, "UTF-8");
             serializer.startDocument(null, Boolean.valueOf(true));
+            serializer.setFeature("http://xmlpull.org/v1/doc/features.html#indent-output", true);
             serializer.startTag(null, "root");
             serializer.startTag(null, "controle");
             while (controleCursor.moveToNext()) {
