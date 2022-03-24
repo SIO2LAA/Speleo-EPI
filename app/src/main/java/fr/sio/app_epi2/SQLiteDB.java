@@ -1,12 +1,14 @@
 package fr.sio.app_epi2;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.provider.BaseColumns;
 import android.util.Log;
+import android.widget.Toast;
 
- class DBOpenHelper extends SQLiteOpenHelper {
+class DBOpenHelper extends SQLiteOpenHelper {
 
      private String update;
      private String insert;
@@ -165,6 +167,7 @@ import android.util.Log;
         db.execSQL(CONTROLEUR_TABLE);
         db.execSQL(MATERIEL_TABLE);
         db.execSQL(LOT_TABLE);
+
     }
 
     @Override

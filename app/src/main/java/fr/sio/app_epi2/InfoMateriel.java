@@ -127,7 +127,7 @@ public class InfoMateriel extends AppCompatActivity implements View.OnClickListe
         if (fvCreer.isPressed()) {
             ArrayList<String> listeTags = new ArrayList<>();
             xmlFile xmlFile = new xmlFile(this, "ficheVie1", listeTags);
-            xmlFile.createFV();
+            //xmlFile.createFV();
         }
         if (fvAfficher.isPressed()) {
             
