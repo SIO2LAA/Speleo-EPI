@@ -144,7 +144,9 @@ public class InfoMateriel extends AppCompatActivity implements View.OnClickListe
             ArrayList<Tag> listeTags = new ArrayList<>();
             listeTags.add(tag);
             xmlFile xmlFile = new xmlFile(this, "data", listeTags);
-            xmlFile.createFV();
+            //xmlFile.createFV();
+            xmlFile.exportDB(db);
+
             FDV_Creer = new Intent(this, FDV_Creer.class);
             startActivity(FDV_Creer);
         }
