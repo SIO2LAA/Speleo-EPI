@@ -40,6 +40,13 @@ public class InfoMateriel extends AppCompatActivity implements View.OnClickListe
     private Button fcSupprimer;
     private Intent FDC_Creer;
 
+    //espace fiche de vie
+    private Button fvCreer;
+    private Button fvModifier;
+    private Button fvAfficher;
+    private Button fvSupprimer;
+    private Intent FDV_Creer;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,6 +72,18 @@ public class InfoMateriel extends AppCompatActivity implements View.OnClickListe
         fcSupprimer.setOnClickListener(this);
         fcAfficher.setOnClickListener(this);
         fcModifer.setOnClickListener(this);
+
+        //espace fiche de vie
+        fvCreer = findViewById(R.id.FVCreer);
+        fvSupprimer = findViewById(R.id.FVSupprimer);
+        fvAfficher = findViewById(R.id.FVAfficher);
+        fvModifier = findViewById(R.id.FVModifier);
+
+        //listener fiche de vie
+        fvCreer.setOnClickListener(this);
+        fvSupprimer.setOnClickListener(this);
+        fvAfficher.setOnClickListener(this);
+        fvModifier.setOnClickListener(this);
 
         sdf = new SimpleDateFormat("dd/mm/yyyy");
         Intent intent = getIntent();
@@ -109,6 +128,11 @@ public class InfoMateriel extends AppCompatActivity implements View.OnClickListe
         if (fcCreer.isPressed()){
             FDC_Creer = new Intent(this, FDC_Creer.class);
             startActivity(FDC_Creer);
+        }
+        //espace fiche de vie
+        if(fvCreer.isPressed()){
+            FDV_Creer = new Intent(this, FDV_Creer.class);
+            startActivity(FDV_Creer);
         }
 
     }

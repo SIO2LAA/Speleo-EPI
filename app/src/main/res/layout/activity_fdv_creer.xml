@@ -36,48 +36,48 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:inputType="textPersonName"
-                android:text="Modele" />
+                android:hint="Modele"
+                android:inputType="textPersonName" />
 
             <EditText
                 android:id="@+id/editTextTextPersonName2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:inputType="textPersonName"
-                android:text="Signe distinctif" />
+                android:hint="Signe distinctif"
+                android:inputType="textPersonName" />
 
             <EditText
                 android:id="@+id/editTextTextPersonName3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:inputType="textPersonName"
-                android:text="Marquage" />
+                android:hint="Marquage"
+                android:inputType="textPersonName" />
 
             <EditText
                 android:id="@+id/editTextTextPersonName4"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:inputType="textPersonName"
-                android:text="Emplacement marquage" />
+                android:hint="Emplacement marquage"
+                android:inputType="textPersonName" />
 
             <EditText
                 android:id="@+id/editTextTextPersonName6"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:inputType="textPersonName"
-                android:text="Numero de serie" />
+                android:hint="Numero de serie"
+                android:inputType="textPersonName" />
 
             <EditText
                 android:id="@+id/editTextTextPersonName8"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:inputType="textPersonName"
-                android:text="Nom redacteur" />
+                android:hint="Nom redacteur"
+                android:inputType="textPersonName" />
 
         </LinearLayout>
 
@@ -139,16 +139,6 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <DatePicker
-                android:id="@+id/fdv_datepicker4"
-                android:layout_width="match_parent"
-                android:layout_height="130dp"
-                android:layout_gravity="center"
-                android:calendarViewShown="false"
-                android:datePickerMode="spinner"
-                android:maxDate="2022"
-                android:spinnersShown="true" />
-
             <TextView
                 android:id="@+id/textView6"
                 android:layout_width="match_parent"
@@ -158,6 +148,16 @@
                 android:textAlignment="center"
                 android:textColor="@color/black"
                 android:textSize="16sp" />
+
+            <DatePicker
+                android:id="@+id/fdv_datepicker4"
+                android:layout_width="match_parent"
+                android:layout_height="130dp"
+                android:layout_gravity="center"
+                android:calendarViewShown="false"
+                android:datePickerMode="spinner"
+                android:maxDate="2022"
+                android:spinnersShown="true" />
 
         </LinearLayout>
 
