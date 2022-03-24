@@ -2,7 +2,10 @@ package fr.sio.app_epi2;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -16,6 +19,7 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.w3c.dom.Text;
 
@@ -55,6 +59,7 @@ public class InfoMateriel extends AppCompatActivity implements View.OnClickListe
     private Button fvSupprimer;
     private Intent FDV_Creer;
 
+    private static final int DIALOG_ALERT = 10;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -151,9 +156,34 @@ public class InfoMateriel extends AppCompatActivity implements View.OnClickListe
             startActivity(FDV_Creer);
         }
         if(fvAfficher.isPressed()){
+            showDialog(DIALOG_ALERT);
         }
 
 
+    }
+
+    @Override
+    protected Dialog onCreateDialog(int id) {
+        switch (id) {
+            case DIALOG_ALERT:
+                // Create out AlterDialog
+                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                builder.setMessage("Fiche de vie Sangle :");
+                builder.setMessage("Signe distinctif :");
+                builder.setMessage("Date acquisition:");
+                builder.setMessage("Date de premiére utilisation:");
+                builder.setMessage("Date limite de rebut :");
+                builder.setCancelable(true);
+                builder.setPositiveButton("ok", new OkOnClickListener());
+                AlertDialog dialog = builder.create();
+                dialog.show();
+        }
+        return super.onCreateDialog(id);
+    }
+    private final class OkOnClickListener implements
+            DialogInterface.OnClickListener {
+        public void onClick(DialogInterface dialog, int which) {
+        }
     }
 
 
