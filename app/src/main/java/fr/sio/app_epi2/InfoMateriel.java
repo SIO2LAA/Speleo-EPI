@@ -11,20 +11,12 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
-
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
 import fr.sio.app_epi2.models.Materiel;
-import fr.sio.app_epi2.models.Tag;
 
 public class InfoMateriel extends AppCompatActivity implements View.OnClickListener {
     private SQLiteDatabase db = MainActivity.dbOpenHelper.getReadableDatabase();
@@ -134,8 +126,8 @@ public class InfoMateriel extends AppCompatActivity implements View.OnClickListe
         }
         if (fvCreer.isPressed()) {
             ArrayList<String> listeTags = new ArrayList<>();
-            xmlExport xmlExport = new xmlExport(this, "ficheVie1", listeTags);
-            xmlExport.createFV();
+            xmlFile xmlFile = new xmlFile(this, "ficheVie1", listeTags);
+            xmlFile.createFV();
         }
         if (fvAfficher.isPressed()) {
             
