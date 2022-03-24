@@ -66,62 +66,61 @@ public class xmlFile {
             serializer.startTag(null, "root");
             serializer.startTag(null, "controle");
             while (controleCursor.moveToNext()) {
-                serializer.startTag(null, controleCursor.getColumnName(0));
-                serializer.text(controleCursor.getString(0));
-                serializer.endTag(null, controleCursor.getColumnName(0));
+                serializer.startTag(null, "cont");
+                serializer.attribute(null, controleCursor.getColumnName(0), controleCursor.getString(0));
                 serializer.startTag(null, controleCursor.getColumnName(1));
                 serializer.text(controleCursor.getString(1));
                 serializer.endTag(null, controleCursor.getColumnName(1));
                 serializer.startTag(null, controleCursor.getColumnName(2));
                 serializer.text(controleCursor.getString(2));
                 serializer.endTag(null, controleCursor.getColumnName(2));
+                serializer.endTag(null, "cont");
             }
             serializer.endTag(null, "controle");
 
             serializer.startTag(null, "controleur");
             while (controleurCursor.moveToNext()) {
-                serializer.startTag(null, controleurCursor.getColumnName(0));
-                serializer.text(controleurCursor.getString(0));
-                serializer.endTag(null, controleurCursor.getColumnName(0));
+                serializer.startTag(null, "contro");
+                serializer.attribute(null, controleurCursor.getColumnName(0), controleurCursor.getString(0));
                 serializer.startTag(null, controleurCursor.getColumnName(1));
                 serializer.text(controleurCursor.getString(1));
                 serializer.endTag(null, controleurCursor.getColumnName(1));
                 serializer.startTag(null, controleurCursor.getColumnName(2));
                 serializer.text(controleurCursor.getString(2));
                 serializer.endTag(null, controleurCursor.getColumnName(2));
+                serializer.endTag(null, "contro");
             }
             serializer.endTag(null, "controleur");
 
             serializer.startTag(null, "fabricant");
             while (fabricantCursor.moveToNext()) {
-                serializer.startTag(null, fabricantCursor.getColumnName(0));
-                serializer.text(fabricantCursor.getString(0));
-                serializer.endTag(null, fabricantCursor.getColumnName(0));
+                serializer.startTag(null, "fab");
+                serializer.attribute(null, fabricantCursor.getColumnName(0), fabricantCursor.getString(0));
                 serializer.startTag(null, fabricantCursor.getColumnName(1));
                 serializer.text(fabricantCursor.getString(1));
                 serializer.endTag(null, fabricantCursor.getColumnName(1));
+                serializer.endTag(null, "fab");
             }
             serializer.endTag(null, "fabricant");
 
             serializer.startTag(null, "lot");
             while (lotCursor.moveToNext()) {
-                serializer.startTag(null, lotCursor.getColumnName(0));
-                serializer.text(lotCursor.getString(0));
-                serializer.endTag(null, lotCursor.getColumnName(0));
+                serializer.startTag(null, "l");
+                serializer.attribute(null, lotCursor.getColumnName(0), lotCursor.getString(0));
                 serializer.startTag(null, lotCursor.getColumnName(1));
                 serializer.text(lotCursor.getString(1));
                 serializer.endTag(null, lotCursor.getColumnName(1));
                 serializer.startTag(null, lotCursor.getColumnName(2));
                 serializer.text(lotCursor.getString(2));
                 serializer.endTag(null, lotCursor.getColumnName(2));
+                serializer.endTag(null, "l");
             }
             serializer.endTag(null, "lot");
 
             serializer.startTag(null, "materiel");
             while (materielCursor.moveToNext()) {
-                serializer.startTag(null, materielCursor.getColumnName(0));
-                serializer.text(materielCursor.getString(0));
-                serializer.endTag(null, materielCursor.getColumnName(0));
+                serializer.startTag(null, "mat");
+                serializer.attribute(null, materielCursor.getColumnName(0), materielCursor.getString(0));
                 serializer.startTag(null, materielCursor.getColumnName(1));
                 serializer.text(materielCursor.getString(1));
                 serializer.endTag(null, materielCursor.getColumnName(1));
@@ -158,17 +157,18 @@ public class xmlFile {
                 serializer.startTag(null, materielCursor.getColumnName(12));
                 serializer.text(materielCursor.getString(12));
                 serializer.endTag(null, materielCursor.getColumnName(12));
+                serializer.endTag(null, "mat");
             }
             serializer.endTag(null, "materiel");
 
             serializer.startTag(null, "types");
             while (typesCursor.moveToNext()) {
-                serializer.startTag(null, typesCursor.getColumnName(0));
-                serializer.text(typesCursor.getString(0));
-                serializer.endTag(null, typesCursor.getColumnName(0));
+                serializer.startTag(null, "ty");
+                serializer.attribute(null, typesCursor.getColumnName(0), typesCursor.getString(0));
                 serializer.startTag(null, typesCursor.getColumnName(1));
                 serializer.text(typesCursor.getString(1));
                 serializer.endTag(null, typesCursor.getColumnName(1));
+                serializer.endTag(null, "ty");
             }
             serializer.endTag(null, "types");
 
