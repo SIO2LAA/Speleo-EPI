@@ -94,7 +94,7 @@ public class xmlFile {
             serializer.setOutput(fileos, "UTF-8");
             serializer.startDocument(null, Boolean.valueOf(true));
             serializer.setFeature("http://xmlpull.org/v1/doc/features.html#indent-output", true);
-            serializer.startTag(null, "root");
+        serializer.startTag(null, "DATA");
 
             if (controleCursor.getCount() != 0) {
                 serializer.startTag(null, "CONTROLE");
@@ -228,7 +228,7 @@ public class xmlFile {
                 serializer.endTag(null, "TYPES");
             }
 
-            serializer.endTag(null,"root");
+            serializer.endTag(null,"DATA");
             serializer.endDocument();
             serializer.flush();
             fileos.close();
