@@ -21,14 +21,15 @@
         android:layout_gravity="center"
         android:layout_marginTop="10dp"
         android:orientation="vertical">
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="30dp"
             android:text="Fiche de contrôle"
             android:textAlignment="center"
-            android:textSize="22sp"
             android:textColor="@color/speleo_vert"
-            android:textStyle="bold"/>
+            android:textSize="22sp"
+            android:textStyle="bold" />
 
         <TextView
             android:text="@string/date"

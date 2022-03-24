@@ -4,15 +4,21 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/fond_vert"
+    android:background="@drawable/fond_rectangle"
     android:orientation="vertical">
 
     <TextView
         android:id="@+id/date_jour"
-        android:layout_width="370dp"
+        android:layout_width="142dp"
         android:layout_height="wrap_content"
         android:text="date"
         android:textColor="@color/black" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="horizontal" />
 
     <TextView
         android:id="@+id/listMat"
@@ -34,8 +40,7 @@
         android:layout_marginTop="10dp"
         android:background="@color/white"
         tools:layout_editor_absoluteX="48dp"
-        tools:layout_editor_absoluteY="105dp" >
-    </SearchView>
+        tools:layout_editor_absoluteY="105dp"></SearchView>
 
     <Spinner
         android:id="@+id/selection"
@@ -48,12 +53,15 @@
 
     <ScrollView
         android:layout_width="113dp"
-        android:layout_height="37dp">
+        android:layout_height="37dp"
+        tools:visibility="invisible">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical" />
+            android:orientation="vertical">
+
+        </LinearLayout>
     </ScrollView>
 
     <LinearLayout
