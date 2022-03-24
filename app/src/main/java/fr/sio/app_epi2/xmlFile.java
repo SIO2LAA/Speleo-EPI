@@ -33,6 +33,36 @@ public class xmlFile {
         this.listeTag = listeTag;
     }
 
+    public void importDB(Context context, File xmlFile) {
+        try {
+            FileInputStream file = new FileInputStream(xmlFile);
+            XmlPullParser parser = Xml.newPullParser();
+            try{
+                parser.setFeature(XmlPullParser.FEATURE_PROCESS_NAMESPACES, false);
+                parser.setInput(file, null);
+                parser.nextTag();
+
+                parser.require(XmlPullParser.START_TAG, null, "root");
+                while(parser.next() != XmlPullParser.END_TAG) {
+                    if (parser.getEventType() != XmlPullParser.START_TAG) {
+                        continue;
+                    }
+                    String name = parser.getName();
+                    Log.i("t", parser.getName());
+                }
+
+                file.close();
+                //https://developer.android.com/training/basics/network-ops/xml
+
+            }catch(Exception e)
+            {
+                Log.e("Exception","Exception occured in wroting");
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
     public void exportDB(SQLiteDatabase db) {
         Log.i("path", this.path);
 
@@ -65,125 +95,138 @@ public class xmlFile {
             serializer.startDocument(null, Boolean.valueOf(true));
             serializer.setFeature("http://xmlpull.org/v1/doc/features.html#indent-output", true);
             serializer.startTag(null, "root");
-            serializer.startTag(null, "CONTROLE");
-            while (controleCursor.moveToNext()) {
-                serializer.startTag(null, "CONT");
-                serializer.attribute(null, controleCursor.getColumnName(0), controleCursor.getString(0));
-                serializer.startTag(null, controleCursor.getColumnName(1).toUpperCase());
-                serializer.text(controleCursor.getString(1));
-                serializer.endTag(null, controleCursor.getColumnName(1).toUpperCase());
-                serializer.startTag(null, controleCursor.getColumnName(2).toUpperCase());
-                serializer.text(controleCursor.getString(2));
-                serializer.endTag(null, controleCursor.getColumnName(2).toUpperCase());
-                serializer.startTag(null, controleCursor.getColumnName(3).toUpperCase());
-                serializer.text(controleCursor.getString(3));
-                serializer.endTag(null, controleCursor.getColumnName(3).toUpperCase());
-                serializer.startTag(null, controleCursor.getColumnName(4).toUpperCase());
-                serializer.text(controleCursor.getString(4));
-                serializer.endTag(null, controleCursor.getColumnName(4).toUpperCase());
-                serializer.startTag(null, controleCursor.getColumnName(5).toUpperCase());
-                serializer.text(controleCursor.getString(5));
-                serializer.endTag(null, controleCursor.getColumnName(5).toUpperCase());
-                serializer.startTag(null, controleCursor.getColumnName(6).toUpperCase());
-                serializer.text(controleCursor.getString(6));
-                serializer.endTag(null, controleCursor.getColumnName(6).toUpperCase());
-                serializer.endTag(null, "CONT");
-            }
-            serializer.endTag(null, "CONTROLE");
 
-            serializer.startTag(null, "CONTROLEUR");
-            while (controleurCursor.moveToNext()) {
-                serializer.startTag(null, "CONTRO");
-                serializer.attribute(null, controleurCursor.getColumnName(0), controleurCursor.getString(0));
-                serializer.startTag(null, controleurCursor.getColumnName(1).toUpperCase());
-                serializer.text(controleurCursor.getString(1));
-                serializer.endTag(null, controleurCursor.getColumnName(1).toUpperCase());
-                serializer.startTag(null, controleurCursor.getColumnName(2).toUpperCase());
-                serializer.text(controleurCursor.getString(2));
-                serializer.endTag(null, controleurCursor.getColumnName(2).toUpperCase());
-                serializer.endTag(null, "CONTRO");
+            if (controleCursor.getCount() != 0) {
+                serializer.startTag(null, "CONTROLE");
+                while (controleCursor.moveToNext()) {
+                    serializer.startTag(null, "CONT");
+                    serializer.attribute(null, controleCursor.getColumnName(0), controleCursor.getString(0));
+                    serializer.startTag(null, controleCursor.getColumnName(1).toUpperCase() + "CONTROLE");
+                    serializer.text(controleCursor.getString(1));
+                    serializer.endTag(null, controleCursor.getColumnName(1).toUpperCase() + "CONTROLE");
+                    serializer.startTag(null, controleCursor.getColumnName(2).toUpperCase() + "CONTROLE");
+                    serializer.text(controleCursor.getString(2));
+                    serializer.endTag(null, controleCursor.getColumnName(2).toUpperCase() + "CONTROLE");
+                    serializer.startTag(null, controleCursor.getColumnName(3).toUpperCase() + "CONTROLE");
+                    serializer.text(controleCursor.getString(3));
+                    serializer.endTag(null, controleCursor.getColumnName(3).toUpperCase() + "CONTROLE");
+                    serializer.startTag(null, controleCursor.getColumnName(4).toUpperCase() + "CONTROLE");
+                    serializer.text(controleCursor.getString(4));
+                    serializer.endTag(null, controleCursor.getColumnName(4).toUpperCase() + "CONTROLE");
+                    serializer.startTag(null, controleCursor.getColumnName(5).toUpperCase() + "CONTROLE");
+                    serializer.text(controleCursor.getString(5));
+                    serializer.endTag(null, controleCursor.getColumnName(5).toUpperCase() + "CONTROLE");
+                    serializer.startTag(null, controleCursor.getColumnName(6).toUpperCase() + "CONTROLE");
+                    serializer.text(controleCursor.getString(6));
+                    serializer.endTag(null, controleCursor.getColumnName(6).toUpperCase() + "CONTROLE");
+                    serializer.endTag(null, "CONT");
+                }
+                serializer.endTag(null, "CONTROLE");
             }
-            serializer.endTag(null, "CONTROLEUR");
 
-            serializer.startTag(null, "FABRICANT");
-            while (fabricantCursor.moveToNext()) {
-                serializer.startTag(null, "FAB");
-                serializer.attribute(null, fabricantCursor.getColumnName(0), fabricantCursor.getString(0));
-                serializer.startTag(null, fabricantCursor.getColumnName(1).toUpperCase());
-                serializer.text(fabricantCursor.getString(1));
-                serializer.endTag(null, fabricantCursor.getColumnName(1).toUpperCase());
-                serializer.endTag(null, "FAB");
+            if (controleurCursor.getCount() != 0) {
+                serializer.startTag(null, "CONTROLEUR");
+                while (controleurCursor.moveToNext()) {
+                    serializer.startTag(null, "CONTRO");
+                    serializer.attribute(null, controleurCursor.getColumnName(0), controleurCursor.getString(0));
+                    serializer.startTag(null, controleurCursor.getColumnName(1).toUpperCase() + "CONTROLEUR");
+                    serializer.text(controleurCursor.getString(1));
+                    serializer.endTag(null, controleurCursor.getColumnName(1).toUpperCase() + "CONTROLEUR");
+                    serializer.startTag(null, controleurCursor.getColumnName(2).toUpperCase() + "CONTROLEUR");
+                    serializer.text(controleurCursor.getString(2));
+                    serializer.endTag(null, controleurCursor.getColumnName(2).toUpperCase() + "CONTROLEUR");
+                    serializer.endTag(null, "CONTRO");
+                }
+                serializer.endTag(null, "CONTROLEUR");
             }
-            serializer.endTag(null, "FABRICANT");
 
-            serializer.startTag(null, "LOT");
-            while (lotCursor.moveToNext()) {
-                serializer.startTag(null, "L");
-                serializer.attribute(null, lotCursor.getColumnName(0), lotCursor.getString(0));
-                serializer.startTag(null, lotCursor.getColumnName(1).toUpperCase());
-                serializer.text(lotCursor.getString(1));
-                serializer.endTag(null, lotCursor.getColumnName(1).toUpperCase());
-                serializer.startTag(null, lotCursor.getColumnName(2).toUpperCase());
-                serializer.text(lotCursor.getString(2));
-                serializer.endTag(null, lotCursor.getColumnName(2).toUpperCase());
-                serializer.endTag(null, "L");
+            if (fabricantCursor.getCount() != 0) {
+                serializer.startTag(null, "FABRICANT");
+                while (fabricantCursor.moveToNext()) {
+                    serializer.startTag(null, "FAB");
+                    serializer.attribute(null, fabricantCursor.getColumnName(0), fabricantCursor.getString(0));
+                    serializer.startTag(null, fabricantCursor.getColumnName(1).toUpperCase() + "FABRICANT");
+                    serializer.text(fabricantCursor.getString(1));
+                    serializer.endTag(null, fabricantCursor.getColumnName(1).toUpperCase() + "FABRICANT");
+                    serializer.endTag(null, "FAB");
+                }
+                serializer.endTag(null, "FABRICANT");
             }
-            serializer.endTag(null, "LOT");
 
-            serializer.startTag(null, "materiel".toUpperCase());
-            while (materielCursor.moveToNext()) {
-                serializer.startTag(null, "MAT");
-                serializer.attribute(null, materielCursor.getColumnName(0), materielCursor.getString(0));
-                serializer.startTag(null, materielCursor.getColumnName(1).toUpperCase());
-                serializer.text(materielCursor.getString(1));
-                serializer.endTag(null, materielCursor.getColumnName(1).toUpperCase());
-                serializer.startTag(null, materielCursor.getColumnName(2).toUpperCase());
-                serializer.text(materielCursor.getString(2));
-                serializer.endTag(null, materielCursor.getColumnName(2).toUpperCase());
-                serializer.startTag(null, materielCursor.getColumnName(3).toUpperCase());
-                serializer.text(materielCursor.getString(3));
-                serializer.endTag(null, materielCursor.getColumnName(3).toUpperCase());
-                serializer.startTag(null, materielCursor.getColumnName(4).toUpperCase());
-                serializer.text(materielCursor.getString(4));
-                serializer.endTag(null, materielCursor.getColumnName(4).toUpperCase());
-                serializer.startTag(null, materielCursor.getColumnName(5).toUpperCase());
-                serializer.text(materielCursor.getString(5));
-                serializer.endTag(null, materielCursor.getColumnName(5).toUpperCase());
-                serializer.startTag(null, materielCursor.getColumnName(6).toUpperCase());
-                serializer.text(materielCursor.getString(6));
-                serializer.endTag(null, materielCursor.getColumnName(6).toUpperCase());
-                serializer.startTag(null, materielCursor.getColumnName(7).toUpperCase());
-                serializer.text(materielCursor.getString(7));
-                serializer.endTag(null, materielCursor.getColumnName(7).toUpperCase());
-                serializer.startTag(null, materielCursor.getColumnName(8).toUpperCase());
-                serializer.text(materielCursor.getString(8));
-                serializer.endTag(null, materielCursor.getColumnName(8).toUpperCase());
-                serializer.startTag(null, materielCursor.getColumnName(9).toUpperCase());
-                serializer.text(materielCursor.getString(9));
-                serializer.endTag(null, materielCursor.getColumnName(9).toUpperCase());
-                serializer.startTag(null, materielCursor.getColumnName(10).toUpperCase());
-                serializer.text(materielCursor.getString(10));
-                serializer.endTag(null, materielCursor.getColumnName(10).toUpperCase());
-                serializer.startTag(null, materielCursor.getColumnName(11).toUpperCase());
-                serializer.text(materielCursor.getString(11));
-                serializer.endTag(null, materielCursor.getColumnName(11).toUpperCase());
-                serializer.startTag(null, materielCursor.getColumnName(12).toUpperCase());
-                serializer.text(materielCursor.getString(12));
-                serializer.endTag(null, materielCursor.getColumnName(12).toUpperCase());
-                serializer.endTag(null, "MAT");
+            if (lotCursor.getCount() != 0) {
+                serializer.startTag(null, "LOT");
+                while (lotCursor.moveToNext()) {
+                    serializer.startTag(null, "L");
+                    serializer.attribute(null, lotCursor.getColumnName(0), lotCursor.getString(0));
+                    serializer.startTag(null, lotCursor.getColumnName(1).toUpperCase() + "LOT");
+                    serializer.text(lotCursor.getString(1));
+                    serializer.endTag(null, lotCursor.getColumnName(1).toUpperCase() + "LOT");
+                    serializer.startTag(null, lotCursor.getColumnName(2).toUpperCase() + "LOT");
+                    serializer.text(lotCursor.getString(2));
+                    serializer.endTag(null, lotCursor.getColumnName(2).toUpperCase() + "LOT");
+                    serializer.endTag(null, "L");
+                }
+                serializer.endTag(null, "LOT");
             }
-            serializer.endTag(null, "MATERIEL");
 
-            serializer.startTag(null, "TYPES");
-            while (typesCursor.moveToNext()) {
-                serializer.startTag(null, "TY");
-                serializer.attribute(null, typesCursor.getColumnName(0), typesCursor.getString(0));
-                serializer.startTag(null, typesCursor.getColumnName(1).toUpperCase());
-                serializer.text(typesCursor.getString(1));
-                serializer.endTag(null, typesCursor.getColumnName(1).toUpperCase());
-                serializer.endTag(null, "TY");
+            if (materielCursor.getCount() != 0) {
+                serializer.startTag(null, "MATERIEL");
+                while (materielCursor.moveToNext()) {
+                    serializer.startTag(null, "MAT");
+                    serializer.attribute(null, materielCursor.getColumnName(0), materielCursor.getString(0));
+                    serializer.startTag(null, materielCursor.getColumnName(1).toUpperCase() + "MATERIEL");
+                    serializer.text(materielCursor.getString(1));
+                    serializer.endTag(null, materielCursor.getColumnName(1).toUpperCase() + "MATERIEL");
+                    serializer.startTag(null, materielCursor.getColumnName(2).toUpperCase() + "MATERIEL");
+                    serializer.text(materielCursor.getString(2));
+                    serializer.endTag(null, materielCursor.getColumnName(2).toUpperCase() + "MATERIEL");
+                    serializer.startTag(null, materielCursor.getColumnName(3).toUpperCase() + "MATERIEL");
+                    serializer.text(materielCursor.getString(3));
+                    serializer.endTag(null, materielCursor.getColumnName(3).toUpperCase() + "MATERIEL");
+                    serializer.startTag(null, materielCursor.getColumnName(4).toUpperCase() + "MATERIEL");
+                    serializer.text(materielCursor.getString(4));
+                    serializer.endTag(null, materielCursor.getColumnName(4).toUpperCase() + "MATERIEL");
+                    serializer.startTag(null, materielCursor.getColumnName(5).toUpperCase() + "MATERIEL");
+                    serializer.text(materielCursor.getString(5));
+                    serializer.endTag(null, materielCursor.getColumnName(5).toUpperCase() + "MATERIEL");
+                    serializer.startTag(null, materielCursor.getColumnName(6).toUpperCase() + "MATERIEL");
+                    serializer.text(materielCursor.getString(6));
+                    serializer.endTag(null, materielCursor.getColumnName(6).toUpperCase() + "MATERIEL");
+                    serializer.startTag(null, materielCursor.getColumnName(7).toUpperCase() + "MATERIEL");
+                    serializer.text(materielCursor.getString(7));
+                    serializer.endTag(null, materielCursor.getColumnName(7).toUpperCase() + "MATERIEL");
+                    serializer.startTag(null, materielCursor.getColumnName(8).toUpperCase() + "MATERIEL");
+                    serializer.text(materielCursor.getString(8));
+                    serializer.endTag(null, materielCursor.getColumnName(8).toUpperCase() + "MATERIEL");
+                    serializer.startTag(null, materielCursor.getColumnName(9).toUpperCase() + "MATERIEL");
+                    serializer.text(materielCursor.getString(9));
+                    serializer.endTag(null, materielCursor.getColumnName(9).toUpperCase() + "MATERIEL");
+                    serializer.startTag(null, materielCursor.getColumnName(10).toUpperCase() + "MATERIEL");
+                    serializer.text(materielCursor.getString(10));
+                    serializer.endTag(null, materielCursor.getColumnName(10).toUpperCase() + "MATERIEL");
+                    serializer.startTag(null, materielCursor.getColumnName(11).toUpperCase() + "MATERIEL");
+                    serializer.text(materielCursor.getString(11));
+                    serializer.endTag(null, materielCursor.getColumnName(11).toUpperCase() + "MATERIEL");
+                    serializer.startTag(null, materielCursor.getColumnName(12).toUpperCase() + "MATERIEL");
+                    serializer.text(materielCursor.getString(12));
+                    serializer.endTag(null, materielCursor.getColumnName(12).toUpperCase() + "MATERIEL");
+                    serializer.endTag(null, "MAT");
+                }
+                serializer.endTag(null, "MATERIEL");
             }
-            serializer.endTag(null, "TYPES");
+
+            if (typesCursor.getCount() != 0) {
+                serializer.startTag(null, "TYPES");
+                while (typesCursor.moveToNext()) {
+                    serializer.startTag(null, "TY");
+                    serializer.attribute(null, typesCursor.getColumnName(0), typesCursor.getString(0));
+                    serializer.startTag(null, typesCursor.getColumnName(1).toUpperCase() + "TYPES");
+                    serializer.text(typesCursor.getString(1));
+                    serializer.endTag(null, typesCursor.getColumnName(1).toUpperCase() + "TYPES");
+                    serializer.endTag(null, "TY");
+                }
+                serializer.endTag(null, "TYPES");
+            }
 
             serializer.endTag(null,"root");
             serializer.endDocument();
