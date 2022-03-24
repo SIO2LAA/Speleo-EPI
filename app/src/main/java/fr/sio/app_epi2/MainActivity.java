@@ -22,9 +22,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private ContentValues value;
     private ContentValues value2;
     private ContentValues value3;
+    private ContentValues value4;
+    private ContentValues value5;
+    private ContentValues value6;
     private Intent gestionMateriel;
     // The database creator and updater helper
     public static DBOpenHelper dbOpenHelper;
+    private Intent xmlExport;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +54,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         value = new ContentValues();
         value2 = new ContentValues();
         value3 = new ContentValues();
+        value4 = new ContentValues();
+        value5 = new ContentValues();
+        value6 = new ContentValues();
     }
 
     /**
@@ -82,10 +89,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
      *            (an empty contentValues
      * @param contentValuesmateriel2
      *            (an empty contentValues)
+     * @param contentValuesmateriel3
+     *            (an empty contentValues)
+     * @param contentValuesmateriel4
+     *            (an empty contentValues)
+     * @param contentValuesmateriel5
+     *            (an empty contentValues)
      *
      * @return the inserted row id
      */
-    private long insertRecord(ContentValues contentValuesFabricant, ContentValues contentValuesmateriel1, ContentValues contentValuesmateriel2) {
+    private long insertRecord(ContentValues contentValuesFabricant, ContentValues contentValuesmateriel1, ContentValues contentValuesmateriel2, ContentValues contentValuesmateriel3, ContentValues contentValuesmateriel4, ContentValues contentValuesmateriel5) {
         // Assign the values for each column.
         contentValuesFabricant.put(DBOpenHelper.Constants.idFabricant, 1);
         contentValuesFabricant.put(DBOpenHelper.Constants.nomFabricant, "BOSCH");
@@ -118,14 +131,58 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         contentValuesmateriel2.put(DBOpenHelper.Constants.idTypeMateriel, "null");
         contentValuesmateriel2.put(DBOpenHelper.Constants.idControleurMateriel, "null");
 
+        contentValuesmateriel3.put(DBOpenHelper.Constants.idMateriel, 3);
+        contentValuesmateriel3.put(DBOpenHelper.Constants.libelleMateriel, "Casque");
+        contentValuesmateriel3.put(DBOpenHelper.Constants.modeleMateriel, "Mastiffiant");
+        contentValuesmateriel3.put(DBOpenHelper.Constants.signeDistinctifMateriel, "Rouge liseré bleu");
+        contentValuesmateriel3.put(DBOpenHelper.Constants.dateAcquisitionMateriel, "2022-06-02");
+        contentValuesmateriel3.put(DBOpenHelper.Constants.datePremiereUtilisationMateriel, "2022-05-25");
+        contentValuesmateriel3.put(DBOpenHelper.Constants.dateLimiteRebutMateriel, "2025-11-29");
+        contentValuesmateriel3.put(DBOpenHelper.Constants.dateFabricationMateriel, "2021-03-08");
+        contentValuesmateriel3.put(DBOpenHelper.Constants.marquageMateriel, "Trait noir");
+        contentValuesmateriel3.put(DBOpenHelper.Constants.empalcementMarquageMateriel, "arrière casque");
+        contentValuesmateriel3.put(DBOpenHelper.Constants.idFabricantMateriel, 1);
+        contentValuesmateriel3.put(DBOpenHelper.Constants.idTypeMateriel, "null");
+        contentValuesmateriel3.put(DBOpenHelper.Constants.idControleurMateriel, "null");
+
+        contentValuesmateriel4.put(DBOpenHelper.Constants.idMateriel, 4);
+        contentValuesmateriel4.put(DBOpenHelper.Constants.libelleMateriel, "Baudrier");
+        contentValuesmateriel4.put(DBOpenHelper.Constants.modeleMateriel, "Mastiffiant");
+        contentValuesmateriel4.put(DBOpenHelper.Constants.signeDistinctifMateriel, "Rouge liseré bleu");
+        contentValuesmateriel4.put(DBOpenHelper.Constants.dateAcquisitionMateriel, "2022-06-02");
+        contentValuesmateriel4.put(DBOpenHelper.Constants.datePremiereUtilisationMateriel, "2022-05-25");
+        contentValuesmateriel4.put(DBOpenHelper.Constants.dateLimiteRebutMateriel, "2025-11-29");
+        contentValuesmateriel4.put(DBOpenHelper.Constants.dateFabricationMateriel, "2021-03-08");
+        contentValuesmateriel4.put(DBOpenHelper.Constants.marquageMateriel, "Trait noir");
+        contentValuesmateriel4.put(DBOpenHelper.Constants.empalcementMarquageMateriel, "étiquette baudrier");
+        contentValuesmateriel4.put(DBOpenHelper.Constants.idFabricantMateriel, 1);
+        contentValuesmateriel4.put(DBOpenHelper.Constants.idTypeMateriel, "null");
+        contentValuesmateriel4.put(DBOpenHelper.Constants.idControleurMateriel, "null");
+
+        contentValuesmateriel5.put(DBOpenHelper.Constants.idMateriel, 5);
+        contentValuesmateriel5.put(DBOpenHelper.Constants.libelleMateriel, "Basquette");
+        contentValuesmateriel5.put(DBOpenHelper.Constants.modeleMateriel, "Lescalade");
+        contentValuesmateriel5.put(DBOpenHelper.Constants.signeDistinctifMateriel, "carré orange");
+        contentValuesmateriel5.put(DBOpenHelper.Constants.dateAcquisitionMateriel, "2022-07-02");
+        contentValuesmateriel5.put(DBOpenHelper.Constants.datePremiereUtilisationMateriel, "2022-05-25");
+        contentValuesmateriel5.put(DBOpenHelper.Constants.dateLimiteRebutMateriel, "2025-11-29");
+        contentValuesmateriel5.put(DBOpenHelper.Constants.dateFabricationMateriel, "2021-03-08");
+        contentValuesmateriel5.put(DBOpenHelper.Constants.marquageMateriel, "Trait bleu");
+        contentValuesmateriel5.put(DBOpenHelper.Constants.empalcementMarquageMateriel, "dessus de chaussure");
+        contentValuesmateriel5.put(DBOpenHelper.Constants.idFabricantMateriel, 1);
+        contentValuesmateriel5.put(DBOpenHelper.Constants.idTypeMateriel, "null");
+        contentValuesmateriel5.put(DBOpenHelper.Constants.idControleurMateriel, "null");
 
         // Insert the line in the database
         long rowId = db.insert(DBOpenHelper.Constants.tableFabricant, null, contentValuesFabricant);
         long rowId2 = db.insert(DBOpenHelper.Constants.tableMateriel, null, contentValuesmateriel1);
         long rowId3 = db.insert(DBOpenHelper.Constants.tableMateriel, null, contentValuesmateriel2);
+        long rowId4 = db.insert(DBOpenHelper.Constants.tableMateriel, null, contentValuesmateriel3);
+        long rowId5 = db.insert(DBOpenHelper.Constants.tableMateriel, null, contentValuesmateriel4);
+        long rowId6 = db.insert(DBOpenHelper.Constants.tableMateriel, null, contentValuesmateriel5);
 
         // Test to see if the insertion was ok
-        if (rowId == -1 || rowId2 == -1 || rowId3 == -1) {
+        if (rowId == -1 || rowId2 == -1 || rowId3 == -1 || rowId4 == -1 || rowId5 == -1 || rowId6 == -1) {
             Toast.makeText(this, "Erreur dans l'insertion des données",
                     Toast.LENGTH_LONG).show();
         } else {
@@ -139,9 +196,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View view) {
         if (boutonMenu.isPressed()) {
-            insertRecord(value, value2, value3);
+            insertRecord(value, value2, value3, value4, value5, value6);
             gestionMateriel = new Intent(this, GestionMateriel.class); //Initialement mis GestionMateriel.class InfoMateriel est provisoire
             startActivity(gestionMateriel);
+
+
         }
     }
 }

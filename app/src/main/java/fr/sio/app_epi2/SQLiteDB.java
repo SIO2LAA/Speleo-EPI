@@ -1,12 +1,17 @@
 package fr.sio.app_epi2;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.provider.BaseColumns;
 import android.util.Log;
+import android.widget.Toast;
 
- class DBOpenHelper extends SQLiteOpenHelper {
+class DBOpenHelper extends SQLiteOpenHelper {
+
+     private String update;
+     private String insert;
 
      // @goals This class aims to show the constant to use for the DBOpenHelper */
     public static class Constants implements BaseColumns {
@@ -86,7 +91,7 @@ import android.util.Log;
     private static final String TYPE_TABLE = "create table "
              + Constants.tableTypes + "(" + Constants.idType
              + " integer primary key autoincrement, "
-             + Constants.nomType + " VARCHAR(100) )";
+             + Constants.nomType + " VARCHAR(255) )";
 
      private static final String CONTROLE_TABLE = "create table "
              + Constants.tableControle + "(" + Constants.idControle
@@ -100,7 +105,7 @@ import android.util.Log;
 
      private static final String CONTROLEUR_TABLE = "create table "
              + Constants.tableControleur + "(" + Constants.idControleur
-             + " integer primary key autoincrement, "
+             + " integer primary key, "
              + Constants.nomControleur + " VARCHAR(50),"
              + Constants.prenomControleur + " VARCHAR(50) )";
 
@@ -162,6 +167,7 @@ import android.util.Log;
         db.execSQL(CONTROLEUR_TABLE);
         db.execSQL(MATERIEL_TABLE);
         db.execSQL(LOT_TABLE);
+
     }
 
     @Override
