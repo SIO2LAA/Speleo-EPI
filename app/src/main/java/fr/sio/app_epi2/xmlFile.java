@@ -42,7 +42,7 @@ public class xmlFile {
                 parser.setInput(file, null);
                 parser.nextTag();
 
-                parser.require(XmlPullParser.START_TAG, null, "root");
+                parser.require(XmlPullParser.START_TAG, null, "DATA");
                 while(parser.next() != XmlPullParser.END_TAG) {
                     if (parser.getEventType() != XmlPullParser.START_TAG) {
                         continue;
@@ -71,7 +71,7 @@ public class xmlFile {
             dateFile.createNewFile();
         }catch(IOException e)
         {
-            Log.e("IOException", "Exception in create new File(");
+            Log.e("IOException", "Exception in create new File");
         }
         FileOutputStream fileos = null;
         try{
