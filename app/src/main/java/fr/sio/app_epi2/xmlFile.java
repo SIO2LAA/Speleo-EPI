@@ -3,20 +3,32 @@ package fr.sio.app_epi2;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.os.Bundle;
 import android.util.Log;
 import android.util.Xml;
 
+import org.w3c.dom.Document;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
+import org.xml.sax.InputSource;
+import org.xml.sax.SAXException;
 import org.xmlpull.v1.XmlPullParser;
+import org.xmlpull.v1.XmlPullParserException;
+import org.xmlpull.v1.XmlPullParserFactory;
 import org.xmlpull.v1.XmlSerializer;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.StringReader;
 import java.util.ArrayList;
-import java.util.List;
+
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
 
 import fr.sio.app_epi2.models.Tag;
 
@@ -36,35 +48,63 @@ public class xmlFile {
     public void importDB(Context context, File xmlFile) {
         try {
             FileInputStream file = new FileInputStream(xmlFile);
-            XmlPullParser parser = Xml.newPullParser();
-            try{
-                parser.setFeature(XmlPullParser.FEATURE_PROCESS_NAMESPACES, false);
-                parser.setInput(file, null);
-                parser.nextTag();
+            BufferedInputStream bf = new BufferedInputStream(file);
+            Log.i("read", String.valueOf(bf.read()));
 
-                parser.require(XmlPullParser.START_TAG, null, "DATA");
-                while(parser.next() != XmlPullParser.END_TAG) {
-                    if (parser.getEventType() != XmlPullParser.START_TAG) {
-                        continue;
-                    }
-                    String name = parser.getName();
-                    Log.i("t", parser.getName());
-                }
-
-                file.close();
-                //https://developer.android.com/training/basics/network-ops/xml
-
-            }catch(Exception e)
-            {
-                Log.e("Exception","Exception occured in wroting");
-            }
         } catch (FileNotFoundException e) {
             e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
+
+        XmlPullParserFactory factory = null;
+        try {
+            factory = XmlPullParserFactory.newInstance();
+        } catch (XmlPullParserException e) {
+            e.printStackTrace();
+        }
+        factory.setNamespaceAware(true);
+        XmlPullParser xpp = null;
+        try {
+            xpp = factory.newPullParser();
+        } catch (XmlPullParserException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            xpp.setInput( new StringReader ( "<foo>Hello World!</foo>" ) );
+        } catch (XmlPullParserException e) {
+            e.printStackTrace();
+        }
+        int eventType = 0;
+        try {
+            eventType = xpp.getEventType();
+        } catch (XmlPullParserException e) {
+            e.printStackTrace();
+        }
+        while (eventType != XmlPullParser.END_DOCUMENT) {
+            if(eventType == XmlPullParser.START_DOCUMENT) {
+                System.out.println("Start document");
+            } else if(eventType == XmlPullParser.START_TAG) {
+                System.out.println("Start tag "+xpp.getName());
+            } else if(eventType == XmlPullParser.END_TAG) {
+                System.out.println("End tag "+xpp.getName());
+            } else if(eventType == XmlPullParser.TEXT) {
+                System.out.println("Text "+xpp.getText());
+            }
+            try {
+                eventType = xpp.next();
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (XmlPullParserException e) {
+                e.printStackTrace();
+            }
+        }
+        System.out.println("End document");
     }
 
     public void exportDB(SQLiteDatabase db) {
-        Log.i("path", this.path);
+        //Log.i("path", this.path);
 
         File dateFile = new File(this.path + "data" + ".xml");
         try{
