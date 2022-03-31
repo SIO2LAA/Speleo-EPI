@@ -166,6 +166,50 @@ public class FDC_Creer extends AppCompatActivity implements View.OnClickListener
             return "08";
         if(day == 9)
             return "09";
+        if(day == 10)
+            return "10";
+        if(day == 11)
+            return "11";
+        if(day == 12)
+            return "12";
+        if(day == 13)
+            return "13";
+        if(day == 14)
+            return "14";
+        if(day == 15)
+            return "15";
+        if(day == 16)
+            return "16";
+        if(day == 17)
+            return "17";
+        if(day == 18)
+            return "18";
+        if(day == 19)
+            return "19";
+        if(day == 20)
+            return "20";
+        if(day == 21)
+            return "21";
+        if(day == 22)
+            return "22";
+        if(day == 23)
+            return "23";
+        if(day == 24)
+            return "24";
+        if(day == 25)
+            return "25";
+        if(day == 26)
+            return "26";
+        if(day == 27)
+            return "27";
+        if(day == 28)
+            return "28";
+        if(day == 29)
+            return "29";
+        if(day == 30)
+            return "30";
+        if(day == 31)
+            return "31";
 
         //default should never happen
         return "01";
