@@ -65,6 +65,7 @@ class DBOpenHelper extends SQLiteOpenHelper {
         public static final String datePremiereUtilisationMateriel = "datePremiereUtilisation";
         public static final String dateLimiteRebutMateriel = "dateLimiteRebut";
         public static final String dateFabricationMateriel = "dateFabrication";
+         public static final String dateredactionFicheMateriel = "dateRedactionFiche";
         public static final String marquageMateriel = "marquage";
         public static final String empalcementMarquageMateriel = "emplacementMarquage";
         public static final String idFabricantMateriel = "idFabricant";
@@ -72,7 +73,8 @@ class DBOpenHelper extends SQLiteOpenHelper {
         public static final String idControleurMateriel = "idControleur";
 
          // Table Lot
-         public static final String dateLot = "date";// Mandatory
+         public static final String numeroLot = "numero";// Mandatory
+         public static final String dateLot = "date";
          public static final String quantiteLot = "quantite";
          public static final String idMaterielLot = "idMateriel";
 
@@ -125,11 +127,12 @@ class DBOpenHelper extends SQLiteOpenHelper {
 
 
      private static final String LOT_TABLE = "create table "
-             + Constants.tableLot + "(" + Constants.dateLot
-             + " DATE, "
+             + Constants.tableLot + "(" + Constants.numeroLot
+             + " INTEGER, "
+             + Constants.dateLot + "DATE,"
              + Constants.quantiteLot + " INTEGER,"
              + Constants.idMaterielLot + " INTEGER,"
-             + "PRIMARY KEY (" + Constants.dateLot + ", " + Constants.idMaterielLot + "),"
+             + "PRIMARY KEY (" + Constants.numeroLot + ", " + Constants.idMaterielLot + "),"
              + "CONSTRAINT fk_id_materiel_lot FOREIGN KEY (" + Constants.idMaterielLot + ") REFERENCES " + Constants.tableMateriel + "(" + Constants.idMateriel + ")"
              + ")";
 
