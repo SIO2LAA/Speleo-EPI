@@ -23,6 +23,7 @@ import android.widget.Toast;
 
 import org.w3c.dom.Text;
 
+import java.io.File;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -144,8 +145,9 @@ public class InfoMateriel extends AppCompatActivity implements View.OnClickListe
             ArrayList<Tag> listeTags = new ArrayList<>();
             listeTags.add(tag);
             xmlFile xmlFile = new xmlFile(this, "data", listeTags);
-            //xmlFile.createFV();
             xmlFile.exportDB(db);
+            File file = new File("/data/data/" + getPackageName() + "/" + "data.xml");
+            xmlFile.importDB(this, file);
 
             FDV_Creer = new Intent(this, FDV_Creer.class);
             startActivity(FDV_Creer);

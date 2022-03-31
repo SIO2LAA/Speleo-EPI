@@ -191,7 +191,7 @@ public class FDC_Creer extends AppCompatActivity implements View.OnClickListener
         }
 
         if (valider.isPressed()){
-           // ajout du message dans la BD
+          /* // ajout du message dans la BD
             ContentValues values = new ContentValues();
             values.put("date", this.dateButton.getText().toString());
             values.put("observation", this.observation.getText().toString());
@@ -204,12 +204,12 @@ public class FDC_Creer extends AppCompatActivity implements View.OnClickListener
                 Toast toast = Toast.makeText(this, "Les données ont été ajouté dans la base de données", Toast.LENGTH_LONG);
                 toast.show();
             }
+*/
 
-
-            /*Toast toast;
+            Toast toast;
             int duree = Toast.LENGTH_LONG;
-            toast = Toast.makeText(this.getApplicationContext(), observation.getText() ,duree);
-            toast.show(); */
+            toast = Toast.makeText(this.getApplicationContext(), dateButton.getText() ,duree);
+            toast.show();
         }
     }
 }
