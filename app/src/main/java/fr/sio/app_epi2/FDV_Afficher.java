@@ -14,7 +14,7 @@ public class FDV_Afficher extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fdv_afficher);
 
-        annuler = findViewById(R.id.fdv_creer_annuler);
+        annuler = findViewById(R.id.fdv_afficher_annuler);
 
         annuler.setOnClickListener(this);
     }

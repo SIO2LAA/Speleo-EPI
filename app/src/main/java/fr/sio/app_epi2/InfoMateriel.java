@@ -153,7 +153,8 @@ public class InfoMateriel extends AppCompatActivity implements View.OnClickListe
             startActivity(FDV_Creer);
         }
         if(fvAfficher.isPressed()){
-            Tag tag = new Tag("tag2", "text2");
+
+
             FDV_Afficher = new Intent(this, FDV_Afficher.class);
             startActivity(FDV_Afficher);
         }
