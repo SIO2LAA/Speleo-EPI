@@ -2,7 +2,6 @@ package fr.sio.app_epi2;
 
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
-import android.content.ContentValues;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
