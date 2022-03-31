@@ -23,6 +23,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.StringReader;
 import java.util.ArrayList;
 
@@ -46,60 +47,58 @@ public class xmlFile {
     }
 
     public void importDB(Context context, File xmlFile) {
+        FileInputStream file = null;
+        String ligne = "";
+        XmlPullParserFactory factory = null;
+        int eventType = 0;
+        XmlPullParser xpp = null;
+        String xml = "";
         try {
-            FileInputStream file = new FileInputStream(xmlFile);
-            BufferedInputStream bf = new BufferedInputStream(file);
-            Log.i("read", String.valueOf(bf.read()));
+            file = new FileInputStream(xmlFile);
+            InputStreamReader inputReader = new InputStreamReader(file);
+            BufferedReader bReader = new BufferedReader(inputReader);
+            factory = XmlPullParserFactory.newInstance();
+            factory.setNamespaceAware(true);
+            xpp = factory.newPullParser();
+            while ((ligne = bReader.readLine()) != null) {
+                xml = xml + bReader.readLine();
+            }
+            xpp.setInput(new StringReader(xml));
 
+            eventType = xpp.getEventType();
         } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (XmlPullParserException e) {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        XmlPullParserFactory factory = null;
-        try {
-            factory = XmlPullParserFactory.newInstance();
-        } catch (XmlPullParserException e) {
-            e.printStackTrace();
-        }
-        factory.setNamespaceAware(true);
-        XmlPullParser xpp = null;
-        try {
-            xpp = factory.newPullParser();
-        } catch (XmlPullParserException e) {
-            e.printStackTrace();
-        }
-
-        try {
-            xpp.setInput( new StringReader ( "<foo>Hello World!</foo>" ) );
-        } catch (XmlPullParserException e) {
-            e.printStackTrace();
-        }
-        int eventType = 0;
-        try {
-            eventType = xpp.getEventType();
-        } catch (XmlPullParserException e) {
-            e.printStackTrace();
-        }
         while (eventType != XmlPullParser.END_DOCUMENT) {
             if(eventType == XmlPullParser.START_DOCUMENT) {
-                System.out.println("Start document");
+                Log.i("tag", "--Start document--");
             } else if(eventType == XmlPullParser.START_TAG) {
-                System.out.println("Start tag "+xpp.getName());
+                Log.i("tag", xpp.getName());
             } else if(eventType == XmlPullParser.END_TAG) {
-                System.out.println("End tag "+xpp.getName());
+                Log.i("tag", xpp.getName());
             } else if(eventType == XmlPullParser.TEXT) {
                 System.out.println("Text "+xpp.getText());
+                if (xpp.getText() != "" || xpp.getText() != "null") {
+                    Log.i("tag", xpp.getText());
+                }
             }
             try {
                 eventType = xpp.next();
             } catch (IOException e) {
                 e.printStackTrace();
+                Log.i("tag", e.getMessage());
             } catch (XmlPullParserException e) {
                 e.printStackTrace();
+                Log.i("tag", e.getMessage());
             }
         }
+
+
         System.out.println("End document");
     }
 
