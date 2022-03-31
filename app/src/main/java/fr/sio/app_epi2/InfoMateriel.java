@@ -140,6 +140,7 @@ public class InfoMateriel extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View v) {
         //espace fiche de vie
+        //bla
         if(fvCreer.isPressed()){
             Tag tag = new Tag("tag1", "text1");
             ArrayList<Tag> listeTags = new ArrayList<>();
