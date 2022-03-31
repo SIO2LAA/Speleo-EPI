@@ -58,6 +58,7 @@ public class InfoMateriel extends AppCompatActivity implements View.OnClickListe
     private Button fvAfficher;
     private Button fvSupprimer;
     private Intent FDV_Creer;
+    private Intent FDV_Afficher;
 
     private static final int DIALOG_ALERT = 10;
     @Override
@@ -137,12 +138,6 @@ public class InfoMateriel extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
-        //espace fiche de controle
-        if (fcCreer.isPressed()){
-            FDC_Creer = new Intent(this, FDC_Creer.class);
-            startActivity(FDC_Creer);
-        }
-
         //espace fiche de vie
         if(fvCreer.isPressed()){
             Tag tag = new Tag("tag1", "text1");
@@ -156,35 +151,14 @@ public class InfoMateriel extends AppCompatActivity implements View.OnClickListe
             startActivity(FDV_Creer);
         }
         if(fvAfficher.isPressed()){
-            showDialog(DIALOG_ALERT);
+            Tag tag = new Tag("tag2", "text2");
+            FDV_Afficher = new Intent(this, FDV_Afficher.class);
+            startActivity(FDV_Afficher);
         }
 
 
     }
 
-    @Override
-    protected Dialog onCreateDialog(int id) {
-        switch (id) {
-            case DIALOG_ALERT:
-                // Create out AlterDialog
-                AlertDialog.Builder builder = new AlertDialog.Builder(this);
-                builder.setMessage("Fiche de vie Sangle :");
-                builder.setMessage("Signe distinctif :");
-                builder.setMessage("Date acquisition:");
-                builder.setMessage("Date de premiére utilisation:");
-                builder.setMessage("Date limite de rebut :");
-                builder.setCancelable(true);
-                builder.setPositiveButton("ok", new OkOnClickListener());
-                AlertDialog dialog = builder.create();
-                dialog.show();
-        }
-        return super.onCreateDialog(id);
-    }
-    private final class OkOnClickListener implements
-            DialogInterface.OnClickListener {
-        public void onClick(DialogInterface dialog, int which) {
-        }
-    }
 
 
 }
