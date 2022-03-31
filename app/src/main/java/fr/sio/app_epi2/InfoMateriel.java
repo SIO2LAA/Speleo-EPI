@@ -145,7 +145,7 @@ public class InfoMateriel extends AppCompatActivity implements View.OnClickListe
             Tag tag = new Tag("tag1", "text1");
             ArrayList<Tag> listeTags = new ArrayList<>();
             listeTags.add(tag);
-            xmlFile xmlFile = new xmlFile(this, "data", listeTags);
+            xmlFile xmlFile = new xmlFile(this, "data", listeTags, db);
             xmlFile.exportDB(db);
             File file = new File("/data/data/" + getPackageName() + "/" + "data.xml");
             xmlFile.importDB(this, file);

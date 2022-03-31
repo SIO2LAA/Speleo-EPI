@@ -9,51 +9,124 @@ import android.util.Xml;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
-import org.xml.sax.InputSource;
+import org.w3c.dom.Element;
 import org.xml.sax.SAXException;
 import org.xmlpull.v1.XmlPullParser;
-import org.xmlpull.v1.XmlPullParserException;
-import org.xmlpull.v1.XmlPullParserFactory;
 import org.xmlpull.v1.XmlSerializer;
 
-import java.io.BufferedInputStream;
-import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.StringReader;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
+import fr.sio.app_epi2.models.Controle;
+import fr.sio.app_epi2.models.Controleur;
+import fr.sio.app_epi2.models.Fabricant;
+import fr.sio.app_epi2.models.Lot;
+import fr.sio.app_epi2.models.Materiel;
 import fr.sio.app_epi2.models.Tag;
+import fr.sio.app_epi2.models.Type;
 
 public class xmlFile {
     private Context context;
+    private SQLiteDatabase db;
     private String name;
     private String path;
     private ArrayList<Tag> listeTag;
 
-    public xmlFile(Context context, String name, ArrayList<Tag> listeTag) {
+    public xmlFile(Context context, String name, ArrayList<Tag> listeTag, SQLiteDatabase db) {
         this.context = context;
+        this.db = db;
         this.name = name;
         this.path = "/data/data/" + context.getPackageName() + "/";
         this.listeTag = listeTag;
     }
 
     public void importDB(Context context, File xmlFile) {
-        FileInputStream file = null;
+        SimpleDateFormat format = new SimpleDateFormat("y-m-d");
+
+        DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+        DocumentBuilder d = null;
+        Boolean existing = false;
+        ArrayList<String> listeDB = new ArrayList<>();
+        ArrayList<Fabricant> listeFabricants = new ArrayList<>();
+        ArrayList<Controle> listeControles = new ArrayList<>();
+        ArrayList<Controleur> listeControleurs = new ArrayList<>();
+        ArrayList<Lot> listeLots = new ArrayList<>();
+        ArrayList<Materiel> listeMateriels = new ArrayList<>();
+        ArrayList<Type> listeTypes = new ArrayList<>();
+
+        try {
+            d = dbf.newDocumentBuilder();
+            Document document = d.parse(xmlFile);
+            document.getDocumentElement().normalize();
+            if (document.getElementsByTagName("FABRICANT").item(0) != null) {
+                NodeList nFAB = document.getElementsByTagName("FAB");
+                for (int temp = 0; temp < nFAB.getLength(); temp++) {
+                    Node nNode = nFAB.item(temp);
+                            /*nFAB.item(temp);*/
+                    if (nNode.getNodeType() == Node.ELEMENT_NODE) {
+                        Element eElement = (Element) nNode;
+                        try {
+
+                            Cursor cursorFabricant = db.rawQuery("SELECT id FROM fabricant", null);
+                            Cursor cursorControle = db.rawQuery("SELECT id FROM controle", null);
+                            Cursor cursorControleur = db.rawQuery("SELECT id FROM controleur", null);
+                            Cursor cursorLot = db.rawQuery("SELECT id FROM lot", null);
+                            Cursor cursorMateriel = db.rawQuery("SELECT id FROM materiel", null);
+                            Cursor cursorTypes = db.rawQuery("SELECT id FROM types", null);
+
+
+                            while (cursorFabricant.moveToNext()) {
+                                if (cursorFabricant.getString(0) == eElement.getAttribute("id")) {
+                                    Log.i("xml", "Info existe déjà dans la base de données !");
+                                    existing = true;
+                                } else {
+                                    Fabricant fab = new Fabricant(Integer.valueOf(eElement.getAttribute("id")), eElement.getElementsByTagName("NOMFABRICANT").item(0).getTextContent());
+                                    listeFabricants.add(fab);
+                                }
+                            }
+
+                            while (cursorControle.moveToNext()) {
+                                if (cursorControle.getString(0) == eElement.getAttribute("id")) {
+                                    Log.i("xml", "Info existe déjà dans la base de données !");
+                                    existing = true;
+                                } else {
+                                    Controle con = new Controle(Integer.valueOf(eElement.getAttribute("id")), format.parse(eElement.getElementsByTagName("DATECONTROLE").item(0).getTextContent()), eElement.getElementsByTagName("OBSERVATIONCONTROLE").item(0).getTextContent(), eElement.getElementsByTagName("NATURECONTROLE").item(0).getTextContent(), eElement.getElementsByTagName("LIEUCONTROLE").item(0).getTextContent());
+                                    listeControles.add(con);
+                                }
+                            }
+                        }
+                        catch (Exception e) {
+                            System.out.println("Problème lors de l'import des données");
+                        }
+                    }
+                }
+            }
+        } catch (ParserConfigurationException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (SAXException e) {
+            e.printStackTrace();
+        }
+
+
+        /*FileInputStream file = null;
         String ligne = "";
         XmlPullParserFactory factory = null;
         int eventType = 0;
         XmlPullParser xpp = null;
-        String xml = "";
-        try {
+        String xml = "";*/
+        /*try {
             file = new FileInputStream(xmlFile);
             InputStreamReader inputReader = new InputStreamReader(file);
             BufferedReader bReader = new BufferedReader(inputReader);
@@ -64,6 +137,7 @@ public class xmlFile {
                 xml = xml + bReader.readLine();
             }
             xpp.setInput(new StringReader(xml));
+            Log.i("tag", xml);
 
             eventType = xpp.getEventType();
         } catch (FileNotFoundException e) {
@@ -99,7 +173,7 @@ public class xmlFile {
         }
 
 
-        System.out.println("End document");
+        System.out.println("End document");*/
     }
 
     public void exportDB(SQLiteDatabase db) {
