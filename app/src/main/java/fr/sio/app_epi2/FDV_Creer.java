@@ -38,8 +38,8 @@ public class FDV_Creer extends AppCompatActivity implements View.OnClickListener
         uti_date = findViewById(R.id.uti_datePickerButton);
         reb_date = findViewById(R.id.reb_datePickerButton);
         red_date = findViewById(R.id.reb_datePickerButton);
-        valider = findViewById(R.id.fdv_afficher_valider);
-        annuler = findViewById(R.id.fdv_afficher_annuler);
+        valider = findViewById(R.id.fdv_creer_valider);
+        annuler = findViewById(R.id.fdv_creer_annuler);
 
         fab_date.setText(getTodaysDate());
         acq_date.setText(getNextDate());
