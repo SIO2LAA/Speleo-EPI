@@ -13,6 +13,7 @@
         <activity android:name=".FDC_Creer"></activity>
         <activity android:name=".FDV_Creer"></activity>
         <activity android:name=".FDV_Afficher"></activity>
+        <activity android:name=".FDV_Modifier"></activity>
         <activity android:name=".InfoMateriel" />
         <activity android:name=".GestionMateriel" />
         <activity

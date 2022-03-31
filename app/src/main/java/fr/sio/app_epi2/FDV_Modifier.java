@@ -6,51 +6,58 @@ import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
+
+import javax.microedition.khronos.egl.EGLDisplay;
 
 import fr.sio.app_epi2.models.Materiel;
 
-public class FDV_Afficher extends AppCompatActivity implements View.OnClickListener {
-    private SQLiteDatabase db = MainActivity.dbOpenHelper.getReadableDatabase();
-    private Button ok;
-    private Materiel materiel;
-    private TextView modele;
-    private TextView fabricant;
-    private TextView signe_distinctif;
-    private TextView marquage;
-    private TextView emplacemet_marquage;
-    private TextView numero_serie;
-    private TextView dateAcquisition;
-    private TextView datePremiereUtilisation;
-    private TextView dateLimiteRebut;
-    private TextView dateFabrication;
-
+public class FDV_Modifier extends AppCompatActivity implements View.OnClickListener {
+    private Button annuler;
+    private Button valider;
     private SimpleDateFormat sdf;
+    private SQLiteDatabase db = MainActivity.dbOpenHelper.getReadableDatabase();
+    private Materiel materiel;
+
+    private EditText modele;
+    private EditText fabricant;
+    private EditText signe_distinctif;
+    private EditText marquage;
+    private EditText emplacemet_marquage;
+    private EditText numero_serie;
+    private EditText dateAcquisition;
+    private EditText datePremiereUtilisation;
+    private EditText dateLimiteRebut;
+    private EditText dateFabrication;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ok = findViewById(R.id.fdv_afficher_ok);
-        setContentView(R.layout.activity_fdv_afficher);
-        modele = findViewById(R.id.Tv_modele);
-        fabricant = findViewById(R.id.Tv_fabricant);
-        signe_distinctif = findViewById(R.id.Tv_signe_distinctif);
-        marquage = findViewById(R.id.Tv_marquage);
-        emplacemet_marquage = findViewById(R.id.Tv_emplacement_marquage);
-        numero_serie = findViewById(R.id.Tv_numero_serie);
-        dateAcquisition = findViewById(R.id.textView2);
-        datePremiereUtilisation = findViewById(R.id.textView3);
-        dateLimiteRebut = findViewById(R.id.textView9);
-        dateFabrication = findViewById(R.id.textView10);
+        setContentView(R.layout.activity_fdv_modifier);
 
-        ok.setOnClickListener(this);
+        annuler = findViewById(R.id.fdv_modifier_annuler);
+        valider = findViewById(R.id.fdv_modifier_valider);
+        modele = findViewById(R.id.Ed_modele);
+        fabricant = findViewById(R.id.Ed_fabricant);
+        signe_distinctif = findViewById(R.id.Ed_signe_distinctif);
+        marquage = findViewById(R.id.Ed_marquage);
+        emplacemet_marquage = findViewById(R.id.Ed_emplacement);
+        numero_serie = findViewById(R.id.Ed_numero_serie);
+        //dateAcquisition = findViewById(R.id.textView2);
+        //datePremiereUtilisation = findViewById(R.id.textView3);
+        //dateLimiteRebut = findViewById(R.id.textView9);
+        //dateFabrication = findViewById(R.id.textView10);
+
         sdf = new SimpleDateFormat("dd/mm/yyyy");
         Intent intent = getIntent();
         int id = intent.getIntExtra("idItemMateriel", 1);
@@ -61,14 +68,14 @@ public class FDV_Afficher extends AppCompatActivity implements View.OnClickListe
             Date date_pu = new Date();
             Date date_lr = new Date();
             Date date_f = new Date();
-            //Date date_rfv = new Date();
+            // Date date_rfv = new Date();
 
             try {
                 date_ac = format.parse(cursor.getString(4));
                 date_pu = format.parse(cursor.getString(5));
                 date_lr = format.parse(cursor.getString(6));
                 date_f = format.parse(cursor.getString(7));
-               //date_rfv = format.parse(cursor.getString(8));
+                // date_rfv = format.parse(cursor.getString(8));
             } catch (ParseException e) {
                 e.printStackTrace();
             }
@@ -85,17 +92,39 @@ public class FDV_Afficher extends AppCompatActivity implements View.OnClickListe
         datePremiereUtilisation.setText("Date de première utilisation : " + sdf.format(materiel.getDatePremiereUtilisation()));
         dateLimiteRebut.setText("Date de limite rébut : " + sdf.format(materiel.getDateLimiteRebut()));
         dateFabrication.setText("Date de fabrication : " + sdf.format(materiel.getDateFabrication()));
-        //dateFicheVie.setText("Date  redaction fiche de vie : " + sdf.format(materiel.getDat));
+        //dateFicheVie.setText("Date  redaction fiche de vie : " + sdf.format(materiel.getdate));
 
     }
-
 
     @Override
-    public void onClick(View view) {
-        if (ok.isPressed()){
+    public void onClick(View v) {
+        // affichage du layout
+        annuler = findViewById(R.id.btnAnnuler);
+        valider = findViewById(R.id.btnValider);
+
+        // boutons sur écoute
+        annuler.setOnClickListener(this);
+        valider.setOnClickListener(this);
+
+        if (annuler.isPressed()) {
             this.finish();
         }
+
+        if (valider.isPressed()) {
+          /* // ajout du message dans la BD
+            ContentValues values = new ContentValues();
+            values.put("date", this.dateButton.getText().toString());
+            values.put("observation", this.observation.getText().toString());
+            long res = this.writeBD.insert("controle", null, values);
+
+            if (res>0) {
+                Toast toast = Toast.makeText(this, "Les données ont été ajouté dans la base de données", Toast.LENGTH_LONG);
+                toast.show();
+            }else {
+                Toast toast = Toast.makeText(this, "Les données ont été ajouté dans la base de données", Toast.LENGTH_LONG);
+                toast.show();
+            }
+*/
+        }
     }
-
-
 }

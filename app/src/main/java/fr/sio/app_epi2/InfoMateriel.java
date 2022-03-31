@@ -60,6 +60,7 @@ public class InfoMateriel extends AppCompatActivity implements View.OnClickListe
     private Button fvSupprimer;
     private Intent FDV_Creer;
     private Intent FDV_Afficher;
+    private Intent FDV_Modifier;
 
     private static final int DIALOG_ALERT = 10;
     @Override
@@ -140,7 +141,6 @@ public class InfoMateriel extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View v) {
         //espace fiche de vie
-        //bla
         if(fvCreer.isPressed()){
             Tag tag = new Tag("tag1", "text1");
             ArrayList<Tag> listeTags = new ArrayList<>();
@@ -157,10 +157,11 @@ public class InfoMateriel extends AppCompatActivity implements View.OnClickListe
             FDV_Afficher = new Intent(this, FDV_Afficher.class);
             startActivity(FDV_Afficher);
         }
+        if(fvModifier.isPressed())
+            FDV_Modifier = new Intent(this, FDV_Modifier.class);
+            startActivity(FDV_Modifier);
 
 
     }
-
-
 
 }
