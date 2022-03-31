@@ -40,6 +40,14 @@
                 android:inputType="textPersonName" />
 
             <EditText
+                android:id="@+id/editFabricant"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Fabricant"
+                android:inputType="textPersonName" />
+
+            <EditText
                 android:id="@+id/editSigne_distinctif"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -388,7 +396,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginTop="50dp"
-                android:text="Date de rédation"
+                android:text="Date de rédaction"
                 android:textAlignment="center"
                 android:textColor="@color/black"
                 android:textSize="16sp" />
