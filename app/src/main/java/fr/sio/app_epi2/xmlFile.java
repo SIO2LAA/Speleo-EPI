@@ -1,5 +1,6 @@
 package fr.sio.app_epi2;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -36,21 +37,17 @@ import fr.sio.app_epi2.models.Tag;
 import fr.sio.app_epi2.models.Type;
 
 public class xmlFile {
-    private Context context;
     private SQLiteDatabase db;
     private String name;
     private String path;
-    private ArrayList<Tag> listeTag;
 
-    public xmlFile(Context context, String name, ArrayList<Tag> listeTag, SQLiteDatabase db) {
-        this.context = context;
+    public xmlFile(Context context, String name, SQLiteDatabase db) {
         this.db = db;
         this.name = name;
         this.path = "/data/data/" + context.getPackageName() + "/";
-        this.listeTag = listeTag;
     }
 
-    public void importDB(Context context, File xmlFile) {
+    public void importDB(File xmlFile) {
         SimpleDateFormat format = new SimpleDateFormat("y-m-d");
 
         DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
@@ -68,6 +65,13 @@ public class xmlFile {
             d = dbf.newDocumentBuilder();
             Document document = d.parse(xmlFile);
             document.getDocumentElement().normalize();
+            Cursor cursorFabricant = db.rawQuery("SELECT id FROM fabricant", null);
+            Cursor cursorControle = db.rawQuery("SELECT id FROM controle", null);
+            Cursor cursorControleur = db.rawQuery("SELECT id FROM controleur", null);
+            Cursor cursorLot = db.rawQuery("SELECT numero FROM lot", null);
+            Cursor cursorMateriel = db.rawQuery("SELECT id FROM materiel", null);
+            Cursor cursorTypes = db.rawQuery("SELECT id FROM types", null);
+
             if (document.getElementsByTagName("FABRICANT").item(0) != null) {
                 NodeList nFAB = document.getElementsByTagName("FAB");
                 for (int temp = 0; temp < nFAB.getLength(); temp++) {
@@ -77,17 +81,8 @@ public class xmlFile {
                         Element eElement = (Element) nNode;
                         try {
 
-                            Cursor cursorFabricant = db.rawQuery("SELECT id FROM fabricant", null);
-                            Cursor cursorControle = db.rawQuery("SELECT id FROM controle", null);
-                            Cursor cursorControleur = db.rawQuery("SELECT id FROM controleur", null);
-                            Cursor cursorLot = db.rawQuery("SELECT id FROM lot", null);
-                            Cursor cursorMateriel = db.rawQuery("SELECT id FROM materiel", null);
-                            Cursor cursorTypes = db.rawQuery("SELECT id FROM types", null);
-
-
                             while (cursorFabricant.moveToNext()) {
                                 if (cursorFabricant.getString(0) == eElement.getAttribute("id")) {
-                                    Log.i("xml", "Info existe déjà dans la base de données !");
                                     existing = true;
                                 } else {
                                     Fabricant fab = new Fabricant(Integer.valueOf(eElement.getAttribute("id")), eElement.getElementsByTagName("NOMFABRICANT").item(0).getTextContent());
@@ -95,15 +90,9 @@ public class xmlFile {
                                 }
                             }
 
-                            while (cursorControle.moveToNext()) {
-                                if (cursorControle.getString(0) == eElement.getAttribute("id")) {
-                                    Log.i("xml", "Info existe déjà dans la base de données !");
-                                    existing = true;
-                                } else {
-                                    Controle con = new Controle(Integer.valueOf(eElement.getAttribute("id")), format.parse(eElement.getElementsByTagName("DATECONTROLE").item(0).getTextContent()), eElement.getElementsByTagName("OBSERVATIONCONTROLE").item(0).getTextContent(), eElement.getElementsByTagName("NATURECONTROLE").item(0).getTextContent(), eElement.getElementsByTagName("LIEUCONTROLE").item(0).getTextContent());
-                                    listeControles.add(con);
-                                }
+                            for (int i = 0; i < listeFabricants.size(); i++) {
                             }
+
                         }
                         catch (Exception e) {
                             System.out.println("Problème lors de l'import des données");
@@ -111,6 +100,138 @@ public class xmlFile {
                     }
                 }
             }
+
+            if (document.getElementsByTagName("CONTROLE").item(0) != null) {
+                NodeList nCTL = document.getElementsByTagName("CTL");
+                for (int temp = 0; temp < nCTL.getLength(); temp++) {
+                    Node nNode = nCTL.item(temp);
+                    if (nNode.getNodeType() == Node.ELEMENT_NODE) {
+                        Element eElement = (Element) nNode;
+                        try {
+
+                            while (cursorControle.moveToNext()) {
+                                if (cursorControle.getString(0) == eElement.getAttribute("id")) {
+                                    existing = true;
+                                } else {
+                                    if (!eElement.getElementsByTagName("IDMATERIELCONTROLE").item(0).getTextContent().equals("null") && !eElement.getElementsByTagName("IDCONTROLEURCONTROLE").item(0).getTextContent().equals("null")) {
+                                        Controle controle = new Controle(Integer.valueOf(eElement.getAttribute("id")), format.parse(eElement.getElementsByTagName("DATECONTROLE").item(0).getTextContent()), eElement.getElementsByTagName("OBSERVATIONCONTROLE").item(0).getTextContent(), eElement.getElementsByTagName("NATURECONTROLE").item(0).getTextContent(), eElement.getElementsByTagName("LIEUCONTROLE").item(0).getTextContent(), Integer.valueOf(eElement.getElementsByTagName("IDMATERIELCONTROLE").item(0).getTextContent()), Integer.valueOf(eElement.getElementsByTagName("IDCONTROLEURCONTROLE").item(0).getTextContent()));
+                                        listeControles.add(controle);
+                                    }
+                                }
+                            }
+
+                        }
+                        catch (Exception e) {
+                            System.out.println("Problème lors de l'import des données");
+                        }
+                    }
+                }
+            }
+
+            if (document.getElementsByTagName("CONTROLEUR").item(0) != null) {
+                NodeList nCTLEUR = document.getElementsByTagName("CTLEUR");
+                for (int temp = 0; temp < nCTLEUR.getLength(); temp++) {
+                    Node nNode = nCTLEUR.item(temp);
+                    if (nNode.getNodeType() == Node.ELEMENT_NODE) {
+                        Element eElement = (Element) nNode;
+                        try {
+
+                            while (cursorControleur.moveToNext()) {
+                                if (cursorControleur.getString(0) == eElement.getAttribute("id")) {
+                                    existing = true;
+                                } else {
+                                    Controleur controleur = new Controleur(Integer.valueOf(eElement.getAttribute("id")), eElement.getElementsByTagName("NOMCONTROLEUR").item(0).getTextContent(), eElement.getElementsByTagName("PRENOMCONTROLEUR").item(0).getTextContent());
+                                    listeControleurs.add(controleur);
+                                }
+                            }
+
+                        }
+                        catch (Exception e) {
+                            System.out.println("Problème lors de l'import des données");
+                        }
+                    }
+                }
+            }
+
+            if (document.getElementsByTagName("LOT").item(0) != null) {
+                NodeList nL = document.getElementsByTagName("L");
+                for (int temp = 0; temp < nL.getLength(); temp++) {
+                    Node nNode = nL.item(temp);
+                    if (nNode.getNodeType() == Node.ELEMENT_NODE) {
+                        Element eElement = (Element) nNode;
+                        try {
+
+                            while (cursorLot.moveToNext()) {
+                                if (cursorLot.getString(0) == eElement.getAttribute("id")) {
+                                    existing = true;
+                                } else {
+                                    if (!eElement.getElementsByTagName("IDMATERIELLOT").item(0).getTextContent().equals("null")) {
+                                        Lot lot = new Lot(Integer.valueOf(eElement.getAttribute("numero")), format.parse(eElement.getElementsByTagName("DATELOT").item(0).getTextContent()), Integer.valueOf(eElement.getElementsByTagName("QUANTITELOT").item(0).getTextContent()), Integer.valueOf(eElement.getElementsByTagName("IDMATERIELLOT").item(0).getTextContent()));
+                                        listeLots.add(lot);
+                                    }
+                                }
+                            }
+
+                        }
+                        catch (Exception e) {
+                            System.out.println("Problème lors de l'import des données");
+                        }
+                    }
+                }
+            }
+
+            if (document.getElementsByTagName("MATERIEL").item(0) != null) {
+                NodeList nMAT = document.getElementsByTagName("MAT");
+                for (int temp = 0; temp < nMAT.getLength(); temp++) {
+                    Node nNode = nMAT.item(temp);
+                    if (nNode.getNodeType() == Node.ELEMENT_NODE) {
+                        Element eElement = (Element) nNode;
+                        try {
+
+                            while (cursorMateriel.moveToNext()) {
+                                if (cursorMateriel.getString(0) == eElement.getAttribute("id")) {
+                                    existing = true;
+                                } else {
+                                    if (!eElement.getElementsByTagName("IDFABRICANTMATERIEL").item(0).getTextContent().equals("null") && !eElement.getElementsByTagName("IDTYPEMATERIEL").item(0).getTextContent().equals("null") && !eElement.getElementsByTagName("IDCONTROLEURMATERIEL").item(0).getTextContent().equals("null")) {
+                                        Materiel materiel = new Materiel(Integer.valueOf(eElement.getAttribute("id")), eElement.getElementsByTagName("LIBELLEMATERIEL").item(0).getTextContent(), eElement.getElementsByTagName("MODELEMATERIEL").item(0).getTextContent(), eElement.getElementsByTagName("SIGNEDISTINCTIFMATERIEL").item(0).getTextContent(), format.parse(eElement.getElementsByTagName("DATEACQUISITIONMATERIEL").item(0).getTextContent()), format.parse(eElement.getElementsByTagName("DATEPREMIEREUTILISATIONMATERIEL").item(0).getTextContent()), format.parse(eElement.getElementsByTagName("DATELIMITEREBUTMATERIEL").item(0).getTextContent()), format.parse(eElement.getElementsByTagName("DATEFABRICATIONMATERIEL").item(0).getTextContent()), eElement.getElementsByTagName("MARQUAGEMATERIEL").item(0).getTextContent(), eElement.getElementsByTagName("EMPLACEMENTMARQUAGEMATERIEL").item(0).getTextContent(), Integer.valueOf(eElement.getElementsByTagName("IDFABRICANTMATERIEL").item(0).getTextContent()), Integer.valueOf(eElement.getElementsByTagName("IDTYPEMATERIEL").item(0).getTextContent()), Integer.valueOf(eElement.getElementsByTagName("IDCONTROLEURMATERIEL").item(0).getTextContent()));
+                                        listeMateriels.add(materiel);
+                                    }
+                                }
+                            }
+
+                        }
+                        catch (Exception e) {
+
+                        }
+                    }
+                }
+            }
+
+            if (document.getElementsByTagName("TYPES").item(0) != null) {
+                NodeList nTY = document.getElementsByTagName("TY");
+                for (int temp = 0; temp < nTY.getLength(); temp++) {
+                    Node nNode = nTY.item(temp);
+                    if (nNode.getNodeType() == Node.ELEMENT_NODE) {
+                        Element eElement = (Element) nNode;
+                        try {
+
+                            while (cursorTypes.moveToNext()) {
+                                if (cursorTypes.getString(0) == eElement.getAttribute("id")) {
+                                    existing = true;
+                                } else {
+                                    Type type = new Type(Integer.valueOf(eElement.getAttribute("id")), eElement.getElementsByTagName("NOMTYPE").item(0).getTextContent());
+                                    listeTypes.add(type);
+                                }
+                            }
+
+                        }
+                        catch (Exception e) {
+                            System.out.println("Problème lors de l'import des données");
+                        }
+                    }
+                }
+            }
+
         } catch (ParserConfigurationException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -119,65 +240,70 @@ public class xmlFile {
             e.printStackTrace();
         }
 
-
-        /*FileInputStream file = null;
-        String ligne = "";
-        XmlPullParserFactory factory = null;
-        int eventType = 0;
-        XmlPullParser xpp = null;
-        String xml = "";*/
-        /*try {
-            file = new FileInputStream(xmlFile);
-            InputStreamReader inputReader = new InputStreamReader(file);
-            BufferedReader bReader = new BufferedReader(inputReader);
-            factory = XmlPullParserFactory.newInstance();
-            factory.setNamespaceAware(true);
-            xpp = factory.newPullParser();
-            while ((ligne = bReader.readLine()) != null) {
-                xml = xml + bReader.readLine();
-            }
-            xpp.setInput(new StringReader(xml));
-            Log.i("tag", xml);
-
-            eventType = xpp.getEventType();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (XmlPullParserException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
+        for (int i = 0; i < listeTypes.size(); i++) {
+            ContentValues value = new ContentValues();
+            value.put("id", listeTypes.get(i).getIdType());
+            value.put("nom", listeTypes.get(i).getNom());
+            db.insert("types", null, value);
         }
 
-        while (eventType != XmlPullParser.END_DOCUMENT) {
-            if(eventType == XmlPullParser.START_DOCUMENT) {
-                Log.i("tag", "--Start document--");
-            } else if(eventType == XmlPullParser.START_TAG) {
-                Log.i("tag", xpp.getName());
-            } else if(eventType == XmlPullParser.END_TAG) {
-                Log.i("tag", xpp.getName());
-            } else if(eventType == XmlPullParser.TEXT) {
-                System.out.println("Text "+xpp.getText());
-                if (xpp.getText() != "" || xpp.getText() != "null") {
-                    Log.i("tag", xpp.getText());
-                }
-            }
-            try {
-                eventType = xpp.next();
-            } catch (IOException e) {
-                e.printStackTrace();
-                Log.i("tag", e.getMessage());
-            } catch (XmlPullParserException e) {
-                e.printStackTrace();
-                Log.i("tag", e.getMessage());
-            }
+        for (int i = 0; i < listeFabricants.size(); i++) {
+            ContentValues value = new ContentValues();
+            value.put("id", listeFabricants.get(i).getIdFabricant());
+            value.put("nom", listeFabricants.get(i).getNom());
+            db.insert("fabricant", null, value);
         }
 
+        for (int i = 0; i < listeControleurs.size(); i++) {
+            ContentValues value = new ContentValues();
+            value.put("id", listeControleurs.get(i).getIdControleur());
+            value.put("nom", listeControleurs.get(i).getNom());
+            value.put("prenom", listeControleurs.get(i).getPrenom());
+            db.insert("controleur", null, value);
+        }
 
-        System.out.println("End document");*/
+        for (int i = 0; i < listeMateriels.size(); i++) {
+            ContentValues value = new ContentValues();
+            value.put("id", listeMateriels.get(i).getIdMateriel());
+            value.put("libelle", listeMateriels.get(i).getLibelle());
+            value.put("modele", listeMateriels.get(i).getModele());
+            value.put("signeDistinctif", listeMateriels.get(i).getSigneDistinctif());
+            value.put("dateAcquisition", format.format(listeMateriels.get(i).getDateAcquisition()));
+            value.put("datePremiereUtilisation", format.format(listeMateriels.get(i).getDatePremiereUtilisation()));
+            value.put("dateLimiteRebut", format.format(listeMateriels.get(i).getDateLimiteRebut()));
+            value.put("dateFabrication", format.format(listeMateriels.get(i).getDateFabrication()));
+            value.put("marquage", listeMateriels.get(i).getMarquage());
+            value.put("emplacementMarquage", listeMateriels.get(i).getEmplacementMarquage());
+            value.put("idFabricant", listeMateriels.get(i).getIdFabricant());
+            value.put("idType", listeMateriels.get(i).getIdType());
+            value.put("idControleur", listeMateriels.get(i).getIdControleur());
+            db.insert("materiel", null, value);
+        }
+
+        for (int i = 0; i < listeLots.size(); i++) {
+            ContentValues value = new ContentValues();
+            value.put("id", listeLots.get(i).getIdLot());
+            value.put("date", format.format(listeLots.get(i).getDate()));
+            value.put("quantite", listeLots.get(i).getQuantite());
+            value.put("idMateriel", listeLots.get(i).getIdMateriel());
+            db.insert("lot", null, value);
+        }
+
+        for (int i = 0; i < listeControles.size(); i++) {
+            ContentValues value = new ContentValues();
+            value.put("id", listeControles.get(i).getIdControle());
+            value.put("date", format.format(listeControles.get(i).getDate()));
+            value.put("observation", listeControles.get(i).getObservation());
+            value.put("nature", listeControles.get(i).getNature());
+            value.put("lieu", listeControles.get(i).getLieu());
+            value.put("idMateriel", listeControles.get(i).getIdMateriel());
+            value.put("idControleur", listeControles.get(i).getIdControleur());
+            db.insert("controle", null, value);
+        }
+
     }
 
     public void exportDB(SQLiteDatabase db) {
-        //Log.i("path", this.path);
 
         File dateFile = new File(this.path + "data" + ".xml");
         try{

@@ -129,7 +129,7 @@ class DBOpenHelper extends SQLiteOpenHelper {
      private static final String LOT_TABLE = "create table "
              + Constants.tableLot + "(" + Constants.numeroLot
              + " INTEGER, "
-             + Constants.dateLot + "DATE,"
+             + Constants.dateLot + " DATE,"
              + Constants.quantiteLot + " INTEGER,"
              + Constants.idMaterielLot + " INTEGER,"
              + "PRIMARY KEY (" + Constants.numeroLot + ", " + Constants.idMaterielLot + "),"

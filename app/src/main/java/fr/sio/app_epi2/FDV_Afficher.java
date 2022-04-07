@@ -37,8 +37,8 @@ public class FDV_Afficher extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ok = findViewById(R.id.fdv_afficher_ok);
         setContentView(R.layout.activity_fdv_afficher);
+        ok = findViewById(R.id.fdv_afficher_ok);
         modele = findViewById(R.id.Tv_modele);
         fabricant = findViewById(R.id.Tv_fabricant);
         signe_distinctif = findViewById(R.id.Tv_signe_distinctif);
