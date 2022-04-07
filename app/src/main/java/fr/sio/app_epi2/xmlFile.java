@@ -11,7 +11,6 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.w3c.dom.Element;
-import org.xml.sax.ContentHandler;
 import org.xml.sax.SAXException;
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlSerializer;
@@ -25,7 +24,6 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
-import javax.security.auth.login.LoginException;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
@@ -39,21 +37,17 @@ import fr.sio.app_epi2.models.Tag;
 import fr.sio.app_epi2.models.Type;
 
 public class xmlFile {
-    private Context context;
     private SQLiteDatabase db;
     private String name;
     private String path;
-    private ArrayList<Tag> listeTag;
 
-    public xmlFile(Context context, String name, ArrayList<Tag> listeTag, SQLiteDatabase db) {
-        this.context = context;
+    public xmlFile(Context context, String name, SQLiteDatabase db) {
         this.db = db;
         this.name = name;
         this.path = "/data/data/" + context.getPackageName() + "/";
-        this.listeTag = listeTag;
     }
 
-    public void importDB(Context context, File xmlFile) {
+    public void importDB(File xmlFile) {
         SimpleDateFormat format = new SimpleDateFormat("y-m-d");
 
         DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
