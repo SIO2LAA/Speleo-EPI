@@ -236,7 +236,7 @@ public class FDC_Creer extends AppCompatActivity implements View.OnClickListener
 
         if (valider.isPressed()){
            // ajout du message dans la BD
-        /*    ContentValues values = new ContentValues();
+        /*     ContentValues values = new ContentValues();
             values.put("date", this.dateButton.getText().toString());
             values.put("observation", this.observation.getText().toString());
             long res = this.writeBD.insert("controle", null, values);

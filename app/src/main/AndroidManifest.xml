@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="fr.sio.app_epi2">
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
 
     <application
         android:allowBackup="true"
@@ -10,10 +9,13 @@
         android:roundIcon="@mipmap/logo_club_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.App_epi2">
-        <activity android:name=".FDC_Creer"></activity>
-        <activity android:name=".FDV_Creer"></activity>
-        <activity android:name=".FDV_Afficher"></activity>
-        <activity android:name=".FDV_Modifier"></activity>
+        <activity
+            android:name=".FDC_Afficher"
+            android:exported="false" />
+        <activity android:name=".FDC_Creer" />
+        <activity android:name=".FDV_Creer" />
+        <activity android:name=".FDV_Afficher" />
+        <activity android:name=".FDV_Modifier" />
         <activity android:name=".InfoMateriel" />
         <activity android:name=".GestionMateriel" />
         <activity
@@ -26,5 +28,7 @@
             </intent-filter>
         </activity>
     </application>
+
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
 </manifest>
