@@ -148,7 +148,7 @@ public class InfoMateriel extends AppCompatActivity implements View.OnClickListe
             xmlFile xmlFile = new xmlFile(this, "data", listeTags, db);
             xmlFile.exportDB(db);
             File file = new File("/data/data/" + getPackageName() + "/" + "data.xml");
-            xmlFile.importDB(this, file);
+            //xmlFile.importDB(this, file);
 
             FDV_Creer = new Intent(this, FDV_Creer.class);
             startActivity(FDV_Creer);
