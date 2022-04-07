@@ -153,11 +153,11 @@ public class InfoMateriel extends AppCompatActivity implements View.OnClickListe
             FDV_Creer = new Intent(this, FDV_Creer.class);
             startActivity(FDV_Creer);
         }
-        /*if(fvAfficher.isPressed()){
+        if(fvAfficher.isPressed()){
             FDV_Afficher = new Intent(this, FDV_Afficher.class);
             startActivity(FDV_Afficher);
         }
-        if(fvModifier.isPressed())
+       /* if(fvModifier.isPressed())
             FDV_Modifier = new Intent(this, FDV_Modifier.class);
             startActivity(FDV_Modifier);
 
