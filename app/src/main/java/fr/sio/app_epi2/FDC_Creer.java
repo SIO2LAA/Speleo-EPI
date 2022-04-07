@@ -235,8 +235,8 @@ public class FDC_Creer extends AppCompatActivity implements View.OnClickListener
         }
 
         if (valider.isPressed()){
-          /* // ajout du message dans la BD
-            ContentValues values = new ContentValues();
+           // ajout du message dans la BD
+        /*    ContentValues values = new ContentValues();
             values.put("date", this.dateButton.getText().toString());
             values.put("observation", this.observation.getText().toString());
             long res = this.writeBD.insert("controle", null, values);
@@ -250,9 +250,11 @@ public class FDC_Creer extends AppCompatActivity implements View.OnClickListener
             }
 */
 
+            String text = dateButton.getText() + " " + nextdateButton.getText() + " " + observation.getText();
+
             Toast toast;
             int duree = Toast.LENGTH_LONG;
-            toast = Toast.makeText(this.getApplicationContext(), dateButton.getText() ,duree);
+            toast = Toast.makeText(this.getApplicationContext(), text.toString() ,duree);
             toast.show();
         }
     }
