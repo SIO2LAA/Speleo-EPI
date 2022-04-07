@@ -6,15 +6,16 @@ public class Lot {
 
     private int idLot;
     private Date date;
-    private int nombre;
+    private int quantite;
+    private int idMateriel;
 
     //Constructeur de la classe Lot
-    public Lot(int idLot, Date date, int nombre){
+    public Lot(int idLot, Date date, int quantite, int idMateriel) {
         this.idLot = idLot;
         this.date = date;
-        this.nombre = nombre;
+        this.quantite = quantite;
+        this.idMateriel = idMateriel;
     }
-
 
     public int getIdLot() {
         return idLot;
@@ -32,11 +33,19 @@ public class Lot {
         this.date = date;
     }
 
-    public int getNombre() {
-        return nombre;
+    public int getQuantite() {
+        return quantite;
     }
 
-    public void setNombre(int nombre) {
-        this.nombre = nombre;
+    public void setQuantite(int quantite) {
+        this.quantite = quantite;
+    }
+
+    public int getIdMateriel() {
+        return idMateriel;
+    }
+
+    public void setIdMateriel(int idMateriel) {
+        this.idMateriel = idMateriel;
     }
 }

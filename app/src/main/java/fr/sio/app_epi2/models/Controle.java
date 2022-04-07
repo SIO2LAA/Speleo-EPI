@@ -9,16 +9,19 @@ public class Controle {
     private String observation;
     private String nature;
     private String lieu;
+    private int idMateriel;
+    private int idControleur;
 
     //Constructeur de la classe Controle
-    public Controle(int idControle, Date date, String observation, String nature, String lieu){
+    public Controle(int idControle, Date date, String observation, String nature, String lieu, int idMateriel, int idControleur) {
         this.idControle = idControle;
         this.date = date;
         this.observation = observation;
         this.nature = nature;
         this.lieu = lieu;
+        this.idMateriel = idMateriel;
+        this.idControleur = idControleur;
     }
-
 
     public int getIdControle() {
         return idControle;
@@ -58,5 +61,21 @@ public class Controle {
 
     public void setLieu(String lieu) {
         this.lieu = lieu;
+    }
+
+    public int getIdMateriel() {
+        return idMateriel;
+    }
+
+    public void setIdMateriel(int idMateriel) {
+        this.idMateriel = idMateriel;
+    }
+
+    public int getIdControleur() {
+        return idControleur;
+    }
+
+    public void setIdControleur(int idControleur) {
+        this.idControleur = idControleur;
     }
 }
