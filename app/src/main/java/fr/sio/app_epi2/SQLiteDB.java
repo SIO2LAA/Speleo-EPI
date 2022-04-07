@@ -84,7 +84,7 @@ class DBOpenHelper extends SQLiteOpenHelper {
     // The static string to create the database.
     private static final String FABRICANT_TABLE = "create table "
             + Constants.tableFabricant + "(" + Constants.idFabricant
-            + " integer primary key autoincrement, "
+            + " string primary key, "
             + Constants.nomFabricant + " VARCHAR(50) )";
 
 

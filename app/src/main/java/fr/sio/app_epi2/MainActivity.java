@@ -15,6 +15,8 @@ import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.Toast;
 
+import java.util.UUID;
+
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     private Button boutonMenu;
@@ -57,7 +59,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         value4 = new ContentValues();
         value5 = new ContentValues();
         value6 = new ContentValues();
+
     }
+
+    public String generateUniqueID() {
+        String uniqueID;
+        uniqueID = UUID.randomUUID().toString();
+
+
+        return uniqueID;
+    }
+
 
     /**
      * * Open the database* *
@@ -100,7 +112,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
      */
     private long insertRecord(ContentValues contentValuesFabricant, ContentValues contentValuesmateriel1, ContentValues contentValuesmateriel2, ContentValues contentValuesmateriel3, ContentValues contentValuesmateriel4, ContentValues contentValuesmateriel5) {
         // Assign the values for each column.
-        contentValuesFabricant.put(DBOpenHelper.Constants.idFabricant, 1);
+        contentValuesFabricant.put(DBOpenHelper.Constants.idFabricant, generateUniqueID());
         contentValuesFabricant.put(DBOpenHelper.Constants.nomFabricant, "BOSCH");
 
         contentValuesmateriel1.put(DBOpenHelper.Constants.idMateriel, 1);
