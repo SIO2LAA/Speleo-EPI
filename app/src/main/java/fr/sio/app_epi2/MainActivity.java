@@ -60,6 +60,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         value5 = new ContentValues();
         value6 = new ContentValues();
 
+        insertRecord(value, value2, value3, value4, value5, value6);
+
     }
 
     public String generateUniqueID() {
@@ -208,7 +210,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View view) {
         if (boutonMenu.isPressed()) {
-            insertRecord(value, value2, value3, value4, value5, value6);
             gestionMateriel = new Intent(this, GestionMateriel.class); //Initialement mis GestionMateriel.class InfoMateriel est provisoire
             startActivity(gestionMateriel);
 
