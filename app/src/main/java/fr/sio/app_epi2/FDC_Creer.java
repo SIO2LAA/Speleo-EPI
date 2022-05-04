@@ -24,7 +24,7 @@ public class FDC_Creer extends AppCompatActivity implements View.OnClickListener
     private Button annuler;
     private Button valider;
     private DBOpenHelper maBD;
-    private SQLiteDatabase writeBD;
+    //xprivate SQLiteDatabase writeBD;
 
 
     @Override
@@ -45,7 +45,19 @@ public class FDC_Creer extends AppCompatActivity implements View.OnClickListener
 
         // boutons sur écoute
         annuler.setOnClickListener(this);
-        valider.setOnClickListener(this);
+        valider.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String newEntry = dateButton.getText().toString();
+                if (dateButton.length() != 0) {
+                    AddData(newEntry);
+                    dateButton.setText("");
+                } else {
+                    toastMessage("You must put something in the text field!");
+                }
+
+            }
+        });;
 
         /*// creation de la base de donnees et récupération des script sql
         String stringVersion = getString(R.string.version);
@@ -226,6 +238,19 @@ public class FDC_Creer extends AppCompatActivity implements View.OnClickListener
     }
 
 
+    public void AddData(String newEntry){
+        boolean insertData = maBD.addDataFDC(newEntry);
+
+            if (insertData){
+                toastMessage("Data stocké");
+            }else{
+                toastMessage("Data non stocké, échec");
+            }
+    }
+
+    private void toastMessage(String message){
+        Toast.makeText(this,message, Toast.LENGTH_SHORT).show();
+    }
 
     @Override
     public void onClick(View v) {
@@ -235,25 +260,12 @@ public class FDC_Creer extends AppCompatActivity implements View.OnClickListener
         }
 
         if (valider.isPressed()){
-          /* // ajout du message dans la BD
-            ContentValues values = new ContentValues();
-            values.put("date", this.dateButton.getText().toString());
-            values.put("observation", this.observation.getText().toString());
-            long res = this.writeBD.insert("controle", null, values);
 
-            if (res>0) {
-                Toast toast = Toast.makeText(this, "Les données ont été ajouté dans la base de données", Toast.LENGTH_LONG);
-                toast.show();
-            }else {
-                Toast toast = Toast.makeText(this, "Les données ont été ajouté dans la base de données", Toast.LENGTH_LONG);
-                toast.show();
-            }
-*/
-
+            /*
             Toast toast;
             int duree = Toast.LENGTH_LONG;
             toast = Toast.makeText(this.getApplicationContext(), dateButton.getText() ,duree);
-            toast.show();
+            toast.show();*/
         }
     }
 }

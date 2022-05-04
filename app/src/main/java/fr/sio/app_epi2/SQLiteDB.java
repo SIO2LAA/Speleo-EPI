@@ -1,10 +1,14 @@
 package fr.sio.app_epi2;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.provider.BaseColumns;
 import android.util.Log;
+
+import fr.sio.app_epi2.models.Controle;
+import fr.sio.app_epi2.models.Tag;
 
 class DBOpenHelper extends SQLiteOpenHelper {
 
@@ -170,5 +174,21 @@ class DBOpenHelper extends SQLiteOpenHelper {
         Constants.DATABASE_VERSION = newVersion;
         onCreate(db);
         // or do a smartest stuff
+    }
+
+    // Requete pour Fiche de Controle (en test)
+    public boolean addDataFDC(String item){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(Constants.dateControle, item);
+        contentValues.put(Constants.observationControle, item);
+
+        long result = db.insert(CONTROLE_TABLE, null , contentValues);
+
+        if (result == -1){
+            return false;
+        }else {
+            return true;
+        }
     }
 }
