@@ -41,13 +41,13 @@ public class xmlFile {
     private String name;
     private String path;
 
-    public xmlFile(Context context, String name, SQLiteDatabase db) {
+    public xmlFile(Context context, String name, ArrayList<Tag> listeTags, SQLiteDatabase db) {
         this.db = db;
         this.name = name;
         this.path = "/data/data/" + context.getPackageName() + "/";
     }
 
-    public void importDB(File xmlFile) {
+    public void importDB(InfoMateriel infoMateriel, File xmlFile) {
         SimpleDateFormat format = new SimpleDateFormat("y-m-d");
 
         DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();

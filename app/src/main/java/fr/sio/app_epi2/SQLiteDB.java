@@ -177,11 +177,11 @@ class DBOpenHelper extends SQLiteOpenHelper {
     }
 
     // Requete pour Fiche de Controle (en test)
-    public boolean addDataFDC(String item){
+    public boolean addDataFDC(String dateControle, String observationControle){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
-        contentValues.put(Constants.dateControle, item);
-        contentValues.put(Constants.observationControle, item);
+        contentValues.put("date", Constants.dateControle);
+        contentValues.put("observation", Constants.observationControle);
 
         long result = db.insert(CONTROLE_TABLE, null , contentValues);
 

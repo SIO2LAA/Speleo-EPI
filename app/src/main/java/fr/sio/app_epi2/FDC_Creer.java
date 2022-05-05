@@ -24,7 +24,7 @@ public class FDC_Creer extends AppCompatActivity implements View.OnClickListener
     private Button annuler;
     private Button valider;
     private DBOpenHelper maBD;
-    private SQLiteDatabase writeBD;
+    //private SQLiteDatabase writeBD;
 
 
     @Override
@@ -42,10 +42,19 @@ public class FDC_Creer extends AppCompatActivity implements View.OnClickListener
         // affichage du layout
         annuler = findViewById(R.id.btnAnnuler);
         valider = findViewById(R.id.btnValider);
-
-        // boutons sur écoute
-        annuler.setOnClickListener(this);
-        valider.setOnClickListener(this);
+       // maBD = new DBOpenHelper(this);
+        valider.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String dateTXT = dateButton.getText().toString();
+                String observTXT = observation.getText().toString();
+                Boolean checkinsertdata;
+                checkinsertdata = maBD.addDataFDC(dateTXT, observTXT);
+                if(checkinsertdata==true)
+                    Toast.makeText(FDC_Creer.this, "New Entry Inserted", Toast.LENGTH_SHORT).show();
+                else
+                    Toast.makeText(FDC_Creer.this, "New Entry Not Inserted", Toast.LENGTH_SHORT).show();
+            }        });
 
         /*// creation de la base de donnees et récupération des script sql
         String stringVersion = getString(R.string.version);
@@ -233,9 +242,9 @@ public class FDC_Creer extends AppCompatActivity implements View.OnClickListener
         if (annuler.isPressed()){
             this.finish();
         }
-
+/*
         if (valider.isPressed()){
-          /* // ajout du message dans la BD
+          // ajout du message dans la BD
             ContentValues values = new ContentValues();
             values.put("date", this.dateButton.getText().toString());
             values.put("observation", this.observation.getText().toString());
@@ -248,12 +257,12 @@ public class FDC_Creer extends AppCompatActivity implements View.OnClickListener
                 Toast toast = Toast.makeText(this, "Les données ont été ajouté dans la base de données", Toast.LENGTH_LONG);
                 toast.show();
             }
-*/
+
 
             Toast toast;
             int duree = Toast.LENGTH_LONG;
             toast = Toast.makeText(this.getApplicationContext(), dateButton.getText() ,duree);
             toast.show();
-        }
+        }*/
     }
 }

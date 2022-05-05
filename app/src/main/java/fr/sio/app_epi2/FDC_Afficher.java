@@ -23,7 +23,7 @@ public class FDC_Afficher extends AppCompatActivity {
     private SQLiteDatabase db = MainActivity.dbOpenHelper.getReadableDatabase();
     private Controle controle;
 
-
+/*
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,5 +62,5 @@ public class FDC_Afficher extends AppCompatActivity {
             observation.setText("Pas d'observation enregistrée");
         }
 
-    }
+    }*/
 }
