@@ -80,12 +80,12 @@ public class xmlFile {
                     if (nNode.getNodeType() == Node.ELEMENT_NODE) {
                         Element eElement = (Element) nNode;
                         try {
-
                             while (cursorFabricant.moveToNext()) {
                                 if (cursorFabricant.getString(0) == eElement.getAttribute("id")) {
                                     existing = true;
                                 } else {
-                                    Fabricant fab = new Fabricant(Integer.valueOf(eElement.getAttribute("id")), eElement.getElementsByTagName("NOMFABRICANT").item(0).getTextContent());
+
+                                    Fabricant fab = new Fabricant(Integer.valueOf(eElement.getAttribute("id")), eElement.getElementsByTagName("NomFabricant").item(0).getTextContent());
                                     listeFabricants.add(fab);
                                 }
                             }
@@ -95,7 +95,8 @@ public class xmlFile {
 
                         }
                         catch (Exception e) {
-                            System.out.println("Problème lors de l'import des données");
+                            System.out.println("Problème lors de l'import des données NOM FABRICANT");
+                            System.out.println(e.getMessage());
                         }
                     }
                 }
@@ -113,8 +114,8 @@ public class xmlFile {
                                 if (cursorControle.getString(0) == eElement.getAttribute("id")) {
                                     existing = true;
                                 } else {
-                                    if (!eElement.getElementsByTagName("IDMATERIELCONTROLE").item(0).getTextContent().equals("null") && !eElement.getElementsByTagName("IDCONTROLEURCONTROLE").item(0).getTextContent().equals("null")) {
-                                        Controle controle = new Controle(Integer.valueOf(eElement.getAttribute("id")), format.parse(eElement.getElementsByTagName("DATECONTROLE").item(0).getTextContent()), eElement.getElementsByTagName("OBSERVATIONCONTROLE").item(0).getTextContent(), eElement.getElementsByTagName("NATURECONTROLE").item(0).getTextContent(), eElement.getElementsByTagName("LIEUCONTROLE").item(0).getTextContent(), Integer.valueOf(eElement.getElementsByTagName("IDMATERIELCONTROLE").item(0).getTextContent()), Integer.valueOf(eElement.getElementsByTagName("IDCONTROLEURCONTROLE").item(0).getTextContent()));
+                                    if (!eElement.getElementsByTagName("IdMaterielControle").item(0).getTextContent().equals("null") && !eElement.getElementsByTagName("IdControleurControle").item(0).getTextContent().equals("null")) {
+                                        Controle controle = new Controle(Integer.valueOf(eElement.getAttribute("id")), format.parse(eElement.getElementsByTagName("DateControle").item(0).getTextContent()), eElement.getElementsByTagName("ObservationControle").item(0).getTextContent(), eElement.getElementsByTagName("NatureControle").item(0).getTextContent(), eElement.getElementsByTagName("LieuControle").item(0).getTextContent(), Integer.valueOf(eElement.getElementsByTagName("IdMaterielControle").item(0).getTextContent()), Integer.valueOf(eElement.getElementsByTagName("IdControleurControle").item(0).getTextContent()));
                                         listeControles.add(controle);
                                     }
                                 }
@@ -122,7 +123,7 @@ public class xmlFile {
 
                         }
                         catch (Exception e) {
-                            System.out.println("Problème lors de l'import des données");
+                            System.out.println("Problème lors de l'import des données CONTROLE");
                         }
                     }
                 }
@@ -140,14 +141,14 @@ public class xmlFile {
                                 if (cursorControleur.getString(0) == eElement.getAttribute("id")) {
                                     existing = true;
                                 } else {
-                                    Controleur controleur = new Controleur(Integer.valueOf(eElement.getAttribute("id")), eElement.getElementsByTagName("NOMCONTROLEUR").item(0).getTextContent(), eElement.getElementsByTagName("PRENOMCONTROLEUR").item(0).getTextContent());
+                                    Controleur controleur = new Controleur(Integer.valueOf(eElement.getAttribute("id")), eElement.getElementsByTagName("NomControleur").item(0).getTextContent(), eElement.getElementsByTagName("PrenomControleur").item(0).getTextContent());
                                     listeControleurs.add(controleur);
                                 }
                             }
 
                         }
                         catch (Exception e) {
-                            System.out.println("Problème lors de l'import des données");
+                            System.out.println("Problème lors de l'import des données CONTROLEUR");
                         }
                     }
                 }
@@ -165,8 +166,8 @@ public class xmlFile {
                                 if (cursorLot.getString(0) == eElement.getAttribute("id")) {
                                     existing = true;
                                 } else {
-                                    if (!eElement.getElementsByTagName("IDMATERIELLOT").item(0).getTextContent().equals("null")) {
-                                        Lot lot = new Lot(Integer.valueOf(eElement.getAttribute("numero")), format.parse(eElement.getElementsByTagName("DATELOT").item(0).getTextContent()), Integer.valueOf(eElement.getElementsByTagName("QUANTITELOT").item(0).getTextContent()), Integer.valueOf(eElement.getElementsByTagName("IDMATERIELLOT").item(0).getTextContent()));
+                                    if (!eElement.getElementsByTagName("IdMaterielLot").item(0).getTextContent().equals("null")) {
+                                        Lot lot = new Lot(Integer.valueOf(eElement.getAttribute("numero")), format.parse(eElement.getElementsByTagName("DateLot").item(0).getTextContent()), Integer.valueOf(eElement.getElementsByTagName("QuantiteLot").item(0).getTextContent()), Integer.valueOf(eElement.getElementsByTagName("IdMaterielLot").item(0).getTextContent()));
                                         listeLots.add(lot);
                                     }
                                 }
@@ -174,7 +175,7 @@ public class xmlFile {
 
                         }
                         catch (Exception e) {
-                            System.out.println("Problème lors de l'import des données");
+                            System.out.println("Problème lors de l'import des données LOT");
                         }
                     }
                 }
@@ -186,14 +187,30 @@ public class xmlFile {
                     Node nNode = nMAT.item(temp);
                     if (nNode.getNodeType() == Node.ELEMENT_NODE) {
                         Element eElement = (Element) nNode;
+                        System.out.println(eElement.getElementsByTagName("LibelleMateriel").item(0).getTextContent());
+                        System.out.println(eElement.getElementsByTagName("ModeleMateriel").item(0).getTextContent());
+                        System.out.println(eElement.getElementsByTagName("SigneDistinctifMateriel").item(0).getTextContent());
+                        System.out.println(eElement.getElementsByTagName("DateAcquisitionMateriel").item(0).getTextContent());
+                        System.out.println(eElement.getElementsByTagName("DatePremiereUtilisationMateriel").item(0).getTextContent());
+                        System.out.println(eElement.getElementsByTagName("DateLimiteRebutMateriel").item(0).getTextContent());
+                        System.out.println(eElement.getElementsByTagName("DateFabricationMateriel").item(0).getTextContent());
+                        System.out.println(eElement.getElementsByTagName("DateRedactionFicheMateriel").item(0).getTextContent());
+                        System.out.println(eElement.getElementsByTagName("MarquageMateriel").item(0).getTextContent());
+                        System.out.println(eElement.getElementsByTagName("EmplacementMarquageMateriel").item(0).getTextContent());
+                        System.out.println(eElement.getElementsByTagName("IdFabricantMateriel").item(0).getTextContent());
+                        System.out.println(eElement.getElementsByTagName("IdControleurMateriel").item(0).getTextContent());
                         try {
 
                             while (cursorMateriel.moveToNext()) {
                                 if (cursorMateriel.getString(0) == eElement.getAttribute("id")) {
                                     existing = true;
                                 } else {
-                                    if (!eElement.getElementsByTagName("IDFABRICANTMATERIEL").item(0).getTextContent().equals("null") && !eElement.getElementsByTagName("IDTYPEMATERIEL").item(0).getTextContent().equals("null") && !eElement.getElementsByTagName("IDCONTROLEURMATERIEL").item(0).getTextContent().equals("null")) {
-                                        Materiel materiel = new Materiel(Integer.valueOf(eElement.getAttribute("id")), eElement.getElementsByTagName("LIBELLEMATERIEL").item(0).getTextContent(), eElement.getElementsByTagName("MODELEMATERIEL").item(0).getTextContent(), eElement.getElementsByTagName("SIGNEDISTINCTIFMATERIEL").item(0).getTextContent(), format.parse(eElement.getElementsByTagName("DATEACQUISITIONMATERIEL").item(0).getTextContent()), format.parse(eElement.getElementsByTagName("DATEPREMIEREUTILISATIONMATERIEL").item(0).getTextContent()), format.parse(eElement.getElementsByTagName("DATELIMITEREBUTMATERIEL").item(0).getTextContent()), format.parse(eElement.getElementsByTagName("DATEFABRICATIONMATERIEL").item(0).getTextContent()), eElement.getElementsByTagName("MARQUAGEMATERIEL").item(0).getTextContent(), eElement.getElementsByTagName("EMPLACEMENTMARQUAGEMATERIEL").item(0).getTextContent(), Integer.valueOf(eElement.getElementsByTagName("IDFABRICANTMATERIEL").item(0).getTextContent()), Integer.valueOf(eElement.getElementsByTagName("IDTYPEMATERIEL").item(0).getTextContent()), Integer.valueOf(eElement.getElementsByTagName("IDCONTROLEURMATERIEL").item(0).getTextContent()));
+                                    if (!eElement.getElementsByTagName("IdFabricantMateriel").item(0).getTextContent().equals("null") && !eElement.getElementsByTagName("IdTypeMateriel").item(0).getTextContent().equals("null") && !eElement.getElementsByTagName("IdControleurMateriel").item(0).getTextContent().equals("null")) {
+                                        Materiel materiel = new Materiel(Integer.valueOf(eElement.getAttribute("id")), eElement.getElementsByTagName("LibelleMateriel").item(0).getTextContent(), eElement.getElementsByTagName("ModeleMateriel").item(0).getTextContent(), eElement.getElementsByTagName("SigneDistinctifMateriel").item(0).getTextContent(), format.parse(eElement.getElementsByTagName("DateAcquisitionMateriel").item(0).getTextContent()), format.parse(eElement.getElementsByTagName("DatePremiereUtilisationMateriel").item(0).getTextContent()), format.parse(eElement.getElementsByTagName("DateLimiteRebutMateriel").item(0).getTextContent()), format.parse(eElement.getElementsByTagName("DateFabricationMateriel").item(0).getTextContent()), eElement.getElementsByTagName("MarquageMateriel").item(0).getTextContent(), eElement.getElementsByTagName("EmplacementMarquageMateriel").item(0).getTextContent(), Integer.valueOf(eElement.getElementsByTagName("IdFabricantMateriel").item(0).getTextContent()), Integer.valueOf(eElement.getElementsByTagName("IdTypeMateriel").item(0).getTextContent()), Integer.valueOf(eElement.getElementsByTagName("IdControleurMateriel").item(0).getTextContent()));
+                                        if (existing) {
+                                            int id = materiel.getIdMateriel() + 1;
+                                            materiel.setIdMateriel(id);
+                                        }
                                         listeMateriels.add(materiel);
                                     }
                                 }
@@ -201,7 +218,8 @@ public class xmlFile {
 
                         }
                         catch (Exception e) {
-
+                            System.out.println("Probleme lors de l'import MATERIEL");
+                            System.out.println(e.getMessage());
                         }
                     }
                 }
@@ -219,14 +237,14 @@ public class xmlFile {
                                 if (cursorTypes.getString(0) == eElement.getAttribute("id")) {
                                     existing = true;
                                 } else {
-                                    Type type = new Type(Integer.valueOf(eElement.getAttribute("id")), eElement.getElementsByTagName("NOMTYPE").item(0).getTextContent());
+                                    Type type = new Type(Integer.valueOf(eElement.getAttribute("id")), eElement.getElementsByTagName("NomType").item(0).getTextContent());
                                     listeTypes.add(type);
                                 }
                             }
 
                         }
                         catch (Exception e) {
-                            System.out.println("Problème lors de l'import des données");
+                            System.out.println("Problème lors de l'import des données TYPES");
                         }
                     }
                 }

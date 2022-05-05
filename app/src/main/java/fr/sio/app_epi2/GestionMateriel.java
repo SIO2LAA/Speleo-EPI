@@ -10,12 +10,14 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import java.io.File;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -27,9 +29,10 @@ import fr.sio.app_epi2.models.Materiel;
 import fr.sio.app_epi2.models.MaterielAdaptater;
 //import fr.sio.app_epi2.models.MaterielAdaptater;
 
-public class GestionMateriel extends AppCompatActivity implements AdapterView.OnItemClickListener, SearchView.OnQueryTextListener, AdapterView.OnItemSelectedListener {
+public class GestionMateriel extends AppCompatActivity implements AdapterView.OnItemClickListener, SearchView.OnQueryTextListener, AdapterView.OnItemSelectedListener, View.OnClickListener {
 
     private ListView listeMateriel;
+    private Button Btnimport;
     private Intent infoMateriel;
     private SearchView search;
     private Spinner selection;
@@ -45,6 +48,7 @@ public class GestionMateriel extends AppCompatActivity implements AdapterView.On
         TextView dateView = (TextView)findViewById(R.id.date_jour);
         setDate(dateView);
         listeMateriel = findViewById(R.id.listeMateriel);
+        Btnimport = findViewById(R.id.button_import);
         search = findViewById(R.id.recherche);
         selection = findViewById(R.id.selection);
         selection.setOnItemSelectedListener(this);
@@ -52,6 +56,7 @@ public class GestionMateriel extends AppCompatActivity implements AdapterView.On
         listeMateriels = new ArrayList<>();
         materielAdapter = new MaterielAdaptater(this, R.layout.listeview_item, listeMateriels);
         listeMateriel.setOnItemClickListener(this);
+        Btnimport.setOnClickListener(this);
 
         Filtre filtreTout = new Filtre(1, "Aucun");
         Filtre filtreDateAcquisition = new Filtre(1, "Date Acquisition");
@@ -199,5 +204,14 @@ public class GestionMateriel extends AppCompatActivity implements AdapterView.On
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
         String date = formatter.format(today);
         v.setText(date);
+    }
+
+    @Override
+    public void onClick(View view) {
+        xmlFile file = new xmlFile(this, "exportation.xml", db);
+        File export = new File("/data/data/fr.sio.app_epi2/exportation.xml");
+        Log.i("file", export.getAbsolutePath());
+        file.importDB(export);
+
     }
 }
