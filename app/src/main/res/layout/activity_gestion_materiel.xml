@@ -49,16 +49,18 @@
     <ListView
         android:id="@+id/listeMateriel"
         android:layout_width="match_parent"
-        android:layout_height="386dp"
+        android:layout_height="400dp"
         android:background="@color/white"
         tools:layout_editor_absoluteX="1dp"
-        tools:layout_editor_absoluteY="344dp" >
+        tools:layout_editor_absoluteY="400dp" >
 
     </ListView>
 
     <Button
         android:id="@+id/button_import"
+        android:layout_marginTop="40dp"
         android:text="Import"
+        android:layout_gravity="center"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
     </Button>
