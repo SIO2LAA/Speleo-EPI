@@ -33,8 +33,8 @@
         android:layout_gravity="center"
         android:layout_marginTop="10dp"
         android:background="@color/white"
-        tools:layout_editor_absoluteX="48dp"
-        tools:layout_editor_absoluteY="105dp" >
+        tools:layout_editor_absoluteX="225dp"
+        tools:layout_editor_absoluteY="30dp" >
     </SearchView>
 
     <Spinner
@@ -45,18 +45,6 @@
         android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp"
         android:background="@color/white"></Spinner>
-
-    <ScrollView
-        android:layout_width="113dp"
-        android:layout_height="37dp">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical" />
-    </ScrollView>
-
-
 
     <ListView
         android:id="@+id/listeMateriel"
