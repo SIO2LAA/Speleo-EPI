@@ -208,10 +208,10 @@ public class GestionMateriel extends AppCompatActivity implements AdapterView.On
 
     @Override
     public void onClick(View view) {
-        xmlFile file = new xmlFile(this, "exportation.xml", db);
+        xmlFile file = new xmlFile(this, db);
         File export = new File("/data/data/fr.sio.app_epi2/exportation.xml");
         Log.i("file", export.getAbsolutePath());
-        file.importDB(export);
+        file.importDB("exportation.xml");
 
     }
 }

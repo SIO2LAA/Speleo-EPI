@@ -38,16 +38,15 @@ import fr.sio.app_epi2.models.Type;
 
 public class xmlFile {
     private SQLiteDatabase db;
-    private String name;
     private String path;
 
-    public xmlFile(Context context, String name, SQLiteDatabase db) {
+    public xmlFile(Context context, SQLiteDatabase db) {
         this.db = db;
-        this.name = name;
         this.path = "/data/data/" + context.getPackageName() + "/";
     }
 
-    public void importDB(File xmlFile) {
+    public void importDB(String name) {
+        File xmlFile = new File(this.path + name);
         SimpleDateFormat format = new SimpleDateFormat("y-m-d");
 
         DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
@@ -329,7 +328,7 @@ public class xmlFile {
 
     }
 
-    public void exportDB(SQLiteDatabase db) {
+    public void exportDB() {
 
         File dateFile = new File(this.path + "data" + ".xml");
         try{
@@ -348,12 +347,12 @@ public class xmlFile {
         }
 
         XmlSerializer serializer = Xml.newSerializer();
-        Cursor controleCursor = db.query("controle", null,null,null,null,null,null);
-        Cursor controleurCursor = db.query("controleur", null,null,null,null,null,null);
-        Cursor fabricantCursor = db.query("fabricant", null,null,null,null,null,null);
-        Cursor lotCursor = db.query("lot", null,null,null,null,null,null);
-        Cursor materielCursor = db.query("materiel", null,null,null,null,null,null);
-        Cursor typesCursor = db.query("types", null,null,null,null,null,null);
+        Cursor controleCursor = this.db.query("controle", null,null,null,null,null,null);
+        Cursor controleurCursor = this.db.query("controleur", null,null,null,null,null,null);
+        Cursor fabricantCursor = this.db.query("fabricant", null,null,null,null,null,null);
+        Cursor lotCursor = this.db.query("lot", null,null,null,null,null,null);
+        Cursor materielCursor = this.db.query("materiel", null,null,null,null,null,null);
+        Cursor typesCursor = this.db.query("types", null,null,null,null,null,null);
 
         try{
             serializer.setOutput(fileos, "UTF-8");
@@ -504,7 +503,7 @@ public class xmlFile {
         }
     }
 
-    public void createFV(){
+    /*public void createFV(){
 
         Log.i("path", this.path);
 
@@ -548,9 +547,9 @@ public class xmlFile {
             Log.e("Exception","Exception occured in wroting");
         }
 
-    }
+    }*/
 
-    public void readFV(File file){
+    /*public void readFV(File file){
 
         FileInputStream fileout = null;
         try{
@@ -577,5 +576,5 @@ public class xmlFile {
             Log.e("Exception","Exception occured in wroting");
         }
 
-    }
+    }*/
 }
