@@ -23,7 +23,7 @@ public class FDC_Creer extends AppCompatActivity implements View.OnClickListener
     private EditText observation;
     private Button annuler;
     private Button valider;
-    private SQLiteDatabase maBD = MainActivity.dbOpenHelper.getReadableDatabase();;
+    private SQLiteDatabase maBD = MainActivity.dbOpenHelper.getReadableDatabase();
     //private SQLiteDatabase writeBD;
 
 
