@@ -23,7 +23,7 @@ public class FDC_Creer extends AppCompatActivity implements View.OnClickListener
     private EditText observation;
     private Button annuler;
     private Button valider;
-    private DBOpenHelper maBD;
+    private SQLiteDatabase maBD = MainActivity.dbOpenHelper.getReadableDatabase();;
     //private SQLiteDatabase writeBD;
 
 
@@ -48,9 +48,12 @@ public class FDC_Creer extends AppCompatActivity implements View.OnClickListener
             public void onClick(View view) {
                 String dateTXT = dateButton.getText().toString();
                 String observTXT = observation.getText().toString();
-                Boolean checkinsertdata;
-                checkinsertdata = maBD.addDataFDC(dateTXT, observTXT);
-                if(checkinsertdata==true)
+                long checkinsertdata;
+                ContentValues content = new ContentValues();
+                content.put("dateTXT", dateTXT);
+                content.put("observTXT", observTXT);
+                checkinsertdata = maBD.insert("controle", null, content);
+                if(checkinsertdata==1)
                     Toast.makeText(FDC_Creer.this, "New Entry Inserted", Toast.LENGTH_SHORT).show();
                 else
                     Toast.makeText(FDC_Creer.this, "New Entry Not Inserted", Toast.LENGTH_SHORT).show();
