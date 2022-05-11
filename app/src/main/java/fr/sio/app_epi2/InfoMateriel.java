@@ -1,8 +1,8 @@
 package fr.sio.app_epi2;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -46,12 +46,13 @@ public class InfoMateriel extends AppCompatActivity implements View.OnClickListe
     private TextView emplacementMarquage;
     private SimpleDateFormat sdf;
 
-    //espace fiche controle
+    //espace fiche de controle
     private Button fcCreer;
     private Button fcModifer;
     private Button fcAfficher;
     private Button fcSupprimer;
     private Intent FDC_Creer;
+    private Intent FDC_Afficher;
 
     //espace fiche de vie
     private Button fvCreer;
@@ -161,9 +162,40 @@ public class InfoMateriel extends AppCompatActivity implements View.OnClickListe
             FDV_Modifier = new Intent(this, FDV_Modifier.class);
             startActivity(FDV_Modifier);
 */
+        Intent intent = getIntent();
+        Log.i("id", "id3 = " + intent.getIntExtra("idItemMateriel", 1));
+        int id = intent.getIntExtra("idItemMateriel", 1);
+
+        Cursor cursor = db.rawQuery("SELECT idMateriel FROM controle WHERE idMateriel = " + id , null);
+
         if (fcCreer.isPressed()){
-            FDC_Creer = new Intent(this,FDC_Creer.class);
-            startActivity(FDC_Creer);
+
+            if(cursor.getCount()==1){
+                Toast.makeText(InfoMateriel.this, "Fiche existe déjà ! Supprimez d'abord avant créer", Toast.LENGTH_SHORT).show();
+            }else if(cursor.getCount()==0) {
+                FDC_Creer = new Intent(this,FDC_Creer.class);
+                FDC_Creer.putExtra("idItemMateriel", id);
+                startActivity(FDC_Creer);
+            }
+        }
+        if (fcAfficher.isPressed()) {
+
+            Cursor res = db.rawQuery("SELECT * FROM controle WHERE idMateriel = " + id , null);
+            if(res.getCount()==0){
+                Toast.makeText(InfoMateriel.this, "Fiche non existant", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            StringBuffer buffer = new StringBuffer();
+            while(res.moveToNext()){
+                buffer.append("Date : "+res.getString(1)+"\n");
+                buffer.append("Observation : "+res.getString(2)+"\n");
+            }
+
+            androidx.appcompat.app.AlertDialog.Builder builder = new AlertDialog.Builder(InfoMateriel.this);
+            builder.setCancelable(true);
+            builder.setTitle("Fiche de contrôle");
+            builder.setMessage(buffer.toString());
+            builder.show();
         }
 
 
