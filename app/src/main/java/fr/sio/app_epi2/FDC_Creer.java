@@ -4,9 +4,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.content.ContentValues;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -40,6 +42,10 @@ public class FDC_Creer extends AppCompatActivity {
         dateButton.setText(getTodaysDate());
         nextdateButton.setText(getNextDate());
 
+        Intent intent = getIntent();
+        Log.i("id", "id4 = " + intent.getIntExtra("idItemMateriel", 1));
+        int id = intent.getIntExtra("idItemMateriel", 1);
+
         // affichage du layout
         annuler = findViewById(R.id.btnAnnuler);
         valider = findViewById(R.id.btnValider);
@@ -53,12 +59,14 @@ public class FDC_Creer extends AppCompatActivity {
                 ContentValues content = new ContentValues();
                 content.put("date", dateTXT);
                 content.put("observation", observTXT);
+                content.put("idMateriel", id);
+
                 checkinsertdata = maBD.insert("controle", null, content);
                 if (checkinsertdata == 1) {
-                    Toast.makeText(FDC_Creer.this, "New Entry Inserted", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(FDC_Creer.this, "Nouvelles données insérées", Toast.LENGTH_SHORT).show();
                     finish();
                 } else {
-                    Toast.makeText(FDC_Creer.this, "New Entry Not Inserted", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(FDC_Creer.this, "Données non insérées", Toast.LENGTH_SHORT).show();
                 }
             }
         });

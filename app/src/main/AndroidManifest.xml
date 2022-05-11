@@ -9,9 +9,6 @@
         android:roundIcon="@mipmap/logo_club_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.App_epi2">
-        <activity
-            android:name=".FDC_Afficher"
-            android:exported="false" />
         <activity android:name=".FDC_Creer" />
         <activity android:name=".FDV_Creer" />
         <activity android:name=".FDV_Afficher" />
