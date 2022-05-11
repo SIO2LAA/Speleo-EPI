@@ -10,16 +10,13 @@ import android.util.Log;
 import fr.sio.app_epi2.models.Controle;
 import fr.sio.app_epi2.models.Tag;
 
-class DBOpenHelper extends SQLiteOpenHelper {
+public class DBOpenHelper extends SQLiteOpenHelper {
 
      private String update;
      private String insert;
 
      // @goals This class aims to show the constant to use for the DBOpenHelper */
     public static class Constants implements BaseColumns {
-
-        // The database name
-        public static final String DATABASE_NAME = "EPI2.db";
 
         // The database version
         public static int DATABASE_VERSION = 1;
