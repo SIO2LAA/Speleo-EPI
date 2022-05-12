@@ -15,10 +15,11 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
+import fr.sio.app_epi2.dao.Singleton;
 import fr.sio.app_epi2.models.Materiel;
 
 public class FDV_Afficher extends AppCompatActivity implements View.OnClickListener {
-    private SQLiteDatabase db = MainActivity.dbOpenHelper.getReadableDatabase();
+    private SQLiteDatabase db = Singleton.getDB(this).getDbOpenHelper().getReadableDatabase();
     private Button ok;
     private Materiel materiel;
     private TextView modele;

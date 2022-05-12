@@ -29,11 +29,12 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
+import fr.sio.app_epi2.dao.Singleton;
 import fr.sio.app_epi2.models.Materiel;
 import fr.sio.app_epi2.models.Tag;
 
 public class InfoMateriel extends AppCompatActivity implements View.OnClickListener {
-    private SQLiteDatabase db = MainActivity.dbOpenHelper.getReadableDatabase();
+    private SQLiteDatabase db = Singleton.getDB(this).getDbOpenHelper().getReadableDatabase();
     private Materiel materiel;
     private TextView libelle;
     private TextView modele;

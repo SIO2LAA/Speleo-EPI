@@ -16,13 +16,14 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import fr.sio.app_epi2.dao.Singleton;
 import fr.sio.app_epi2.models.Materiel;
 
 public class FDV_Modifier extends AppCompatActivity implements View.OnClickListener {
     private Button annuler;
     private Button valider;
     private SimpleDateFormat sdf;
-    private SQLiteDatabase db = MainActivity.dbOpenHelper.getWritableDatabase();
+    private SQLiteDatabase db = Singleton.getDB(this).getDbOpenHelper().getWritableDatabase();
     private Materiel materiel;
 
     private EditText modele;

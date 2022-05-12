@@ -17,6 +17,8 @@ import android.widget.Toast;
 
 import java.util.UUID;
 
+import fr.sio.app_epi2.dao.Singleton;
+
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     private Button boutonMenu;
@@ -29,7 +31,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private ContentValues value6;
     private Intent gestionMateriel;
     // The database creator and updater helper
-    public static DBOpenHelper dbOpenHelper;
+    private Singleton singleton = Singleton.getDB(this);
+    private DBOpenHelper dbOpenHelper;
     private Intent xmlExport;
 
     @Override
@@ -40,8 +43,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         boutonMenu = findViewById(R.id.BoutonMenu);
         boutonMenu.setOnClickListener(this);
         // Create or retrieve the database
-        dbOpenHelper = new DBOpenHelper(this, DBOpenHelper.Constants.DATABASE_NAME, null,
-                DBOpenHelper.Constants.DATABASE_VERSION);
+
+        dbOpenHelper = singleton.getDbOpenHelper();
         openDB();
 
         int oldV = DBOpenHelper.Constants.DATABASE_VERSION;
@@ -114,7 +117,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
      */
     private long insertRecord(ContentValues contentValuesFabricant, ContentValues contentValuesmateriel1, ContentValues contentValuesmateriel2, ContentValues contentValuesmateriel3, ContentValues contentValuesmateriel4, ContentValues contentValuesmateriel5) {
         // Assign the values for each column.
-        /*contentValuesFabricant.put(DBOpenHelper.Constants.idFabricant, 1);
+        contentValuesFabricant.put(DBOpenHelper.Constants.idFabricant, 1);
         contentValuesFabricant.put(DBOpenHelper.Constants.nomFabricant, "BOSCH");
 
         contentValuesmateriel1.put(DBOpenHelper.Constants.idMateriel, 1);
@@ -204,8 +207,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     Toast.LENGTH_LONG).show();
         }
 
-        return rowId;*/
-        return 1;
+        return rowId;
     }
 
     @Override

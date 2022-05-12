@@ -24,6 +24,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
+import fr.sio.app_epi2.dao.Singleton;
 import fr.sio.app_epi2.models.Filtre;
 import fr.sio.app_epi2.models.Materiel;
 import fr.sio.app_epi2.models.MaterielAdaptater;
@@ -38,7 +39,7 @@ public class GestionMateriel extends AppCompatActivity implements AdapterView.On
     private Spinner selection;
     private MaterielAdaptater materielAdapter;
     private ArrayList<Materiel> listeMateriels;
-    private SQLiteDatabase db = MainActivity.dbOpenHelper.getReadableDatabase();
+    private SQLiteDatabase db = Singleton.getDB(this).getDbOpenHelper().getReadableDatabase();
     private SimpleDateFormat format = new SimpleDateFormat("y-m-d");
 
     @Override

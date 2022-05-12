@@ -17,6 +17,8 @@ import android.widget.EditText;
 import android.widget.Toast;
 import java.util.Calendar;
 
+import fr.sio.app_epi2.dao.Singleton;
+
 public class FDC_Creer extends AppCompatActivity {
 
     private DatePickerDialog datePickerDialog;
@@ -26,7 +28,7 @@ public class FDC_Creer extends AppCompatActivity {
     private EditText observation;
     private Button annuler;
     private Button valider;
-    private SQLiteDatabase maBD = MainActivity.dbOpenHelper.getReadableDatabase();
+    private SQLiteDatabase maBD = Singleton.getDB(this).getDbOpenHelper().getReadableDatabase();
     //private SQLiteDatabase writeBD;
 
 

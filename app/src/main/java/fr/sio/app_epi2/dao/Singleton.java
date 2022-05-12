@@ -5,6 +5,7 @@ package fr.sio.app_epi2.dao;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
+import android.util.Log;
 
 import fr.sio.app_epi2.DBOpenHelper;
 
@@ -13,6 +14,7 @@ public final class Singleton {
     private DBOpenHelper dbOpenHelper;
     private final String DATABASE_NAME = "EPI2.db";
     private int DATABASE_VERSION = 1;
+    private static int test = 0;
 
     private Singleton(Context context) {
         // The following code emulates slow initialization.
@@ -23,9 +25,10 @@ public final class Singleton {
         }
         dbOpenHelper = new DBOpenHelper(context, this.DATABASE_NAME, null,
                 this.DATABASE_VERSION);
+        test++;
     }
 
-    private DBOpenHelper getDbOpenHelper() {
+    public DBOpenHelper getDbOpenHelper() {
         return this.dbOpenHelper;
     }
 
@@ -33,7 +36,7 @@ public final class Singleton {
         if (instance == null) {
             instance = new Singleton(context);
         }
-
+        Log.i("db", String.valueOf(test));
         return instance;
     }
 
