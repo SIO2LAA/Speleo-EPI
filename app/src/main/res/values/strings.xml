@@ -21,5 +21,7 @@
     <string name="upgrade"></string>
     <string name="insert"></string>
     <string name="filtreText">Filtre : </string>
+    <string name="BtnImport">Import</string>
+    <string name="BtnExport">Export</string>
 
 </resources>

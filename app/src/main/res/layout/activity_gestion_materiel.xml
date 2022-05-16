@@ -56,13 +56,28 @@
 
     </ListView>
 
-    <Button
-        android:id="@+id/button_import"
-        android:layout_marginTop="40dp"
-        android:text="Import"
-        android:layout_gravity="center"
+    <LinearLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-    </Button>
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:layout_gravity="center">
+        <Button
+            android:id="@+id/button_import"
+            android:text="Import"
+            android:layout_marginRight="30dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+        </Button>
+
+        <Button
+            android:id="@+id/button_export"
+            android:layout_marginLeft="30dp"
+            android:text="@string/BtnExport"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+        </Button>
+    </LinearLayout>
+
+
 
 </LinearLayout>

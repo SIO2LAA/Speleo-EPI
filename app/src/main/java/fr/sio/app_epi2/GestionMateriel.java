@@ -34,6 +34,7 @@ public class GestionMateriel extends AppCompatActivity implements AdapterView.On
 
     private ListView listeMateriel;
     private Button Btnimport;
+    private Button BtnExport;
     private Intent infoMateriel;
     private SearchView search;
     private Spinner selection;
@@ -50,6 +51,7 @@ public class GestionMateriel extends AppCompatActivity implements AdapterView.On
         setDate(dateView);
         listeMateriel = findViewById(R.id.listeMateriel);
         Btnimport = findViewById(R.id.button_import);
+        BtnExport = findViewById(R.id.button_export);
         search = findViewById(R.id.recherche);
         selection = findViewById(R.id.selection);
         selection.setOnItemSelectedListener(this);
@@ -58,6 +60,7 @@ public class GestionMateriel extends AppCompatActivity implements AdapterView.On
         materielAdapter = new MaterielAdaptater(this, R.layout.listeview_item, listeMateriels);
         listeMateriel.setOnItemClickListener(this);
         Btnimport.setOnClickListener(this);
+        BtnExport.setOnClickListener(this);
 
         Filtre filtreTout = new Filtre(1, "Aucun");
         Filtre filtreDateAcquisition = new Filtre(1, "Date Acquisition");
@@ -210,9 +213,11 @@ public class GestionMateriel extends AppCompatActivity implements AdapterView.On
     @Override
     public void onClick(View view) {
         xmlFile file = new xmlFile(this, db);
-        File export = new File("/data/data/fr.sio.app_epi2/exportation.xml");
-        Log.i("file", export.getAbsolutePath());
-        file.importDB("exportation.xml");
-
+        if (Btnimport.isPressed()) {
+            file.importDB("exportation.xml");
+        }
+        if (BtnExport.isPressed()) {
+            file.exportDB();
+        }
     }
 }
