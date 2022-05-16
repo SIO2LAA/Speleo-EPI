@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 import android.util.Xml;
+import android.widget.Toast;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
@@ -39,8 +40,10 @@ import fr.sio.app_epi2.models.Type;
 public class xmlFile {
     private SQLiteDatabase db;
     private String path;
+    private Context context;
 
     public xmlFile(Context context, SQLiteDatabase db) {
+        this.context = context;
         this.db = db;
         this.path = "/data/data/" + context.getPackageName() + "/";
     }
@@ -258,10 +261,16 @@ public class xmlFile {
             }
 
         } catch (ParserConfigurationException e) {
+            Toast.makeText(context, "Tag error in document !", Toast.LENGTH_LONG).show();
+            e.printStackTrace();
+        } catch (FileNotFoundException e) {
+            Toast.makeText(context, "File not found !", Toast.LENGTH_LONG).show();
             e.printStackTrace();
         } catch (IOException e) {
+            Toast.makeText(context, "Stream File Error !", Toast.LENGTH_LONG).show();
             e.printStackTrace();
         } catch (SAXException e) {
+            Toast.makeText(context, "Serializing Error !", Toast.LENGTH_LONG).show();
             e.printStackTrace();
         }
 
