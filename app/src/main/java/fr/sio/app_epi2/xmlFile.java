@@ -259,6 +259,7 @@ public class xmlFile {
                     }
                 }
             }
+            Toast.makeText(context, "Success Import !", Toast.LENGTH_SHORT).show();
 
         } catch (ParserConfigurationException e) {
             Toast.makeText(context, "Tag error in document !", Toast.LENGTH_LONG).show();
@@ -344,6 +345,7 @@ public class xmlFile {
             dateFile.createNewFile();
         }catch(IOException e)
         {
+            Toast.makeText(context, "Error in creating file export !", Toast.LENGTH_LONG).show();
             Log.e("IOException", "Exception in create new File");
         }
         FileOutputStream fileos = null;
@@ -352,6 +354,7 @@ public class xmlFile {
 
         }catch(FileNotFoundException e)
         {
+            Toast.makeText(context, "File not found !", Toast.LENGTH_LONG).show();
             Log.e("FileNotFoundException",e.toString());
         }
 
@@ -505,85 +508,13 @@ public class xmlFile {
             serializer.endDocument();
             serializer.flush();
             fileos.close();
+            Toast.makeText(context, "Success Export !", Toast.LENGTH_SHORT).show();
 
         }catch(Exception e)
         {
+            Toast.makeText(context, "Error in Serializing File !", Toast.LENGTH_SHORT).show();
             Log.e("Exception","Exception occured in wroting");
         }
+
     }
-
-    /*public void createFV(){
-
-        Log.i("path", this.path);
-
-        File newxmlfile = new File(this.path + this.name + ".xml");
-        try{
-            newxmlfile.createNewFile();
-        }catch(IOException e)
-        {
-            Log.e("IOException", "Exception in create new File(");
-        }
-        FileOutputStream fileos = null;
-        try{
-            fileos = new FileOutputStream(newxmlfile);
-
-        }catch(FileNotFoundException e)
-        {
-            Log.e("FileNotFoundException",e.toString());
-        }
-
-
-        XmlSerializer serializer = Xml.newSerializer();
-        try{
-            serializer.setOutput(fileos, "UTF-8");
-            serializer.startDocument(null, Boolean.valueOf(true));
-            //serializer.setFeature("http://xmlpull.org/v1/doc/features.html#indent-output", true);
-            serializer.startTag(null, "root");
-            serializer.startTag(null, "materiel");
-            serializer.attribute(null, "id", "41");
-            serializer.startTag(null, "nom");
-            serializer.text("Casque bleu");
-            serializer.endTag(null, "nom");
-            serializer.endTag(null, "materiel");
-            serializer.endTag(null,"root");
-            serializer.endDocument();
-            serializer.flush();
-            fileos.close();
-            //TextView tv = (TextView)findViewById(R.);
-
-        }catch(Exception e)
-        {
-            Log.e("Exception","Exception occured in wroting");
-        }
-
-    }*/
-
-    /*public void readFV(File file){
-
-        FileInputStream fileout = null;
-        try{
-            fileout = new FileInputStream(file);
-        } catch(FileNotFoundException e)
-        {
-            Log.e("FileNotFoundException",e.toString());
-        } catch(IOException e)
-        {
-            Log.e("IOException", "Exception in create new File(");
-        }
-
-        XmlPullParser parser = Xml.newPullParser();
-
-        try{
-            parser.setFeature(XmlPullParser.FEATURE_PROCESS_NAMESPACES, false);
-            parser.setInput(fileout, null);
-            parser.nextTag();
-            fileout.close();
-            //https://developer.android.com/training/basics/network-ops/xml
-
-        }catch(Exception e)
-        {
-            Log.e("Exception","Exception occured in wroting");
-        }
-
-    }*/
 }
