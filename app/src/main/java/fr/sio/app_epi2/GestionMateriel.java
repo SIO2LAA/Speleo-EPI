@@ -80,7 +80,7 @@ public class GestionMateriel extends AppCompatActivity implements AdapterView.On
         Cursor cursor = db.rawQuery("SELECT * FROM materiel", null);
 
         while(cursor.moveToNext()) {
-            Log.i("cursor", "id = " + cursor.getString(0));
+            
             Date date_ac = new Date();
             Date date_pu = new Date();
             Date date_lr = new Date();
@@ -104,7 +104,7 @@ public class GestionMateriel extends AppCompatActivity implements AdapterView.On
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
         Materiel materiel = (Materiel) listeMateriel.getAdapter().getItem(i);
         infoMateriel = new Intent(this, InfoMateriel.class);
-        Log.i("id", "id1 = " + materiel.getIdMateriel());
+        
         infoMateriel.putExtra("idItemMateriel", materiel.getIdMateriel());
         startActivity(infoMateriel);
     }
@@ -139,7 +139,7 @@ public class GestionMateriel extends AppCompatActivity implements AdapterView.On
 
         Filtre filtre = (Filtre) adapterView.getSelectedItem();
 
-        Log.i("filtre", filtre.getLibelle());
+        
 
         if (filtre.getLibelle() == "Aucun") {
             filtreListeMateriels = listeMateriels;
@@ -149,7 +149,7 @@ public class GestionMateriel extends AppCompatActivity implements AdapterView.On
             Cursor cursor2 = db.rawQuery("SELECT * FROM materiel ORDER BY dateAcquisition DESC", null);
 
             while(cursor2.moveToNext()) {
-                Log.i("cursor", "id = " + cursor2.getString(0));
+                
                 Date date_ac = new Date();
                 Date date_pu = new Date();
                 Date date_lr = new Date();
@@ -173,7 +173,7 @@ public class GestionMateriel extends AppCompatActivity implements AdapterView.On
             Cursor cursor2 = db.rawQuery("SELECT * FROM materiel ORDER BY datePremiereUtilisation DESC", null);
 
             while(cursor2.moveToNext()) {
-                Log.i("cursor", "id = " + cursor2.getString(0));
+                
                 Date date_ac = new Date();
                 Date date_pu = new Date();
                 Date date_lr = new Date();

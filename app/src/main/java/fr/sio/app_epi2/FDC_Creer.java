@@ -45,7 +45,7 @@ public class FDC_Creer extends AppCompatActivity {
         nextdateButton.setText(getNextDate());
 
         Intent intent = getIntent();
-        Log.i("id", "id4 = " + intent.getIntExtra("idItemMateriel", 1));
+        
         int id = intent.getIntExtra("idItemMateriel", 1);
 
         // affichage du layout

@@ -7,9 +7,6 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.provider.BaseColumns;
 import android.util.Log;
 
-import fr.sio.app_epi2.models.Controle;
-import fr.sio.app_epi2.models.Tag;
-
 public class DBOpenHelper extends SQLiteOpenHelper {
 
      private String update;

@@ -3,35 +3,21 @@ package fr.sio.app_epi2;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.Dialog;
-import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.Gravity;
-import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
-import android.widget.LinearLayout;
-import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.w3c.dom.Text;
-
-import java.io.File;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 
 import fr.sio.app_epi2.dao.Singleton;
 import fr.sio.app_epi2.models.Materiel;
-import fr.sio.app_epi2.models.Tag;
 
 public class InfoMateriel extends AppCompatActivity implements View.OnClickListener {
     private SQLiteDatabase db = Singleton.getDB(this).getDbOpenHelper().getReadableDatabase();
@@ -105,7 +91,7 @@ public class InfoMateriel extends AppCompatActivity implements View.OnClickListe
 
         sdf = new SimpleDateFormat("dd/mm/yyyy");
         Intent intent = getIntent();
-        Log.i("id", "id2 = " + intent.getIntExtra("idItemMateriel", 1));
+        
         int id = intent.getIntExtra("idItemMateriel", 1);
         Cursor cursor = db.rawQuery("SELECT * FROM materiel WHERE id = " + id, null);
         SimpleDateFormat format = new SimpleDateFormat("y-m-d");
@@ -144,27 +130,20 @@ public class InfoMateriel extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
         //espace fiche de vie
         if(fvCreer.isPressed()){
-            Tag tag = new Tag("tag1", "text1");
-            ArrayList<Tag> listeTags = new ArrayList<>();
-            listeTags.add(tag);
-            xmlFile xmlFile = new xmlFile(this, db);
-            xmlFile.exportDB();
-            File file = new File("/data/data/" + getPackageName() + "/" + "data.xml");
-            //xmlFile.importDB(file);
-
             FDV_Creer = new Intent(this, FDV_Creer.class);
             startActivity(FDV_Creer);
         }
         if(fvAfficher.isPressed()){
-            FDV_Afficher = new Intent(this, FDV_Afficher.class);
+            FDV_Afficher = new Intent(this, FDV_Afficher.class).putExtra("idItemMateriel", materiel.getIdMateriel());
             startActivity(FDV_Afficher);
         }
-        if(fvModifier.isPressed())
-            FDV_Modifier = new Intent(this, FDV_Modifier.class).putExtra("idItemMateriel", materiel.getIdMateriel());;
+        if(fvModifier.isPressed()) {
+            FDV_Modifier = new Intent(this, FDV_Modifier.class).putExtra("idItemMateriel", materiel.getIdMateriel());
             startActivity(FDV_Modifier);
+        }
 
         Intent intent = getIntent();
-        Log.i("id", "id3 = " + intent.getIntExtra("idItemMateriel", 1));
+        
         int id = intent.getIntExtra("idItemMateriel", 1);
 
         Cursor cursor = db.rawQuery("SELECT idMateriel FROM controle WHERE idMateriel = " + id , null);

@@ -13,17 +13,14 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.w3c.dom.Element;
 import org.xml.sax.SAXException;
-import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlSerializer;
 
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -34,7 +31,6 @@ import fr.sio.app_epi2.models.Controleur;
 import fr.sio.app_epi2.models.Fabricant;
 import fr.sio.app_epi2.models.Lot;
 import fr.sio.app_epi2.models.Materiel;
-import fr.sio.app_epi2.models.Tag;
 import fr.sio.app_epi2.models.Type;
 
 public class xmlFile {

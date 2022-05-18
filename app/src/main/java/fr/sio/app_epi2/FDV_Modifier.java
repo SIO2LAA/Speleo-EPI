@@ -62,7 +62,7 @@ public class FDV_Modifier extends AppCompatActivity implements View.OnClickListe
 
         sdf = new SimpleDateFormat("dd/mm/yyyy");
         Intent intent = getIntent();
-        Log.i("id", "id3 = " + intent.getIntExtra("idItemMateriel", 1));
+        
         int id = intent.getIntExtra("idItemMateriel", 1);
         Cursor cursor = db.rawQuery("SELECT * FROM materiel WHERE id = " + id, null);
         SimpleDateFormat format = new SimpleDateFormat("y-m-d");

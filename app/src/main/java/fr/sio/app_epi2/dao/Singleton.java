@@ -36,7 +36,7 @@ public final class Singleton {
         if (instance == null) {
             instance = new Singleton(context);
         }
-        Log.i("db", String.valueOf(test));
+        
         return instance;
     }
 
