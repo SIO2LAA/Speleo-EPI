@@ -31,6 +31,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private ContentValues materiel5;
     private ContentValues controleur1;
     private ContentValues controleur2;
+    private ContentValues lot1;
+    private ContentValues lot2;
     private Intent gestionMateriel;
     // The database creator and updater helper
     private Singleton singleton = Singleton.getDB(this);
@@ -66,8 +68,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         materiel5 = new ContentValues();
         controleur1 = new ContentValues();
         controleur2 = new ContentValues();
+        lot1 = new ContentValues();
+        lot2 = new ContentValues();
 
-        insertRecord(fabricant, materiel1, materiel2, materiel3, materiel4, materiel5, controleur1, controleur2);
+        insertRecord(fabricant, materiel1, materiel2, materiel3, materiel4, materiel5, controleur1, controleur2, lot1, lot2);
 
     }
 
@@ -119,7 +123,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
      *
      * @return the inserted row id
      */
-    private long insertRecord(ContentValues contentValuesFabricant, ContentValues contentValuesmateriel1, ContentValues contentValuesmateriel2, ContentValues contentValuesmateriel3, ContentValues contentValuesmateriel4, ContentValues contentValuesmateriel5, ContentValues contentValuescontroleur1, ContentValues contentValuescontroleur2) {
+    private long insertRecord(ContentValues contentValuesFabricant, ContentValues contentValuesmateriel1, ContentValues contentValuesmateriel2, ContentValues contentValuesmateriel3, ContentValues contentValuesmateriel4, ContentValues contentValuesmateriel5, ContentValues contentValuescontroleur1, ContentValues contentValuescontroleur2, ContentValues contentValueslot1, ContentValues contentValueslot2) {
         // Assign the values for each column.
         contentValuesFabricant.put(DBOpenHelper.Constants.idFabricant, 1);
         contentValuesFabricant.put(DBOpenHelper.Constants.nomFabricant, "BOSCH");
@@ -202,6 +206,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         contentValuescontroleur2.put(DBOpenHelper.Constants.nomControleur, "Dejoie");
         contentValuescontroleur2.put(DBOpenHelper.Constants.prenomControleur, "Frédéric");
 
+        contentValueslot1.put(DBOpenHelper.Constants.numeroLot, 1);
+        contentValueslot1.put(DBOpenHelper.Constants.dateLot, "2022-04-16");
+        contentValueslot1.put(DBOpenHelper.Constants.quantiteLot, 68);
+        contentValueslot1.put(DBOpenHelper.Constants.idMaterielLot, 1);
+
+        contentValueslot2.put(DBOpenHelper.Constants.numeroLot, 2);
+        contentValueslot2.put(DBOpenHelper.Constants.dateLot, "2022-05-29");
+        contentValueslot2.put(DBOpenHelper.Constants.quantiteLot, 45);
+        contentValueslot2.put(DBOpenHelper.Constants.idMaterielLot, 3);
+
         // Insert the line in the database
         long rowId = db.insert(DBOpenHelper.Constants.tableFabricant, null, contentValuesFabricant);
         long rowId2 = db.insert(DBOpenHelper.Constants.tableMateriel, null, contentValuesmateriel1);
@@ -209,7 +223,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         long rowId4 = db.insert(DBOpenHelper.Constants.tableMateriel, null, contentValuesmateriel3);
         long rowId5 = db.insert(DBOpenHelper.Constants.tableMateriel, null, contentValuesmateriel4);
         long rowId6 = db.insert(DBOpenHelper.Constants.tableMateriel, null, contentValuesmateriel5);
-
+        long rowId7 = db.insert(DBOpenHelper.Constants.tableControleur, null, contentValuescontroleur1);
+        long rowId8 = db.insert(DBOpenHelper.Constants.tableControleur, null, contentValuescontroleur2);
+        long rowId9 = db.insert(DBOpenHelper.Constants.tableLot, null, contentValueslot1);
+        long rowId10 = db.insert(DBOpenHelper.Constants.tableLot, null, contentValueslot2);
         // Test to see if the insertion was ok
         if (rowId == -1 || rowId2 == -1 || rowId3 == -1 || rowId4 == -1 || rowId5 == -1 || rowId6 == -1) {
             Toast.makeText(this, "Erreur dans l'insertion des données",
