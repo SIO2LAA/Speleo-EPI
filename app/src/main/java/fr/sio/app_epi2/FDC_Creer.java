@@ -26,6 +26,8 @@ public class FDC_Creer extends AppCompatActivity {
     private Button dateButton;
     private Button nextdateButton;
     private EditText observation;
+    private EditText nature;
+    private EditText lieu;
     private Button annuler;
     private Button valider;
     private SQLiteDatabase maBD = Singleton.getDB(this).getDbOpenHelper().getReadableDatabase();
@@ -40,6 +42,8 @@ public class FDC_Creer extends AppCompatActivity {
         dateButton = findViewById(R.id.datePickerButton);
         nextdateButton = findViewById(R.id.nextdatePickerButton);
         observation = findViewById(R.id.inputObservation);
+        nature = findViewById(R.id.inputNatureControle);
+        lieu = findViewById(R.id.inputLieuControle);
 
         dateButton.setText(getTodaysDate());
         nextdateButton.setText(getNextDate());
@@ -57,11 +61,16 @@ public class FDC_Creer extends AppCompatActivity {
             public void onClick(View view) {
                 String dateTXT = dateButton.getText().toString();
                 String observTXT = observation.getText().toString();
+                String natureTXT = nature.getText().toString();
+                String lieuTXT = lieu.getText().toString();
+
                 long checkinsertdata;
                 ContentValues content = new ContentValues();
                 content.put("date", dateTXT);
                 content.put("observation", observTXT);
+                content.put("nature", natureTXT);
                 content.put("idMateriel", id);
+                content.put("lieu", lieuTXT);
 
                 checkinsertdata = maBD.insert("controle", null, content);
                 if (checkinsertdata == 1) {

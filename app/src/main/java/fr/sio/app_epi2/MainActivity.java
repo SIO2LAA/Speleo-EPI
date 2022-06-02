@@ -23,12 +23,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private Button boutonMenu;
     private SQLiteDatabase db;
-    private ContentValues value;
-    private ContentValues value2;
-    private ContentValues value3;
-    private ContentValues value4;
-    private ContentValues value5;
-    private ContentValues value6;
+    private ContentValues fabricant;
+    private ContentValues materiel1;
+    private ContentValues materiel2;
+    private ContentValues materiel3;
+    private ContentValues materiel4;
+    private ContentValues materiel5;
+    private ContentValues controleur1;
+    private ContentValues controleur2;
     private Intent gestionMateriel;
     // The database creator and updater helper
     private Singleton singleton = Singleton.getDB(this);
@@ -54,16 +56,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         dbOpenHelper.onUpgrade(db, oldV, newV);
 
-        
 
-        value = new ContentValues();
-        value2 = new ContentValues();
-        value3 = new ContentValues();
-        value4 = new ContentValues();
-        value5 = new ContentValues();
-        value6 = new ContentValues();
 
-        insertRecord(value, value2, value3, value4, value5, value6);
+        fabricant = new ContentValues();
+        materiel1 = new ContentValues();
+        materiel2 = new ContentValues();
+        materiel3 = new ContentValues();
+        materiel4 = new ContentValues();
+        materiel5 = new ContentValues();
+        controleur1 = new ContentValues();
+
+        insertRecord(fabricant, materiel1, materiel2, materiel3, materiel4, materiel5);
 
     }
 

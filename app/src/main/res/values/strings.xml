@@ -17,6 +17,7 @@
     <string name="FSupprimer">Supprimer</string>
     <string name="boutonInfoMateriel">Info</string>
     <string name="dateControle">Date du contrôle</string>
+    <string name="natureControle">Nature du contrôle</string>
     <string name="version">1</string>
     <string name="upgrade"></string>
     <string name="insert"></string>
