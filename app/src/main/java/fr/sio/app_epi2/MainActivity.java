@@ -65,8 +65,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         materiel4 = new ContentValues();
         materiel5 = new ContentValues();
         controleur1 = new ContentValues();
+        controleur2 = new ContentValues();
 
-        insertRecord(fabricant, materiel1, materiel2, materiel3, materiel4, materiel5);
+        insertRecord(fabricant, materiel1, materiel2, materiel3, materiel4, materiel5, controleur1, controleur2);
 
     }
 
@@ -118,7 +119,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
      *
      * @return the inserted row id
      */
-    private long insertRecord(ContentValues contentValuesFabricant, ContentValues contentValuesmateriel1, ContentValues contentValuesmateriel2, ContentValues contentValuesmateriel3, ContentValues contentValuesmateriel4, ContentValues contentValuesmateriel5) {
+    private long insertRecord(ContentValues contentValuesFabricant, ContentValues contentValuesmateriel1, ContentValues contentValuesmateriel2, ContentValues contentValuesmateriel3, ContentValues contentValuesmateriel4, ContentValues contentValuesmateriel5, ContentValues contentValuescontroleur1, ContentValues contentValuescontroleur2) {
         // Assign the values for each column.
         contentValuesFabricant.put(DBOpenHelper.Constants.idFabricant, 1);
         contentValuesFabricant.put(DBOpenHelper.Constants.nomFabricant, "BOSCH");
@@ -192,6 +193,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         contentValuesmateriel5.put(DBOpenHelper.Constants.idFabricantMateriel, 1);
         contentValuesmateriel5.put(DBOpenHelper.Constants.idTypeMateriel, "null");
         contentValuesmateriel5.put(DBOpenHelper.Constants.idControleurMateriel, "null");
+
+        contentValuescontroleur1.put(DBOpenHelper.Constants.idControleur, 1);
+        contentValuescontroleur1.put(DBOpenHelper.Constants.nomControleur, "Verdon");
+        contentValuescontroleur1.put(DBOpenHelper.Constants.prenomControleur, "Dejoie");
+
+        contentValuescontroleur2.put(DBOpenHelper.Constants.idControleur, 2);
+        contentValuescontroleur2.put(DBOpenHelper.Constants.nomControleur, "Dejoie");
+        contentValuescontroleur2.put(DBOpenHelper.Constants.prenomControleur, "Frédéric");
 
         // Insert the line in the database
         long rowId = db.insert(DBOpenHelper.Constants.tableFabricant, null, contentValuesFabricant);
