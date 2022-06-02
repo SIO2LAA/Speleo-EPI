@@ -16,7 +16,7 @@
     <string name="FCreer">Créer</string>
     <string name="FSupprimer">Supprimer</string>
     <string name="boutonInfoMateriel">Info</string>
-    <string name="date">Date</string>
+    <string name="dateControle">Date du contrôle</string>
     <string name="version">1</string>
     <string name="upgrade"></string>
     <string name="insert"></string>
