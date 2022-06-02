@@ -22,6 +22,7 @@ public class FDV_Afficher extends AppCompatActivity implements View.OnClickListe
     private SQLiteDatabase db = Singleton.getDB(this).getDbOpenHelper().getReadableDatabase();
     private Button ok;
     private Materiel materiel;
+    private TextView libelle;
     private TextView modele;
     private TextView fabricant;
     private TextView signe_distinctif;
@@ -40,6 +41,7 @@ public class FDV_Afficher extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fdv_afficher);
         ok = findViewById(R.id.fdv_afficher_ok);
+        libelle = findViewById(R.id.Tv_libelle);
         modele = findViewById(R.id.Tv_modele);
         fabricant = findViewById(R.id.Tv_fabricant);
         signe_distinctif = findViewById(R.id.Tv_signe_distinctif);
@@ -76,12 +78,13 @@ public class FDV_Afficher extends AppCompatActivity implements View.OnClickListe
             materiel = new Materiel(cursor.getInt(0), cursor.getString(1), cursor.getString(2),cursor.getString(3),date_ac, date_pu, date_lr, date_f, cursor.getString(8), cursor.getString(9), cursor.getInt(10), cursor.getInt(11), cursor.getInt(12));
         }
 
-        modele.setText("Libelle : " + materiel.getModele());
-        fabricant.setText("Modèle : " + materiel.getIdFabricant());
+        libelle.setText("Libelle : " + materiel.getLibelle());
+        modele.setText("Modèle : " + materiel.getModele());
+        fabricant.setText("Fabricant : " + materiel.getIdFabricant());
         signe_distinctif.setText("Signe distinctif : " + materiel.getSigneDistinctif());
         marquage.setText("Marquage : " + materiel.getMarquage());
         emplacemet_marquage.setText("Emplacement de marquage : " + materiel.getEmplacementMarquage());
-        //numero_serie.setText("Numero de serie : " + materiel.get());
+        //numero_serie.setText("Numero de serie : " + materiel.get);
         dateAcquisition.setText("Date d'acquisition : " + sdf.format(materiel.getDateAcquisition()));
         datePremiereUtilisation.setText("Date de première utilisation : " + sdf.format(materiel.getDatePremiereUtilisation()));
         dateLimiteRebut.setText("Date de limite rébut : " + sdf.format(materiel.getDateLimiteRebut()));

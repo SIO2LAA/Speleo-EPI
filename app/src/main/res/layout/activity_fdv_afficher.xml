@@ -32,6 +32,16 @@
                 android:textStyle="bold" />
 
             <TextView
+                android:id="@+id/Tv_libelle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="20dp"
+                android:text="TextView"
+                android:textSize="20dp"
+                android:textStyle="bold" />
+
+            <TextView
                 android:id="@+id/Tv_modele"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -87,7 +97,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="20dp"
-                android:text="TextView"
+                android:text="Numéro de série Non renseigné"
                 android:textSize="20dp"
                 android:textStyle="bold" />
 

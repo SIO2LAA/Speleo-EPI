@@ -141,9 +141,6 @@ public class InfoMateriel extends AppCompatActivity implements View.OnClickListe
                 FDV_Creer.putExtra("idItemMateriel", id);
                 startActivity(FDV_Creer);
             }
-
-
-
         }
         if(fvAfficher.isPressed()){
             FDV_Afficher = new Intent(this, FDV_Afficher.class).putExtra("idItemMateriel", materiel.getIdMateriel());
