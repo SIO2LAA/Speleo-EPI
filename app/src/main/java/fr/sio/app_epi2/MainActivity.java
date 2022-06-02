@@ -200,7 +200,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         contentValuescontroleur2.put(DBOpenHelper.Constants.idControleur, 2);
         contentValuescontroleur2.put(DBOpenHelper.Constants.nomControleur, "Dejoie");
-        contentValuescontroleur2.put(DBOpenHelper.Constants.prenomControleur, "Frédéric");
+        contentValuescontroleur2.put(DBOpenHelper.Constants.prenomControleur, "Fréderic");
 
         // Insert the line in the database
         long rowId = db.insert(DBOpenHelper.Constants.tableFabricant, null, contentValuesFabricant);
