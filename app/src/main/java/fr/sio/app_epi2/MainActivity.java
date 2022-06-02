@@ -228,7 +228,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         long rowId9 = db.insert(DBOpenHelper.Constants.tableLot, null, contentValueslot1);
         long rowId10 = db.insert(DBOpenHelper.Constants.tableLot, null, contentValueslot2);
         // Test to see if the insertion was ok
-        if (rowId == -1 || rowId2 == -1 || rowId3 == -1 || rowId4 == -1 || rowId5 == -1 || rowId6 == -1) {
+        if (rowId == -1 || rowId2 == -1 || rowId3 == -1 || rowId4 == -1 || rowId5 == -1 || rowId6 == -1 || rowId7 == -1 || rowId8 == -1 || rowId9 == -1 || rowId10 == -1) {
             Toast.makeText(this, "Erreur dans l'insertion des données",
                     Toast.LENGTH_LONG).show();
         } else {

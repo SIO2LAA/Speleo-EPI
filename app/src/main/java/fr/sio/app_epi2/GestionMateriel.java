@@ -5,19 +5,17 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Typeface;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.DatePicker;
 import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import java.io.File;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -76,8 +74,13 @@ public class GestionMateriel extends AppCompatActivity implements AdapterView.On
         headerListMateriels = new TextView(this);
         headerListLots = new TextView(this);
 
+        Typeface boldTypeface = Typeface.defaultFromStyle(Typeface.BOLD);
         headerListMateriels.setText("Matériels");
+        headerListMateriels.setTextSize(20);
+        headerListMateriels.setTypeface(boldTypeface);
         headerListLots.setText("Lots");
+        headerListLots.setTextSize(20);
+        headerListLots.setTypeface(boldTypeface);
 
         Filtre filtreTout = new Filtre(1, "Aucun");
         Filtre filtreDateAcquisition = new Filtre(1, "Date Acquisition");
@@ -127,8 +130,8 @@ public class GestionMateriel extends AppCompatActivity implements AdapterView.On
             } catch (ParseException e) {
                 e.printStackTrace();
             }
-            //Lot lot = new Lot(cursor.getInt(0), date, cursor.getInt(2),cursor.getInt(3));
-            //isteLots.add(lot);
+            Lot lot = new Lot(cursor2.getInt(0), date, cursor2.getInt(2),cursor2.getInt(3));
+            listeLots.add(lot);
         }
         listeLot.setAdapter(lotAdapter);
         listeLot.addHeaderView(headerListLots);

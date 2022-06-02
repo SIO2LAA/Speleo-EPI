@@ -4,6 +4,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.text.format.DateFormat;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -60,8 +61,8 @@ public class LotAdaptater extends ArrayAdapter<Lot> {
 
         TextView libelle = convertView.findViewById(R.id.libelleMaterielLot);
         libelle.setText(libelleMateriel);
-        TextView modele = convertView.findViewById(R.id.quantiteMaterielLot);
-        modele.setText(listeLots.get(position).getQuantite());
+        TextView quantite = convertView.findViewById(R.id.quantiteMaterielLot);
+        quantite.setText(String.valueOf(listeLots.get(position).getQuantite()));
         TextView date = convertView.findViewById(R.id.dateLot);
         Date dateAcquisition = listeLots.get(position).getDate();
         CharSequence dateformat = DateFormat.format("yyyy-mm-dd", dateAcquisition);
