@@ -26,6 +26,8 @@ import java.util.Date;
 
 import fr.sio.app_epi2.dao.Singleton;
 import fr.sio.app_epi2.models.Filtre;
+import fr.sio.app_epi2.models.Lot;
+import fr.sio.app_epi2.models.LotAdaptater;
 import fr.sio.app_epi2.models.Materiel;
 import fr.sio.app_epi2.models.MaterielAdaptater;
 //import fr.sio.app_epi2.models.MaterielAdaptater;
@@ -33,12 +35,17 @@ import fr.sio.app_epi2.models.MaterielAdaptater;
 public class GestionMateriel extends AppCompatActivity implements AdapterView.OnItemClickListener, SearchView.OnQueryTextListener, AdapterView.OnItemSelectedListener, View.OnClickListener {
 
     private ListView listeMateriel;
+    private ListView listeLot;
+    private TextView headerListMateriels;
+    private TextView headerListLots;
     private Button Btnimport;
     private Button BtnExport;
     private Intent infoMateriel;
     private SearchView search;
     private Spinner selection;
     private MaterielAdaptater materielAdapter;
+    private LotAdaptater lotAdapter;
+    private ArrayList<Lot> listeLots;
     private ArrayList<Materiel> listeMateriels;
     private SQLiteDatabase db = Singleton.getDB(this).getDbOpenHelper().getReadableDatabase();
     private SimpleDateFormat format = new SimpleDateFormat("y-m-d");
@@ -50,6 +57,7 @@ public class GestionMateriel extends AppCompatActivity implements AdapterView.On
         TextView dateView = (TextView)findViewById(R.id.date_jour);
         setDate(dateView);
         listeMateriel = findViewById(R.id.listeMateriel);
+        listeLot = findViewById(R.id.listeLot);
         Btnimport = findViewById(R.id.button_import);
         BtnExport = findViewById(R.id.button_export);
         search = findViewById(R.id.recherche);
@@ -58,9 +66,17 @@ public class GestionMateriel extends AppCompatActivity implements AdapterView.On
         search.setOnQueryTextListener(this);
         listeMateriels = new ArrayList<>();
         materielAdapter = new MaterielAdaptater(this, R.layout.listeview_item, listeMateriels);
+        lotAdapter = new LotAdaptater(this, R.layout.listeview_lot, listeLots);
         listeMateriel.setOnItemClickListener(this);
+        listeLot.setOnItemClickListener(this);
         Btnimport.setOnClickListener(this);
         BtnExport.setOnClickListener(this);
+
+        headerListMateriels = new TextView(this);
+        headerListLots = new TextView(this);
+
+        headerListMateriels.setText("Matériels");
+        headerListLots.setText("Lots");
 
         Filtre filtreTout = new Filtre(1, "Aucun");
         Filtre filtreDateAcquisition = new Filtre(1, "Date Acquisition");
@@ -78,6 +94,7 @@ public class GestionMateriel extends AppCompatActivity implements AdapterView.On
         selection.setAdapter(filtresAdaptateur);
 
         Cursor cursor = db.rawQuery("SELECT * FROM materiel", null);
+        Cursor cursor2 = db.rawQuery("SELECT * FROM lot", null);
 
         while(cursor.moveToNext()) {
             
@@ -98,6 +115,22 @@ public class GestionMateriel extends AppCompatActivity implements AdapterView.On
             listeMateriels.add(materiel);
         }
         listeMateriel.setAdapter(materielAdapter);
+        listeMateriel.addHeaderView(headerListMateriels);
+
+        while(cursor2.moveToNext()) {
+
+            Date date = new Date();
+
+            try {
+                date = format.parse(cursor2.getString(1));
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+            Lot lot = new Lot(cursor.getInt(0), date, cursor.getInt(2),cursor.getInt(3));
+            listeLots.add(lot);
+        }
+        listeLot.setAdapter(lotAdapter);
+        listeLot.addHeaderView(headerListLots);
     }
 
     @Override
@@ -146,9 +179,9 @@ public class GestionMateriel extends AppCompatActivity implements AdapterView.On
         }
 
         if (filtre.getLibelle() == "Date Acquisition") {
-            Cursor cursor2 = db.rawQuery("SELECT * FROM materiel ORDER BY dateAcquisition DESC", null);
+            Cursor cursor3 = db.rawQuery("SELECT * FROM materiel ORDER BY dateAcquisition DESC", null);
 
-            while(cursor2.moveToNext()) {
+            while(cursor3.moveToNext()) {
                 
                 Date date_ac = new Date();
                 Date date_pu = new Date();
@@ -156,14 +189,14 @@ public class GestionMateriel extends AppCompatActivity implements AdapterView.On
                 Date date_f = new Date();
 
                 try {
-                    date_ac = format.parse(cursor2.getString(4));
-                    date_pu = format.parse(cursor2.getString(5));
-                    date_lr = format.parse(cursor2.getString(6));
-                    date_f = format.parse(cursor2.getString(7));
+                    date_ac = format.parse(cursor3.getString(4));
+                    date_pu = format.parse(cursor3.getString(5));
+                    date_lr = format.parse(cursor3.getString(6));
+                    date_f = format.parse(cursor3.getString(7));
                 } catch (ParseException e) {
                     e.printStackTrace();
                 }
-                Materiel materiel = new Materiel(cursor2.getInt(0), cursor2.getString(1), cursor2.getString(2),cursor2.getString(3), date_ac, date_pu, date_lr, date_f, cursor2.getString(8), cursor2.getString(9), cursor2.getInt(10), cursor2.getInt(11), cursor2.getInt(12));
+                Materiel materiel = new Materiel(cursor3.getInt(0), cursor3.getString(1), cursor3.getString(2),cursor3.getString(3), date_ac, date_pu, date_lr, date_f, cursor3.getString(8), cursor3.getString(9), cursor3.getInt(10), cursor3.getInt(11), cursor3.getInt(12));
                 filtreListeMateriels.add(materiel);
             }
 

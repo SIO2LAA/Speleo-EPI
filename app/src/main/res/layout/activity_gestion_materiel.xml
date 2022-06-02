@@ -50,10 +50,14 @@
         android:id="@+id/listeMateriel"
         android:layout_width="match_parent"
         android:layout_height="400dp"
-        android:background="@color/white"
-        tools:layout_editor_absoluteX="1dp"
-        tools:layout_editor_absoluteY="400dp" >
+        android:background="@color/white">
+    </ListView>
 
+    <ListView
+        android:id="@+id/listeLot"
+        android:layout_width="match_parent"
+        android:layout_height="400dp"
+        android:background="@color/white">
     </ListView>
 
     <LinearLayout
