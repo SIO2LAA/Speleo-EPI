@@ -192,30 +192,32 @@ public class DBOpenHelper extends SQLiteOpenHelper {
         }
     }
 
+
     /**
-     * Getting all Controleur
-     * returns liste des controleurs
+     * Getting all labels
+     * returns list of labels
      * */
-    public List<String> getControleur(){
-        List<String> list = new ArrayList<String>();
+    public List<String> getAllLabels(){
+        List<String> labels = new ArrayList<String>();
 
         // Select All Query
-        String selectQuery = "SELECT  * FROM " + "controleur";
+        String selectQuery = "SELECT  * FROM " + Constants.tableControleur;
 
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursor = db.rawQuery(selectQuery, null);//selectQuery,selectedArguments
+        Cursor cursor = db.rawQuery(selectQuery, null);
 
         // looping through all rows and adding to list
         if (cursor.moveToFirst()) {
             do {
-                list.add(cursor.getString(1));//adding 2nd column data
+                labels.add(cursor.getString(1));
             } while (cursor.moveToNext());
         }
+
         // closing connection
         cursor.close();
         db.close();
-        // returning lables
-        return list;
-    }
 
+        // returning lables
+        return labels;
+    }
 }

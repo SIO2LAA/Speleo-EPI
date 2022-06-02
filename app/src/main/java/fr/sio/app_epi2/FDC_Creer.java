@@ -9,6 +9,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -56,6 +57,7 @@ public class FDC_Creer extends AppCompatActivity {
         nextdateButton.setText(getNextDate());
 
         Intent intent = getIntent();
+        loadSpinnerData();
 
         int id = intent.getIntExtra("idItemMateriel", 1);
 
@@ -268,7 +270,32 @@ public class FDC_Creer extends AppCompatActivity {
         datePickerDialog2.show();
     }
 
+    /**
+     * Function to load the spinner data from SQLite database
+     * */
+    private void loadSpinnerData() {
+        DBOpenHelper db = new DBOpenHelper(getApplicationContext(), null, null, 2);
+        List<String> lables = db.getAllLabels();
 
+        // Creating adapter for spinner
+        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item, lables);
 
+        // Drop down layout style - list view with radio button
+        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        // attaching data adapter to spinner
+        listeControleur.setAdapter(dataAdapter);
+    }
+
+    public void onItemSelected(AdapterView<?> parent, View view, int position,
+                               long id) {
+        // On selecting a spinner item
+        String label = parent.getItemAtPosition(position).toString();
+
+        // Showing selected spinner item
+        Toast.makeText(parent.getContext(), "You selected: " + label,
+                Toast.LENGTH_LONG).show();
+
+    }
 
 }

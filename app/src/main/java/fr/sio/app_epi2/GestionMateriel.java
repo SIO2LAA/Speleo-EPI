@@ -127,8 +127,8 @@ public class GestionMateriel extends AppCompatActivity implements AdapterView.On
             } catch (ParseException e) {
                 e.printStackTrace();
             }
-            Lot lot = new Lot(cursor.getInt(0), date, cursor.getInt(2),cursor.getInt(3));
-            listeLots.add(lot);
+            //Lot lot = new Lot(cursor.getInt(0), date, cursor.getInt(2),cursor.getInt(3));
+            //isteLots.add(lot);
         }
         listeLot.setAdapter(lotAdapter);
         listeLot.addHeaderView(headerListLots);

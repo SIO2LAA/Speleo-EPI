@@ -128,10 +128,22 @@ public class InfoMateriel extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
-        //espace fiche de vie
+        // Traitement FDV
+        Intent intent = getIntent();
+        int id = intent.getIntExtra("idItemMateriel", 1);
+        Cursor cursorFDV = db.rawQuery("SELECT datePremiereUtilisation FROM materiel WHERE id = " + id , null);
+
         if(fvCreer.isPressed()){
-            FDV_Creer = new Intent(this, FDV_Creer.class);
-            startActivity(FDV_Creer);
+            if(cursorFDV.getCount()==1){
+                Toast.makeText(InfoMateriel.this, "Fiche existe déjà ! Supprimez d'abord avant créer", Toast.LENGTH_SHORT).show();
+            }else if(cursorFDV.getCount()==0) {
+                FDV_Creer = new Intent(this, FDV_Creer.class);
+                FDV_Creer.putExtra("idItemMateriel", id);
+                startActivity(FDV_Creer);
+            }
+
+
+
         }
         if(fvAfficher.isPressed()){
             FDV_Afficher = new Intent(this, FDV_Afficher.class).putExtra("idItemMateriel", materiel.getIdMateriel());
@@ -142,17 +154,14 @@ public class InfoMateriel extends AppCompatActivity implements View.OnClickListe
             startActivity(FDV_Modifier);
         }
 
-        Intent intent = getIntent();
-        
-        int id = intent.getIntExtra("idItemMateriel", 1);
 
-        Cursor cursor = db.rawQuery("SELECT idMateriel FROM controle WHERE idMateriel = " + id , null);
-
+        // Traitement FDC
+        Cursor cursorFDC = db.rawQuery("SELECT idMateriel FROM controle WHERE idMateriel = " + id , null);
         if (fcCreer.isPressed()){
 
-            if(cursor.getCount()==1){
+            if(cursorFDC.getCount()==1){
                 Toast.makeText(InfoMateriel.this, "Fiche existe déjà ! Supprimez d'abord avant créer", Toast.LENGTH_SHORT).show();
-            }else if(cursor.getCount()==0) {
+            }else if(cursorFDC.getCount()==0) {
                 FDC_Creer = new Intent(this,FDC_Creer.class);
                 FDC_Creer.putExtra("idItemMateriel", id);
                 startActivity(FDC_Creer);
