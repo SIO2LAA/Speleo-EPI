@@ -65,6 +65,7 @@ public class GestionMateriel extends AppCompatActivity implements AdapterView.On
         selection.setOnItemSelectedListener(this);
         search.setOnQueryTextListener(this);
         listeMateriels = new ArrayList<>();
+        listeLots = new ArrayList<>();
         materielAdapter = new MaterielAdaptater(this, R.layout.listeview_item, listeMateriels);
         lotAdapter = new LotAdaptater(this, R.layout.listeview_lot, listeLots);
         listeMateriel.setOnItemClickListener(this);
