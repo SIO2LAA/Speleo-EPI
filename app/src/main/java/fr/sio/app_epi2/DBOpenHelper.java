@@ -2,23 +2,34 @@ package fr.sio.app_epi2;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.provider.BaseColumns;
 import android.util.Log;
+
+import androidx.annotation.Nullable;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class DBOpenHelper extends SQLiteOpenHelper {
 
      private String update;
      private String insert;
 
-     // @goals This class aims to show the constant to use for the DBOpenHelper */
+    public DBOpenHelper(@Nullable Context context, @Nullable String name, @Nullable SQLiteDatabase.CursorFactory factory, int version) {
+        super(context, name, factory, version);
+    }
+
+    // @goals This class aims to show the constant to use for the DBOpenHelper */
     public static class Constants implements BaseColumns {
 
         // The database version
         public static int DATABASE_VERSION = 1;
+        public static String DATABASE_NAME = "db";
 
-        // The table Name
+         // The table Name
         public static final String tableFabricant = "fabricant";
         public static final String tableTypes = "types";
         public static final String tableControle = "controle";
@@ -135,11 +146,6 @@ public class DBOpenHelper extends SQLiteOpenHelper {
              + ")";
 
 
-    public DBOpenHelper(Context context, String name, SQLiteDatabase.CursorFactory factory,
-                        int version) {
-        super(context, name, factory, version);
-    }
-
     @Override
     public void onCreate(SQLiteDatabase db) {
         // Create the new database using the SQL string Database_create
@@ -185,4 +191,31 @@ public class DBOpenHelper extends SQLiteOpenHelper {
             return true;
         }
     }
+
+    /**
+     * Getting all Controleur
+     * returns liste des controleurs
+     * */
+    public List<String> getControleur(){
+        List<String> list = new ArrayList<String>();
+
+        // Select All Query
+        String selectQuery = "SELECT  * FROM " + "controleur";
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);//selectQuery,selectedArguments
+
+        // looping through all rows and adding to list
+        if (cursor.moveToFirst()) {
+            do {
+                list.add(cursor.getString(1));//adding 2nd column data
+            } while (cursor.moveToNext());
+        }
+        // closing connection
+        cursor.close();
+        db.close();
+        // returning lables
+        return list;
+    }
+
 }

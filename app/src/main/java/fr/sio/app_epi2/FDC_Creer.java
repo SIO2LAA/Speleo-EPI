@@ -10,14 +10,19 @@ import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 import java.util.Calendar;
+import java.util.List;
 
 import fr.sio.app_epi2.dao.Singleton;
+import fr.sio.app_epi2.models.Controleur;
+import fr.sio.app_epi2.models.Materiel;
 
 public class FDC_Creer extends AppCompatActivity {
 
@@ -28,6 +33,7 @@ public class FDC_Creer extends AppCompatActivity {
     private EditText observation;
     private EditText nature;
     private EditText lieu;
+    private Spinner listeControleur;
     private Button annuler;
     private Button valider;
     private SQLiteDatabase maBD = Singleton.getDB(this).getDbOpenHelper().getReadableDatabase();
@@ -44,12 +50,13 @@ public class FDC_Creer extends AppCompatActivity {
         observation = findViewById(R.id.inputObservation);
         nature = findViewById(R.id.inputNatureControle);
         lieu = findViewById(R.id.inputLieuControle);
+        listeControleur = findViewById(R.id.selectionControleur);
 
         dateButton.setText(getTodaysDate());
         nextdateButton.setText(getNextDate());
 
         Intent intent = getIntent();
-        
+
         int id = intent.getIntExtra("idItemMateriel", 1);
 
         // affichage du layout
@@ -253,13 +260,15 @@ public class FDC_Creer extends AppCompatActivity {
         return "01";
     }
 
-    public void openDatePicker(View view) {
-        datePickerDialog.show();
+
+    public void openDatePicker(View view) { datePickerDialog.show();
     }
 
     public void openDatePicker2(View view) {
         datePickerDialog2.show();
     }
+
+
 
 
 }

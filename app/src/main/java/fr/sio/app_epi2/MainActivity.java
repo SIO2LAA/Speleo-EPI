@@ -196,7 +196,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         contentValuescontroleur1.put(DBOpenHelper.Constants.idControleur, 1);
         contentValuescontroleur1.put(DBOpenHelper.Constants.nomControleur, "Verdon");
-        contentValuescontroleur1.put(DBOpenHelper.Constants.prenomControleur, "Dejoie");
+        contentValuescontroleur1.put(DBOpenHelper.Constants.prenomControleur, "Vincent");
 
         contentValuescontroleur2.put(DBOpenHelper.Constants.idControleur, 2);
         contentValuescontroleur2.put(DBOpenHelper.Constants.nomControleur, "Dejoie");
@@ -209,9 +209,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         long rowId4 = db.insert(DBOpenHelper.Constants.tableMateriel, null, contentValuesmateriel3);
         long rowId5 = db.insert(DBOpenHelper.Constants.tableMateriel, null, contentValuesmateriel4);
         long rowId6 = db.insert(DBOpenHelper.Constants.tableMateriel, null, contentValuesmateriel5);
+        long rowId7 = db.insert(DBOpenHelper.Constants.tableControleur, null, contentValuescontroleur1);
+        long rowId8 = db.insert(DBOpenHelper.Constants.tableControleur, null, contentValuescontroleur2);
 
         // Test to see if the insertion was ok
-        if (rowId == -1 || rowId2 == -1 || rowId3 == -1 || rowId4 == -1 || rowId5 == -1 || rowId6 == -1) {
+        if (rowId == -1 || rowId2 == -1 || rowId3 == -1 || rowId4 == -1 || rowId5 == -1 || rowId6 == -1 || rowId7 == -1 || rowId8 == -1) {
             Toast.makeText(this, "Erreur dans l'insertion des données",
                     Toast.LENGTH_LONG).show();
         } else {

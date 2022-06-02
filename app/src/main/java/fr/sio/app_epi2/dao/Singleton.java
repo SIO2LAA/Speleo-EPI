@@ -3,9 +3,6 @@ package fr.sio.app_epi2.dao;
 //import fr.sio.app_epi2.DBOpenHelper;
 
 import android.content.Context;
-import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteException;
-import android.util.Log;
 
 import fr.sio.app_epi2.DBOpenHelper;
 
@@ -23,8 +20,8 @@ public final class Singleton {
         } catch (InterruptedException ex) {
             ex.printStackTrace();
         }
-        dbOpenHelper = new DBOpenHelper(context, this.DATABASE_NAME, null,
-                this.DATABASE_VERSION);
+        dbOpenHelper = new DBOpenHelper(context, this.DATABASE_NAME, null, this.DATABASE_VERSION
+        );
         test++;
     }
 
