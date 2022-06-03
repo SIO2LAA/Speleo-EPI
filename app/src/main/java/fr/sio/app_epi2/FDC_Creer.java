@@ -43,6 +43,7 @@ public class FDC_Creer extends AppCompatActivity {
     private EditText lieu;
     private Spinner listeControleur;
     private SpinnerControleurAdaptateur spinnerControleurAdaptater;
+    private SimpleSpinnerDropdownItem simpleSpinnerDropdownItem;
     private Button annuler;
     private Button valider;
     private SQLiteDatabase maBD = Singleton.getDB(this).getDbOpenHelper().getReadableDatabase();
@@ -298,7 +299,7 @@ public class FDC_Creer extends AppCompatActivity {
 
 
         // Drop down layout style - list view with radio button
-        spinnerControleurAdaptater.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        simpleSpinnerDropdownItem.setDropDownViewResource(R.layout.simple_spinner_dropdown_item);
 
         // attaching data adapter to spinner
         listeControleur.setAdapter(spinnerControleurAdaptater);

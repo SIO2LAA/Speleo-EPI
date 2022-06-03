@@ -200,7 +200,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         contentValuescontroleur1.put(DBOpenHelper.Constants.idControleur, 1);
         contentValuescontroleur1.put(DBOpenHelper.Constants.nomControleur, "Verdon");
-        contentValuescontroleur1.put(DBOpenHelper.Constants.prenomControleur, "Dejoie");
+        contentValuescontroleur1.put(DBOpenHelper.Constants.prenomControleur, "Vincent");
 
         contentValuescontroleur2.put(DBOpenHelper.Constants.idControleur, 2);
         contentValuescontroleur2.put(DBOpenHelper.Constants.nomControleur, "Dejoie");
