@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.HeaderViewListAdapter;
 import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.Spinner;
@@ -75,9 +76,11 @@ public class GestionMateriel extends AppCompatActivity implements AdapterView.On
         headerListLots = new TextView(this);
 
         Typeface boldTypeface = Typeface.defaultFromStyle(Typeface.BOLD);
+        headerListMateriels.setClickable(false);
         headerListMateriels.setText("Matériels");
         headerListMateriels.setTextSize(20);
         headerListMateriels.setTypeface(boldTypeface);
+        headerListLots.setClickable(false);
         headerListLots.setText("Lots");
         headerListLots.setTextSize(20);
         headerListLots.setTypeface(boldTypeface);
@@ -119,7 +122,7 @@ public class GestionMateriel extends AppCompatActivity implements AdapterView.On
             listeMateriels.add(materiel);
         }
         listeMateriel.setAdapter(materielAdapter);
-        listeMateriel.addHeaderView(headerListMateriels);
+        listeMateriel.addHeaderView(headerListMateriels, null, false);
 
         while(cursor2.moveToNext()) {
 
@@ -134,7 +137,7 @@ public class GestionMateriel extends AppCompatActivity implements AdapterView.On
             listeLots.add(lot);
         }
         listeLot.setAdapter(lotAdapter);
-        listeLot.addHeaderView(headerListLots);
+        listeLot.addHeaderView(headerListLots, null, false);
     }
 
     @Override
