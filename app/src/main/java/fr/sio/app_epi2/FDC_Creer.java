@@ -1,5 +1,7 @@
 package fr.sio.app_epi2;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
@@ -18,8 +20,13 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
+
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collection;
+import java.util.Iterator;
 import java.util.List;
+import java.util.ListIterator;
 
 import fr.sio.app_epi2.dao.Singleton;
 import fr.sio.app_epi2.models.Controleur;
@@ -35,6 +42,7 @@ public class FDC_Creer extends AppCompatActivity {
     private EditText nature;
     private EditText lieu;
     private Spinner listeControleur;
+    private SpinnerControleurAdaptateur spinnerControleurAdaptater;
     private Button annuler;
     private Button valider;
     private SQLiteDatabase maBD = Singleton.getDB(this).getDbOpenHelper().getReadableDatabase();
@@ -274,17 +282,26 @@ public class FDC_Creer extends AppCompatActivity {
      * Function to load the spinner data from SQLite database
      * */
     private void loadSpinnerData() {
-        DBOpenHelper db = new DBOpenHelper(getApplicationContext(), null, null, 2);
-        List<String> lables = db.getAllLabels();
+
+        Cursor cursor = maBD.rawQuery("SELECT * FROM controleur", null);
+
+        ArrayList<Controleur> listeControleurs = new ArrayList<>();
+
+        while(cursor.moveToNext()) {
+            Controleur controleur = new Controleur(cursor.getInt(0), cursor.getString(1), cursor.getString(2));
+            listeControleurs.add(controleur);
+        }
 
         // Creating adapter for spinner
-        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item, lables);
+        spinnerControleurAdaptater = new SpinnerControleurAdaptateur(this, R.layout.spinner_controleurs, listeControleurs);
+
+
 
         // Drop down layout style - list view with radio button
-        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerControleurAdaptater.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
         // attaching data adapter to spinner
-        listeControleur.setAdapter(dataAdapter);
+        listeControleur.setAdapter(spinnerControleurAdaptater);
     }
 
     public void onItemSelected(AdapterView<?> parent, View view, int position,
