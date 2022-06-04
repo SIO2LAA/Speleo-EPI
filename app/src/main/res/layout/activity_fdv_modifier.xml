@@ -32,12 +32,24 @@
                 android:textSize="22sp"
                 android:textStyle="bold" />
 
+            <TextView
+                android:id="@+id/libelle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Libelle :" />
+
             <EditText
                 android:id="@+id/Ed_modele"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="textPersonName" />
+
+            <TextView
+                android:id="@+id/fabricant"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Fabricant :" />
 
             <EditText
                 android:id="@+id/Ed_fabricant"
@@ -46,12 +58,24 @@
                 android:ems="10"
                 android:inputType="textPersonName" />
 
+            <TextView
+                android:id="@+id/signeDist"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Signe distinctif :" />
+
             <EditText
                 android:id="@+id/Ed_signe_distinctif"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="textPersonName" />
+
+            <TextView
+                android:id="@+id/marquagE"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Marquage :" />
 
             <EditText
                 android:id="@+id/Ed_marquage"
@@ -60,6 +84,12 @@
                 android:ems="10"
                 android:inputType="textPersonName" />
 
+            <TextView
+                android:id="@+id/EmplacementDeMarquage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Emplacement de marquage :" />
+
             <EditText
                 android:id="@+id/Ed_emplacement"
                 android:layout_width="match_parent"
@@ -67,45 +97,70 @@
                 android:ems="10"
                 android:inputType="textPersonName" />
 
+            <TextView
+                android:id="@+id/textView11"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="TextView" />
+
             <EditText
                 android:id="@+id/Ed_numero_serie"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:text="Numéro de série :"
                 android:inputType="textPersonName" />
+
+            <TextView
+                android:id="@+id/DateAcquisition"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Date d'acquisition :" />
 
             <EditText
                 android:id="@+id/Ed_date_acquisition"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:inputType="textPersonName"
-                android:text="Name" />
+                android:inputType="textPersonName" />
+
+            <TextView
+                android:id="@+id/DatePmUtilisation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Date de première utilisation :" />
 
             <EditText
                 android:id="@+id/ED_date_pm_use"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:inputType="textPersonName"
-                android:text="Name" />
+                android:inputType="textPersonName" />
+
+            <TextView
+                android:id="@+id/DateLimiteRebut"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Date de limite rébut :" />
 
             <EditText
                 android:id="@+id/ED_limite_rebus"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:inputType="textPersonName"
-                android:text="Name" />
+                android:inputType="textPersonName" />
+
+            <TextView
+                android:id="@+id/DateFabrication"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Date de fabrication" />
 
             <EditText
                 android:id="@+id/ED_date_fabrication"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:inputType="textPersonName"
-                android:text="Name" />
+                android:inputType="textPersonName" />
 
         </LinearLayout>
 

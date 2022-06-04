@@ -85,16 +85,16 @@ public class FDV_Modifier extends AppCompatActivity implements View.OnClickListe
             materiel = new Materiel(cursor.getInt(0), cursor.getString(1), cursor.getString(2),cursor.getString(3), date_ac, date_pu, date_lr, date_f, cursor.getString(8), cursor.getString(9), cursor.getInt(10), cursor.getInt(11), cursor.getInt(12));
         }
 
-        modele.setText("Libelle : " + materiel.getModele());
-        fabricant.setText("Fabricant : " + materiel.getIdFabricant());
-        signe_distinctif.setText("Signe distinctif : " + materiel.getSigneDistinctif());
-        marquage.setText("Marquage : " + materiel.getMarquage());
-        emplacemet_marquage.setText("Emplacement de marquage : " + materiel.getEmplacementMarquage());
+        modele.setText("" + materiel.getModele());
+        fabricant.setText("" + materiel.getIdFabricant());
+        signe_distinctif.setText("" + materiel.getSigneDistinctif());
+        marquage.setText("" + materiel.getMarquage());
+        emplacemet_marquage.setText("" + materiel.getEmplacementMarquage());
         //numero_serie.setText("Numero de serie : " + materiel.get());
-        dateAcquisition.setText("Date d'acquisition : " + sdf.format(materiel.getDateAcquisition()));
-        datePremiereUtilisation.setText("Date de première utilisation : " + sdf.format(materiel.getDatePremiereUtilisation()));
-        dateLimiteRebut.setText("Date de limite rébut : " + sdf.format(materiel.getDateLimiteRebut()));
-        dateFabrication.setText("Date de fabrication : " + sdf.format(materiel.getDateFabrication()));
+        dateAcquisition.setText("" + sdf.format(materiel.getDateAcquisition()));
+        datePremiereUtilisation.setText("" + sdf.format(materiel.getDatePremiereUtilisation()));
+        dateLimiteRebut.setText("" + sdf.format(materiel.getDateLimiteRebut()));
+        dateFabrication.setText("" + sdf.format(materiel.getDateFabrication()));
         //dateFicheVie.setText("Date  redaction fiche de vie : " + sdf.format(materiel.getdate));
 
     }
